@@ -1,0 +1,787 @@
+
+Mainboard.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004f6  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00802000  00802000  0000054a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000054a  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000057c  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000078  00000000  00000000  000005bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001836  00000000  00000000  00000634  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000002f6  00000000  00000000  00001e6a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000003eb  00000000  00000000  00002160  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000110  00000000  00000000  0000254c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000700  00000000  00000000  0000265c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000476  00000000  00000000  00002d5c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000068  00000000  00000000  000031d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 fe 00 	jmp	0x1fc	; 0x1fc <__ctors_end>
+   4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+   8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+   c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  10:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  14:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  18:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  1c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  20:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  24:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  28:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  2c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  30:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  34:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  38:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  3c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  40:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  44:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  48:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  4c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  50:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  54:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  58:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  5c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  60:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  64:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  68:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  6c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  70:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  74:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  78:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  7c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  80:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  84:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  88:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  8c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  90:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  94:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  98:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  9c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  a0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  a4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  a8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  ac:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  b0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  b4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  b8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  bc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  c0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  c4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  c8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  cc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  d0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  d4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  d8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  dc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  e0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  e4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  e8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  ec:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  f0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  f4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  f8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+  fc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 100:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 104:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 108:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 10c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 110:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 114:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 118:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 11c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 120:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 124:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 128:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 12c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 130:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 134:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 138:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 13c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 140:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 144:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 148:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 14c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 150:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 154:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 158:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 15c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 160:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 164:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 168:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 16c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 170:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 174:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 178:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 17c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 180:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 184:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 188:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 18c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 190:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 194:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 198:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 19c:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1a0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1a4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1a8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1ac:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1b0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1b4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1b8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1bc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1c0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1c4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1c8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1cc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1d0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1d4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1d8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1dc:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1e0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1e4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1e8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1ec:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1f0:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1f4:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+ 1f8:	0c 94 0a 01 	jmp	0x214	; 0x214 <__bad_interrupt>
+
+000001fc <__ctors_end>:
+ 1fc:	11 24       	eor	r1, r1
+ 1fe:	1f be       	out	0x3f, r1	; 63
+ 200:	cf ef       	ldi	r28, 0xFF	; 255
+ 202:	cd bf       	out	0x3d, r28	; 61
+ 204:	df e5       	ldi	r29, 0x5F	; 95
+ 206:	de bf       	out	0x3e, r29	; 62
+ 208:	00 e0       	ldi	r16, 0x00	; 0
+ 20a:	0c bf       	out	0x3c, r16	; 60
+ 20c:	0e 94 c9 01 	call	0x392	; 0x392 <main>
+ 210:	0c 94 79 02 	jmp	0x4f2	; 0x4f2 <_exit>
+
+00000214 <__bad_interrupt>:
+ 214:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000218 <_Z4initv>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 218:	e0 e5       	ldi	r30, 0x50	; 80
+ 21a:	f0 e0       	ldi	r31, 0x00	; 0
+	xmitCMD(0x00, 0x2B); // Y Address Set
+	xmitDATA(0x00, 0x00); //
+	xmitDATA(0x01, 0x3F); // 0 - 319
+	
+	_delay_ms(25);
+	xmitCMD(0x00, 0x29); // Turn display on
+ 21c:	88 e0       	ldi	r24, 0x08	; 8
+ 21e:	80 83       	st	Z, r24
+ 220:	80 ec       	ldi	r24, 0xC0	; 192
+ 222:	82 83       	std	Z+2, r24	; 0x02
+ 224:	81 81       	ldd	r24, Z+1	; 0x01
+ 226:	83 ff       	sbrs	r24, 3
+ 228:	fd cf       	rjmp	.-6      	; 0x224 <_Z4initv+0xc>
+ 22a:	88 ed       	ldi	r24, 0xD8	; 216
+ 22c:	84 bf       	out	0x34, r24	; 52
+ 22e:	e0 e4       	ldi	r30, 0x40	; 64
+ 230:	f0 e0       	ldi	r31, 0x00	; 0
+ 232:	11 82       	std	Z+1, r1	; 0x01
+ 234:	84 bf       	out	0x34, r24	; 52
+ 236:	83 e0       	ldi	r24, 0x03	; 3
+	
+	CCP = 0xD8; // Remove code write lock
+	CLK.PSCTRL = 0b00000000; // No external clock prescaler
+	CCP = 0xD8; // Remove code write lock
+	//CLK.CTRL = 0b00000001; // Internal 32MHz Oscillator
+	CLK.CTRL = 0b00000011; // External Oscillator (32MHz)
+ 238:	80 83       	st	Z, r24
+	
+	PORTA.DIR = 0b11111000; // A0, A1, and A2 are ADC inputs, rest outputs
+ 23a:	88 ef       	ldi	r24, 0xF8	; 248
+ 23c:	80 93 00 06 	sts	0x0600, r24
+	ADCA.CTRLA = 0x00; // Enable the ADC on PORT A
+ 240:	e0 e0       	ldi	r30, 0x00	; 0
+ 242:	f2 e0       	ldi	r31, 0x02	; 2
+ 244:	10 82       	st	Z, r1
+	ADCA.CTRLB = 0x00; // Disable ADC stuff
+ 246:	11 82       	std	Z+1, r1	; 0x01
+	ADCA.REFCTRL = 0x00; // Disable the AREF pins
+ 248:	12 82       	std	Z+2, r1	; 0x02
+	
+	PORTB.DIR = 0xFF; // All outputs (PB5 = D_C#, PB6 = WR#)
+ 24a:	e0 e2       	ldi	r30, 0x20	; 32
+ 24c:	f6 e0       	ldi	r31, 0x06	; 6
+ 24e:	9f ef       	ldi	r25, 0xFF	; 255
+ 250:	90 83       	st	Z, r25
+	ADCB.CTRLA = 0x00; // Disable the ADC on PORT B
+ 252:	a0 e4       	ldi	r26, 0x40	; 64
+ 254:	b2 e0       	ldi	r27, 0x02	; 2
+ 256:	1c 92       	st	X, r1
+	ADCB.CTRLB = 0x00; // Disable ADC stuff
+ 258:	11 96       	adiw	r26, 0x01	; 1
+ 25a:	1c 92       	st	X, r1
+ 25c:	11 97       	sbiw	r26, 0x01	; 1
+	ADCB.REFCTRL = 0x00; // Disable the AREF pins
+ 25e:	12 96       	adiw	r26, 0x02	; 2
+ 260:	1c 92       	st	X, r1
+	PORTB.PIN0CTRL = 0b00111000; // Wired AND configuration with internal pull-up (BAT_DISC)
+ 262:	88 e3       	ldi	r24, 0x38	; 56
+ 264:	80 8b       	std	Z+16, r24	; 0x10
+	PORTB.PIN1CTRL = 0b00111000; // Wired AND configuration with internal pull-up (CHA_DISC)
+ 266:	81 8b       	std	Z+17, r24	; 0x11
+	PORTB.PIN4CTRL = 0b00111000; // Wired AND configuration with internal pull-up (CHB_DISC)
+ 268:	84 8b       	std	Z+20, r24	; 0x14
+	PORTB.PIN5CTRL = 0b00111000; // Wired AND configuration with internal pull-up (LCD D_C#)
+ 26a:	85 8b       	std	Z+21, r24	; 0x15
+	PORTB.PIN6CTRL = 0b00111000; // Wired AND configuration with internal pull-up (LCD WR#)
+ 26c:	86 8b       	std	Z+22, r24	; 0x16
+
+	
+	PORTC.DIR = 0x00; // All switch (x8) inputs
+ 26e:	10 92 40 06 	sts	0x0640, r1
+	PORTD.DIR = 0b10111011; // All outputs except RXD0 and RXD1
+ 272:	8b eb       	ldi	r24, 0xBB	; 187
+ 274:	80 93 60 06 	sts	0x0660, r24
+	PORTE.DIR = 0b10111011; // All outputs except RXE0 and RXE1
+ 278:	80 93 80 06 	sts	0x0680, r24
+	PORTF.DIR = 0xFF; // All LCD interface outputs (But reversed bit by bit)
+ 27c:	90 93 a0 06 	sts	0x06A0, r25
+ 280:	2f ef       	ldi	r18, 0xFF	; 255
+ 282:	8f e4       	ldi	r24, 0x4F	; 79
+ 284:	93 ec       	ldi	r25, 0xC3	; 195
+ 286:	21 50       	subi	r18, 0x01	; 1
+ 288:	80 40       	sbci	r24, 0x00	; 0
+ 28a:	90 40       	sbci	r25, 0x00	; 0
+ 28c:	e1 f7       	brne	.-8      	; 0x286 <_Z4initv+0x6e>
+ 28e:	00 c0       	rjmp	.+0      	; 0x290 <_Z4initv+0x78>
+ 290:	00 00       	nop
+ 292:	08 95       	ret
+
+00000294 <_Z9initUSARTv>:
+}
+
+void initUSART(void)
+{
+	// Configure SPI interface and speeds etc for USARTD0 @ 9600bps
+	USARTD0.BAUDCTRLA = 0x0C; // BSEL = 12
+ 294:	e0 ea       	ldi	r30, 0xA0	; 160
+ 296:	f9 e0       	ldi	r31, 0x09	; 9
+ 298:	2c e0       	ldi	r18, 0x0C	; 12
+ 29a:	26 83       	std	Z+6, r18	; 0x06
+	USARTD0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+ 29c:	90 e4       	ldi	r25, 0x40	; 64
+ 29e:	97 83       	std	Z+7, r25	; 0x07
+	USARTD0.CTRLA = 0x00; // Interrupts off
+ 2a0:	13 82       	std	Z+3, r1	; 0x03
+	USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
+ 2a2:	88 e1       	ldi	r24, 0x18	; 24
+ 2a4:	84 83       	std	Z+4, r24	; 0x04
+	USARTD0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
+ 2a6:	33 e0       	ldi	r19, 0x03	; 3
+ 2a8:	35 83       	std	Z+5, r19	; 0x05
+	
+	// Configure SPI interface and speeds etc for USARTD1 @ 9600bps
+	USARTD1.BAUDCTRLA = 0x0C; // BSEL = 12
+ 2aa:	e0 eb       	ldi	r30, 0xB0	; 176
+ 2ac:	f9 e0       	ldi	r31, 0x09	; 9
+ 2ae:	26 83       	std	Z+6, r18	; 0x06
+	USARTD1.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+ 2b0:	97 83       	std	Z+7, r25	; 0x07
+	USARTD1.CTRLA = 0x00; // Interrupts off
+ 2b2:	13 82       	std	Z+3, r1	; 0x03
+	USARTD1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
+ 2b4:	84 83       	std	Z+4, r24	; 0x04
+	USARTD1.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits	
+ 2b6:	35 83       	std	Z+5, r19	; 0x05
+		
+	// Configure SPI interface and speeds etc for USARTE0 @ 9600bps
+	USARTE0.BAUDCTRLA = 0x0C; // BSEL = 12
+ 2b8:	e0 ea       	ldi	r30, 0xA0	; 160
+ 2ba:	fa e0       	ldi	r31, 0x0A	; 10
+ 2bc:	26 83       	std	Z+6, r18	; 0x06
+	USARTE0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+ 2be:	97 83       	std	Z+7, r25	; 0x07
+	USARTE0.CTRLA = 0x00; // Interrupts off
+ 2c0:	13 82       	std	Z+3, r1	; 0x03
+	USARTE0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
+ 2c2:	84 83       	std	Z+4, r24	; 0x04
+	USARTE0.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
+ 2c4:	32 e0       	ldi	r19, 0x02	; 2
+ 2c6:	35 83       	std	Z+5, r19	; 0x05
+	
+	// Configure SPI interface and speeds etc for USARTE1 @ 9600bps
+	USARTE1.BAUDCTRLA = 0x0C; // BSEL = 12
+ 2c8:	e0 eb       	ldi	r30, 0xB0	; 176
+ 2ca:	fa e0       	ldi	r31, 0x0A	; 10
+ 2cc:	26 83       	std	Z+6, r18	; 0x06
+	USARTE1.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+ 2ce:	97 83       	std	Z+7, r25	; 0x07
+	USARTE1.CTRLA = 0x00; // Interrupts off
+ 2d0:	13 82       	std	Z+3, r1	; 0x03
+	USARTE1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
+ 2d2:	84 83       	std	Z+4, r24	; 0x04
+	USARTE1.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
+ 2d4:	35 83       	std	Z+5, r19	; 0x05
+ 2d6:	08 95       	ret
+
+000002d8 <_Z8sendCharci>:
+	_delay_ms(25);
+}
+
+void sendChar(char cToSend, int chanNum)
+{
+	switch(chanNum)
+ 2d8:	61 30       	cpi	r22, 0x01	; 1
+ 2da:	71 05       	cpc	r23, r1
+ 2dc:	99 f0       	breq	.+38     	; 0x304 <_Z8sendCharci+0x2c>
+ 2de:	1c f4       	brge	.+6      	; 0x2e6 <_Z8sendCharci+0xe>
+ 2e0:	67 2b       	or	r22, r23
+ 2e2:	41 f0       	breq	.+16     	; 0x2f4 <_Z8sendCharci+0x1c>
+ 2e4:	08 95       	ret
+ 2e6:	62 30       	cpi	r22, 0x02	; 2
+ 2e8:	71 05       	cpc	r23, r1
+ 2ea:	a1 f0       	breq	.+40     	; 0x314 <_Z8sendCharci+0x3c>
+ 2ec:	63 30       	cpi	r22, 0x03	; 3
+ 2ee:	71 05       	cpc	r23, r1
+ 2f0:	c9 f0       	breq	.+50     	; 0x324 <_Z8sendCharci+0x4c>
+ 2f2:	08 95       	ret
+	{
+		case 0:
+			while(!(USARTD0_STATUS & USART_DREIF_bm));
+ 2f4:	e1 ea       	ldi	r30, 0xA1	; 161
+ 2f6:	f9 e0       	ldi	r31, 0x09	; 9
+ 2f8:	90 81       	ld	r25, Z
+ 2fa:	95 ff       	sbrs	r25, 5
+ 2fc:	fd cf       	rjmp	.-6      	; 0x2f8 <_Z8sendCharci+0x20>
+			USARTD0_DATA = cToSend;
+ 2fe:	80 93 a0 09 	sts	0x09A0, r24
+			break;
+ 302:	08 95       	ret
+		case 1:
+			while(!(USARTD1_STATUS & USART_DREIF_bm));
+ 304:	e1 eb       	ldi	r30, 0xB1	; 177
+ 306:	f9 e0       	ldi	r31, 0x09	; 9
+ 308:	90 81       	ld	r25, Z
+ 30a:	95 ff       	sbrs	r25, 5
+ 30c:	fd cf       	rjmp	.-6      	; 0x308 <_Z8sendCharci+0x30>
+			USARTD1_DATA = cToSend;
+ 30e:	80 93 b0 09 	sts	0x09B0, r24
+			break;
+ 312:	08 95       	ret
+		
+		case 2:
+			while(!(USARTE0_STATUS & USART_DREIF_bm));
+ 314:	e1 ea       	ldi	r30, 0xA1	; 161
+ 316:	fa e0       	ldi	r31, 0x0A	; 10
+ 318:	90 81       	ld	r25, Z
+ 31a:	95 ff       	sbrs	r25, 5
+ 31c:	fd cf       	rjmp	.-6      	; 0x318 <_Z8sendCharci+0x40>
+			USARTE0_DATA = cToSend;
+ 31e:	80 93 a0 0a 	sts	0x0AA0, r24
+			break;
+ 322:	08 95       	ret
+		case 3:
+			while(!(USARTE1_STATUS & USART_DREIF_bm));
+ 324:	e1 eb       	ldi	r30, 0xB1	; 177
+ 326:	fa e0       	ldi	r31, 0x0A	; 10
+ 328:	90 81       	ld	r25, Z
+ 32a:	95 ff       	sbrs	r25, 5
+ 32c:	fd cf       	rjmp	.-6      	; 0x328 <_Z8sendCharci+0x50>
+			USARTE1_DATA = cToSend;
+ 32e:	80 93 b0 0a 	sts	0x0AB0, r24
+ 332:	08 95       	ret
+
+00000334 <_Z7getBytei>:
+}
+
+char getByte(int chanNum)
+{
+	char temp = 0x00;
+	switch(chanNum)
+ 334:	81 30       	cpi	r24, 0x01	; 1
+ 336:	91 05       	cpc	r25, r1
+ 338:	91 f0       	breq	.+36     	; 0x35e <_Z7getBytei+0x2a>
+ 33a:	1c f4       	brge	.+6      	; 0x342 <_Z7getBytei+0xe>
+ 33c:	89 2b       	or	r24, r25
+ 33e:	39 f0       	breq	.+14     	; 0x34e <_Z7getBytei+0x1a>
+ 340:	26 c0       	rjmp	.+76     	; 0x38e <_Z7getBytei+0x5a>
+ 342:	82 30       	cpi	r24, 0x02	; 2
+ 344:	91 05       	cpc	r25, r1
+ 346:	99 f0       	breq	.+38     	; 0x36e <_Z7getBytei+0x3a>
+ 348:	03 97       	sbiw	r24, 0x03	; 3
+ 34a:	c9 f0       	breq	.+50     	; 0x37e <_Z7getBytei+0x4a>
+ 34c:	20 c0       	rjmp	.+64     	; 0x38e <_Z7getBytei+0x5a>
+	{
+		case 0:
+			while(!(USARTD0_STATUS & USART_RXCIF_bm));
+ 34e:	e1 ea       	ldi	r30, 0xA1	; 161
+ 350:	f9 e0       	ldi	r31, 0x09	; 9
+ 352:	80 81       	ld	r24, Z
+ 354:	88 23       	and	r24, r24
+ 356:	ec f7       	brge	.-6      	; 0x352 <_Z7getBytei+0x1e>
+			temp = USARTD0_DATA;
+ 358:	80 91 a0 09 	lds	r24, 0x09A0
+			break;
+ 35c:	08 95       	ret
+		case 1:
+			while(!(USARTD1_STATUS & USART_RXCIF_bm));
+ 35e:	e1 eb       	ldi	r30, 0xB1	; 177
+ 360:	f9 e0       	ldi	r31, 0x09	; 9
+ 362:	80 81       	ld	r24, Z
+ 364:	88 23       	and	r24, r24
+ 366:	ec f7       	brge	.-6      	; 0x362 <_Z7getBytei+0x2e>
+			temp = USARTD1_DATA;
+ 368:	80 91 b0 09 	lds	r24, 0x09B0
+			break;
+ 36c:	08 95       	ret
+		
+		case 2:
+			while(!(USARTE0_STATUS & USART_RXCIF_bm));
+ 36e:	e1 ea       	ldi	r30, 0xA1	; 161
+ 370:	fa e0       	ldi	r31, 0x0A	; 10
+ 372:	80 81       	ld	r24, Z
+ 374:	88 23       	and	r24, r24
+ 376:	ec f7       	brge	.-6      	; 0x372 <_Z7getBytei+0x3e>
+			temp = USARTE0_DATA;
+ 378:	80 91 a0 0a 	lds	r24, 0x0AA0
+			break;
+ 37c:	08 95       	ret
+		case 3:
+			while(!(USARTE1_STATUS & USART_RXCIF_bm));
+ 37e:	e1 eb       	ldi	r30, 0xB1	; 177
+ 380:	fa e0       	ldi	r31, 0x0A	; 10
+ 382:	80 81       	ld	r24, Z
+ 384:	88 23       	and	r24, r24
+ 386:	ec f7       	brge	.-6      	; 0x382 <_Z7getBytei+0x4e>
+			temp = USARTE1_DATA;
+ 388:	80 91 b0 0a 	lds	r24, 0x0AB0
+			break;
+ 38c:	08 95       	ret
+	sendChar(*sToSend++, chanNum);
+}
+
+char getByte(int chanNum)
+{
+	char temp = 0x00;
+ 38e:	80 e0       	ldi	r24, 0x00	; 0
+			break;
+		default:
+			break;
+	}
+	return temp;
+}
+ 390:	08 95       	ret
+
+00000392 <main>:
+static int i_max = 175; // Maximum tube heater current
+static int v_min = 100; // Minimum tube plate voltage supply
+static int v_max = 200; // Maximum tube plate voltage supply
+
+int main(void) 
+{
+ 392:	cf 93       	push	r28
+ 394:	df 93       	push	r29
+ 396:	cd b7       	in	r28, 0x3d	; 61
+ 398:	de b7       	in	r29, 0x3e	; 62
+	char msg_MB;
+	char msg_UI;
+	bool MA_ON = false;
+	bool MB_ON = false;
+
+	userConfig userQueue[numConfig];
+ 39a:	8d b7       	in	r24, 0x3d	; 61
+ 39c:	9e b7       	in	r25, 0x3e	; 62
+ 39e:	82 5d       	subi	r24, 0xD2	; 210
+ 3a0:	91 09       	sbc	r25, r1
+ 3a2:	8d bf       	out	0x3d, r24	; 61
+ 3a4:	9e bf       	out	0x3e, r25	; 62
+ 3a6:	ed b7       	in	r30, 0x3d	; 61
+ 3a8:	fe b7       	in	r31, 0x3e	; 62
+ 3aa:	31 96       	adiw	r30, 0x01	; 1
+	
+	userQueue[0].cleanOn = false;
+ 3ac:	16 86       	std	Z+14, r1	; 0x0e
+	userQueue[0].bass = 75;
+ 3ae:	2b e4       	ldi	r18, 0x4B	; 75
+ 3b0:	30 e0       	ldi	r19, 0x00	; 0
+ 3b2:	20 87       	std	Z+8, r18	; 0x08
+ 3b4:	31 87       	std	Z+9, r19	; 0x09
+	userQueue[0].mids = 85;
+ 3b6:	85 e5       	ldi	r24, 0x55	; 85
+ 3b8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ba:	84 87       	std	Z+12, r24	; 0x0c
+ 3bc:	95 87       	std	Z+13, r25	; 0x0d
+	userQueue[0].treble = 75;
+ 3be:	22 87       	std	Z+10, r18	; 0x0a
+ 3c0:	33 87       	std	Z+11, r19	; 0x0b
+	userQueue[0].gain = 85;
+ 3c2:	ad b7       	in	r26, 0x3d	; 61
+ 3c4:	be b7       	in	r27, 0x3e	; 62
+ 3c6:	11 96       	adiw	r26, 0x01	; 1
+ 3c8:	8d 93       	st	X+, r24
+ 3ca:	9c 93       	st	X, r25
+ 3cc:	12 97       	sbiw	r26, 0x02	; 2
+	userQueue[0].i_ValveA = 140;
+ 3ce:	8c e8       	ldi	r24, 0x8C	; 140
+ 3d0:	90 e0       	ldi	r25, 0x00	; 0
+ 3d2:	87 87       	std	Z+15, r24	; 0x0f
+ 3d4:	90 8b       	std	Z+16, r25	; 0x10
+	userQueue[0].i_ValveB = 155; // Buffer tube should be HOT
+ 3d6:	8b e9       	ldi	r24, 0x9B	; 155
+ 3d8:	90 e0       	ldi	r25, 0x00	; 0
+ 3da:	81 8b       	std	Z+17, r24	; 0x11
+ 3dc:	92 8b       	std	Z+18, r25	; 0x12
+	userQueue[0].auxVol = 0;
+ 3de:	14 82       	std	Z+4, r1	; 0x04
+ 3e0:	15 82       	std	Z+5, r1	; 0x05
+	userQueue[0].hphVol = 0;
+ 3e2:	16 82       	std	Z+6, r1	; 0x06
+ 3e4:	17 82       	std	Z+7, r1	; 0x07
+	userQueue[0].volume = 50;
+ 3e6:	82 e3       	ldi	r24, 0x32	; 50
+ 3e8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ea:	82 83       	std	Z+2, r24	; 0x02
+ 3ec:	93 83       	std	Z+3, r25	; 0x03
+	userQueue[0].v_Valve = 180;
+ 3ee:	84 eb       	ldi	r24, 0xB4	; 180
+ 3f0:	90 e0       	ldi	r25, 0x00	; 0
+ 3f2:	83 8b       	std	Z+19, r24	; 0x13
+ 3f4:	94 8b       	std	Z+20, r25	; 0x14
+	
+	init();
+ 3f6:	0e 94 0c 01 	call	0x218	; 0x218 <_Z4initv>
+	initUSART();
+ 3fa:	0e 94 4a 01 	call	0x294	; 0x294 <_Z9initUSARTv>
+	char msg_AUX;
+	char msg_MA;
+	char msg_MB;
+	char msg_UI;
+	bool MA_ON = false;
+	bool MB_ON = false;
+ 3fe:	71 2c       	mov	r7, r1
+{
+	char msg_AUX;
+	char msg_MA;
+	char msg_MB;
+	char msg_UI;
+	bool MA_ON = false;
+ 400:	61 2c       	mov	r6, r1
+	while (1)
+	{
+		sendChar('A', 3);
+		sendChar('B', 1);
+		
+		if(USARTD0_STATUS & USART_RXCIF_bm) // If there is unread data from AUX...
+ 402:	0f 2e       	mov	r0, r31
+ 404:	f1 ea       	ldi	r31, 0xA1	; 161
+ 406:	af 2e       	mov	r10, r31
+ 408:	f9 e0       	ldi	r31, 0x09	; 9
+ 40a:	bf 2e       	mov	r11, r31
+ 40c:	f0 2d       	mov	r31, r0
+		{
+			// AUX unused for now
+			msg_AUX = getByte(0);		
+		}
+		
+		if(USARTD1_STATUS & USART_RXCIF_bm) // If there is unread data from module A...
+ 40e:	0f 2e       	mov	r0, r31
+ 410:	f1 eb       	ldi	r31, 0xB1	; 177
+ 412:	cf 2e       	mov	r12, r31
+ 414:	f9 e0       	ldi	r31, 0x09	; 9
+ 416:	df 2e       	mov	r13, r31
+ 418:	f0 2d       	mov	r31, r0
+			msg_MA = getByte(1);
+			if(msg_MA == 'B') 
+				MA_ON = true;
+		}
+		
+		if(USARTE0_STATUS & USART_RXCIF_bm) // If there is unread data from module B...
+ 41a:	0f 2e       	mov	r0, r31
+ 41c:	f1 ea       	ldi	r31, 0xA1	; 161
+ 41e:	ef 2e       	mov	r14, r31
+ 420:	fa e0       	ldi	r31, 0x0A	; 10
+ 422:	ff 2e       	mov	r15, r31
+ 424:	f0 2d       	mov	r31, r0
+		{
+			msg_MB = getByte(2);
+		}
+		
+		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from UI CPU...
+ 426:	01 eb       	ldi	r16, 0xB1	; 177
+ 428:	1a e0       	ldi	r17, 0x0A	; 10
+		if(MA_ON && MB_ON)
+			PORTB.OUT = 0b00010010; 
+		else if(MA_ON)
+			PORTB.OUT = 0b00010000; 
+		else if(MB_ON)
+			PORTB.OUT = 0b00000010; 
+ 42a:	0f 2e       	mov	r0, r31
+ 42c:	f0 e2       	ldi	r31, 0x20	; 32
+ 42e:	8f 2e       	mov	r8, r31
+ 430:	f6 e0       	ldi	r31, 0x06	; 6
+ 432:	9f 2e       	mov	r9, r31
+ 434:	f0 2d       	mov	r31, r0
+ 436:	68 94       	set
+ 438:	33 24       	eor	r3, r3
+ 43a:	31 f8       	bld	r3, 1
+			if(msg_UI == 'A') 
+				MB_ON = true;
+		}
+
+		if(MA_ON && MB_ON)
+			PORTB.OUT = 0b00010010; 
+ 43c:	0f 2e       	mov	r0, r31
+ 43e:	f2 e1       	ldi	r31, 0x12	; 18
+ 440:	4f 2e       	mov	r4, r31
+ 442:	f0 2d       	mov	r31, r0
+		else if(MA_ON)
+			PORTB.OUT = 0b00010000; 
+ 444:	68 94       	set
+ 446:	55 24       	eor	r5, r5
+ 448:	54 f8       	bld	r5, 4
+	//initLCD();
+	//xmitPIXEL(100, 100, 0xFF, 0xFF, 0x00); 
+
+	while (1)
+	{
+		sendChar('A', 3);
+ 44a:	63 e0       	ldi	r22, 0x03	; 3
+ 44c:	70 e0       	ldi	r23, 0x00	; 0
+ 44e:	81 e4       	ldi	r24, 0x41	; 65
+ 450:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <_Z8sendCharci>
+		sendChar('B', 1);
+ 454:	61 e0       	ldi	r22, 0x01	; 1
+ 456:	70 e0       	ldi	r23, 0x00	; 0
+ 458:	82 e4       	ldi	r24, 0x42	; 66
+ 45a:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <_Z8sendCharci>
+		
+		if(USARTD0_STATUS & USART_RXCIF_bm) // If there is unread data from AUX...
+ 45e:	f5 01       	movw	r30, r10
+ 460:	80 81       	ld	r24, Z
+ 462:	88 23       	and	r24, r24
+ 464:	24 f4       	brge	.+8      	; 0x46e <main+0xdc>
+		{
+			// AUX unused for now
+			msg_AUX = getByte(0);		
+ 466:	80 e0       	ldi	r24, 0x00	; 0
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	0e 94 9a 01 	call	0x334	; 0x334 <_Z7getBytei>
+		}
+		
+		if(USARTD1_STATUS & USART_RXCIF_bm) // If there is unread data from module A...
+ 46e:	d6 01       	movw	r26, r12
+ 470:	8c 91       	ld	r24, X
+ 472:	88 23       	and	r24, r24
+ 474:	44 f4       	brge	.+16     	; 0x486 <main+0xf4>
+		{
+			msg_MA = getByte(1);
+ 476:	81 e0       	ldi	r24, 0x01	; 1
+ 478:	90 e0       	ldi	r25, 0x00	; 0
+ 47a:	0e 94 9a 01 	call	0x334	; 0x334 <_Z7getBytei>
+			if(msg_MA == 'B') 
+ 47e:	82 34       	cpi	r24, 0x42	; 66
+ 480:	11 f4       	brne	.+4      	; 0x486 <main+0xf4>
+				MA_ON = true;
+ 482:	66 24       	eor	r6, r6
+ 484:	63 94       	inc	r6
+		}
+		
+		if(USARTE0_STATUS & USART_RXCIF_bm) // If there is unread data from module B...
+ 486:	f7 01       	movw	r30, r14
+ 488:	80 81       	ld	r24, Z
+ 48a:	88 23       	and	r24, r24
+ 48c:	24 f4       	brge	.+8      	; 0x496 <main+0x104>
+		{
+			msg_MB = getByte(2);
+ 48e:	82 e0       	ldi	r24, 0x02	; 2
+ 490:	90 e0       	ldi	r25, 0x00	; 0
+ 492:	0e 94 9a 01 	call	0x334	; 0x334 <_Z7getBytei>
+		}
+		
+		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from UI CPU...
+ 496:	d8 01       	movw	r26, r16
+ 498:	8c 91       	ld	r24, X
+ 49a:	88 23       	and	r24, r24
+ 49c:	34 f4       	brge	.+12     	; 0x4aa <main+0x118>
+		{
+			msg_UI = getByte(3);
+ 49e:	83 e0       	ldi	r24, 0x03	; 3
+ 4a0:	90 e0       	ldi	r25, 0x00	; 0
+ 4a2:	0e 94 9a 01 	call	0x334	; 0x334 <_Z7getBytei>
+			if(msg_UI == 'A') 
+ 4a6:	81 34       	cpi	r24, 0x41	; 65
+ 4a8:	09 f1       	breq	.+66     	; 0x4ec <main+0x15a>
+				MB_ON = true;
+		}
+
+		if(MA_ON && MB_ON)
+ 4aa:	66 20       	and	r6, r6
+ 4ac:	59 f0       	breq	.+22     	; 0x4c4 <main+0x132>
+ 4ae:	77 20       	and	r7, r7
+ 4b0:	29 f0       	breq	.+10     	; 0x4bc <main+0x12a>
+			PORTB.OUT = 0b00010010; 
+ 4b2:	f4 01       	movw	r30, r8
+ 4b4:	44 82       	std	Z+4, r4	; 0x04
+ 4b6:	77 24       	eor	r7, r7
+ 4b8:	73 94       	inc	r7
+ 4ba:	0e c0       	rjmp	.+28     	; 0x4d8 <main+0x146>
+		else if(MA_ON)
+			PORTB.OUT = 0b00010000; 
+ 4bc:	d4 01       	movw	r26, r8
+ 4be:	14 96       	adiw	r26, 0x04	; 4
+ 4c0:	5c 92       	st	X, r5
+ 4c2:	0a c0       	rjmp	.+20     	; 0x4d8 <main+0x146>
+		else if(MB_ON)
+ 4c4:	77 20       	and	r7, r7
+ 4c6:	29 f0       	breq	.+10     	; 0x4d2 <main+0x140>
+			PORTB.OUT = 0b00000010; 
+ 4c8:	f4 01       	movw	r30, r8
+ 4ca:	34 82       	std	Z+4, r3	; 0x04
+ 4cc:	77 24       	eor	r7, r7
+ 4ce:	73 94       	inc	r7
+ 4d0:	03 c0       	rjmp	.+6      	; 0x4d8 <main+0x146>
+		else	
+			PORTB.OUT = 0b00000000; 
+ 4d2:	d4 01       	movw	r26, r8
+ 4d4:	14 96       	adiw	r26, 0x04	; 4
+ 4d6:	1c 92       	st	X, r1
+ 4d8:	bf ef       	ldi	r27, 0xFF	; 255
+ 4da:	e3 ec       	ldi	r30, 0xC3	; 195
+ 4dc:	f9 e0       	ldi	r31, 0x09	; 9
+ 4de:	b1 50       	subi	r27, 0x01	; 1
+ 4e0:	e0 40       	sbci	r30, 0x00	; 0
+ 4e2:	f0 40       	sbci	r31, 0x00	; 0
+ 4e4:	e1 f7       	brne	.-8      	; 0x4de <main+0x14c>
+ 4e6:	00 c0       	rjmp	.+0      	; 0x4e8 <main+0x156>
+ 4e8:	00 00       	nop
+ 4ea:	af cf       	rjmp	.-162    	; 0x44a <main+0xb8>
+			msg_UI = getByte(3);
+			if(msg_UI == 'A') 
+				MB_ON = true;
+		}
+
+		if(MA_ON && MB_ON)
+ 4ec:	61 10       	cpse	r6, r1
+ 4ee:	e1 cf       	rjmp	.-62     	; 0x4b2 <main+0x120>
+ 4f0:	eb cf       	rjmp	.-42     	; 0x4c8 <main+0x136>
+
+000004f2 <_exit>:
+ 4f2:	f8 94       	cli
+
+000004f4 <__stop_program>:
+ 4f4:	ff cf       	rjmp	.-2      	; 0x4f4 <__stop_program>
