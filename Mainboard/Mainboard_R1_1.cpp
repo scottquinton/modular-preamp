@@ -33,6 +33,7 @@ void initLCD(void);
 
 struct userConfig
 {
+	char *name; // Name of the channel
 	int gain; // LED distortion amount (0 - 100)
 	int volume; // Master output volume (0 - 100)
 	int auxVol; // Auxillary input volume (0 - 100)
@@ -46,7 +47,9 @@ struct userConfig
 	int v_Valve; // Vacuum tube plate voltage (to both tubes) (100 - 200 V)
 };
 
-static int numConfig = 10; // Number of different user presets to cycle through
+int userChan = 0; // Currently selected preset number
+int numConfig = 0; // Number of different user presets to cycle through
+static int maxConfig = 10; // Maximum number of different user presets to cycle through
 static int i_min = 125; // Minimum tube heater current
 static int i_max = 175; // Maximum tube heater current
 static int v_min = 100; // Minimum tube plate voltage supply
@@ -61,21 +64,38 @@ int main(void)
 	bool MA_ON = false;
 	bool MB_ON = false;
 
-	userConfig userQueue[numConfig];
+	userConfig userQueue[maxConfig];
 	
-	userQueue[0].cleanOn = false;
-	userQueue[0].bass = 75;
-	userQueue[0].mids = 85;
-	userQueue[0].treble = 75;
-	userQueue[0].gain = 85;
-	userQueue[0].i_ValveA = 140;
-	userQueue[0].i_ValveB = 155; // Buffer tube should be HOT
-	userQueue[0].auxVol = 0;
-	userQueue[0].hphVol = 0;
-	userQueue[0].volume = 50;
-	userQueue[0].v_Valve = 180;
+	userQueue[numConfig].name = "HEAVY DIST 1"; // This is a heavily distorted preset
+	userQueue[numConfig].cleanOn = false;
+	userQueue[numConfig].bass = 75;
+	userQueue[numConfig].mids = 85;
+	userQueue[numConfig].treble = 75;
+	userQueue[numConfig].gain = 85;
+	userQueue[numConfig].i_ValveA = 140;
+	userQueue[numConfig].i_ValveB = 155; // Buffer tube should be HOT
+	userQueue[numConfig].auxVol = 0;
+	userQueue[numConfig].hphVol = 0;
+	userQueue[numConfig].volume = 50;
+	userQueue[numConfig].v_Valve = 180;
+	numConfig++;	
+	
+	userQueue[numConfig].name = "CLEAN GROOVE 1"; // This is a bass heavy clean preset
+	userQueue[numConfig].cleanOn = true;
+	userQueue[numConfig].bass = 85;
+	userQueue[numConfig].mids = 75;
+	userQueue[numConfig].treble = 75;
+	userQueue[numConfig].gain = 25;
+	userQueue[numConfig].i_ValveA = 140;
+	userQueue[numConfig].i_ValveB = 155; // Buffer tube should be HOT
+	userQueue[numConfig].auxVol = 0;
+	userQueue[numConfig].hphVol = 0;
+	userQueue[numConfig].volume = 50;
+	userQueue[numConfig].v_Valve = 180;
+	numConfig++;
 	
 	init();
+	//wooo
 	initUSART();
 	
 	//initLCD();
@@ -126,18 +146,18 @@ int main(void)
 
 void init(void) 
 {
-	//OSC.CTRL = 0b00000010; // Enable internal 32MHz oscillator
-	OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
-	OSC.XOSCCTRL = 0b11000000; // Configure XOSC for High speed operation, high power XTAL1 and XTAL2
+	OSC.CTRL = 0b00000010; // Enable internal 32MHz oscillator
+	//OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
+	//OSC.XOSCCTRL = 0b11000000; // Configure XOSC for High speed operation, high power XTAL1 and XTAL2
 	
-	//while((OSC.STATUS & 0b00000010) == 0); // Wait for the internal oscillator to stabilize
-    while((OSC.STATUS & 0b00001000) == 0); // Wait for the external oscillator to stabilize
+	while((OSC.STATUS & 0b00000010) == 0); // Wait for the internal oscillator to stabilize
+    //while((OSC.STATUS & 0b00001000) == 0); // Wait for the external oscillator to stabilize
 	
 	CCP = 0xD8; // Remove code write lock
 	CLK.PSCTRL = 0b00000000; // No external clock prescaler
 	CCP = 0xD8; // Remove code write lock
-	//CLK.CTRL = 0b00000001; // Internal 32MHz Oscillator
-	CLK.CTRL = 0b00000011; // External Oscillator (32MHz)
+	CLK.CTRL = 0b00000001; // Internal 32MHz Oscillator
+	//CLK.CTRL = 0b00000011; // External Oscillator (32MHz)
 	
 	PORTA.DIR = 0b11111000; // A0, A1, and A2 are ADC inputs, rest outputs
 	ADCA.CTRLA = 0x00; // Enable the ADC on PORT A
@@ -200,6 +220,9 @@ void initUSART(void)
 	USARTE1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
 	USARTE1.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
 }
+
+
+
 
 void initLCD(void)
 {
