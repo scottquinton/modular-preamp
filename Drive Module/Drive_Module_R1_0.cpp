@@ -33,7 +33,7 @@ int main(void)
 
 	while (1)
 	{
-		if(PORTC.INTFLAGS != 0 && x == false) {
+		/*if(PORTC.INTFLAGS != 0 && x == false) {
 			if((PORTC.INTFLAGS & 0b00010000) != 0) {
 				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00010000;
 				// A0 has been triggered
@@ -61,18 +61,23 @@ int main(void)
 		{
 			temp = getByte(0);
 			sendChar(temp, 0);
-		}
-		_delay_ms(1);
+		}*/
+		PORTA.OUT = 0x00;
+		_delay_ms(1000);
+		PORTA.OUT = 0b00001100;
+		_delay_ms(1000);
 	}
 }
 
 void init(void)
 {
 	OSC.CTRL = 0b00000010; // Enable internal 32MHz oscillator
-	//OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
-	//OSC.XOSCCTRL = 0b11010000; // Configure XOSC for High speed operation, high power XTAL1 and XTAL2
 	
+	//OSC.XOSCCTRL = 0b11010000; // Configure XOSC for High speed operation, high power XTAL1 and XTAL2
+	//_delay_ms(500);
+	//OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
 	while((OSC.STATUS & 0b00000010) == 0); // Wait for the internal oscillator to stabilize
+	//OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
 	//while((OSC.STATUS & 0b00001000) == 0); // Wait for the external oscillator to stabilize
 	
 	CCP = 0xD8; // Remove code write lock
@@ -81,16 +86,23 @@ void init(void)
 	CLK.CTRL = 0b00000001; // Internal 32MHz Oscillator
 	//CLK.CTRL = 0b00000011; // External Oscillator (32MHz)
 	
-	PORTA.DIR = 0x00; // All inputs
-	PORTC.DIR = 0x00; // All inputs
+	PORTA.DIR = 0b00001100; // DAC1 and DAC0 outputs (PA2 and PA3)
+	
+	ADCA.CTRLA = 0x00; // Enable the ADC on PORT A
+	ADCA.CTRLB = 0x00; // Disable ADC stuff
+	ADCA.REFCTRL = 0x00; // Disable the AREF pins
+	
+	DACA.CTRLA = 0x00; // Enable the ADC on PORT A
+	DACA.CTRLB = 0x00; // Disable ADC stuff
+	DACA.CTRLC = 0x00; // Disable the AREF pins
+	
+	PORTC.DIR = 0b00000011; // i2C lines SCL and SDA (PC1 and PC0)
 	PORTD.DIR = 0b00001000; // All inputs except PD3 (SPI TX)
 	
-	PORTC.INTMASK = 0b00110000; // Pins 4 & 5 are A8 and B8
-	PORTC.INTCTRL = 0b00000010; // Medium Priority Interrupt
-	PORTC.PIN4CTRL = 0x00; // Quadrature Input A8, Sense both edges
-	PORTC.PIN5CTRL = 0x00; // Quadrature Input B8, Sense both edges
+	PORTA.PIN2CTRL = 0b00111000; // Wired AND configuration with internal pull-up
+	PORTA.PIN3CTRL = 0b00111000; // Wired AND configuration with internal pull-up
 	
-	SREG = 0b10000000; // Enable global interrupts
+	//SREG = 0b10000000; // Enable global interrupts
 	
 	_delay_ms(1000); // Wait for stuff to power up etc
 }
@@ -98,7 +110,8 @@ void init(void)
 void initUSART(void)
 {
 	// Configure SPI interface and speeds etc for USARTD0 @ 9600bps
-	USARTD0.BAUDCTRLA = 0x0C; // BSEL = 12
+	USARTD0.BAUDCTRLA = 0x06; // BSEL = 6
+	//USARTD0.BAUDCTRLA = 0x0C; // BSEL = 12
 	USARTD0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
 	USARTD0.CTRLA = 0x00; // Interrupts off
 	USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
