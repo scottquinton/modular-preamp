@@ -15,11 +15,21 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+#define RED 0b1111100000000000;
+#define GREEN 0b0000011111100000;
+#define BLUE 0b0000000000011111;
+#define WHITE 0xFFFF;
+#define BLACK 0x0000;
+
 // LCD Functions
 void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned char green, unsigned char blue);
 void xmitDATA(unsigned char dataByte);
 void xmitCMD(unsigned char cmdByte);
 void lcdDelay(unsigned char lcdDel);
+void xmitHLine(short int xPos, short int yPos, short int length, short int color);
+void xmitVLine(short int xPos, short int yPos, short int length, short int color);
+void xmitText(short int xStart, short int yStart, short int textChar, short int color);
+void fillLCD(short int color);
 
 // USART Functions
 void sendChar(char cToSend, int chanNum);
@@ -30,7 +40,6 @@ void getString(char *sToGet, int chanNum);
 void init(void);
 void initUSART(void);
 void initLCD(void);
-void xmitPlaid(void);
 
 struct userConfig
 {
@@ -102,11 +111,24 @@ int main(void)
 	PORTB.OUTSET = 0b00010000; // Turn on Both Relays
 	PORTB.OUTSET = 0b00000010; // Turn on Both Relays
 	
-	xmitCMD(0x2C); // Start writing pixels
+	//xmitCMD(0x2C); // Start writing pixels
 	
 	while (1)
 	{
-		xmitPlaid();
+		short int colorBG = BLUE;
+		short int colorLN = RED;
+		fillLCD(colorBG);
+		xmitVLine(0, 0, 240, colorLN);
+		xmitVLine(63, 0, 240, colorLN);
+		xmitVLine(127, 0, 240, colorLN);
+		xmitVLine(191, 0, 240, colorLN);
+		xmitVLine(255, 0, 240, colorLN);
+		xmitVLine(319, 0, 240, colorLN);
+		xmitHLine(0, 0, 320, colorLN);
+		xmitHLine(0, 119, 320, colorLN);
+		xmitHLine(0, 239, 320, colorLN);
+		//xmitPlaid();
+		while(1);
 	}
 }
 
@@ -376,13 +398,107 @@ void xmitCMD(unsigned char cmdByte)
 	//lcdDelay(1);
 }
 
-void xmitPlaid(void) 
+void xmitHLine(short int xPos, short int yPos, short int length, short int color)
 {
-	for(int i=0; i<20; i++) 
-		for(int j=0; j<240; j++) {
-			xmitDATA(4*i); //
-			xmitDATA(j); // Blue?
-		}
+	unsigned char colorH = (unsigned char)(color >> 8);
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	
+	unsigned char xStartH = (unsigned char)(xPos >> 8);
+	unsigned char xStartL = (unsigned char)(xPos & 0x00FF);
+	unsigned char xEndH = (unsigned char)((xPos + length) >> 8);
+	unsigned char xEndL = (unsigned char)((xPos + length) & 0x00FF);
+	unsigned char yStart = (unsigned char)yPos;
+	unsigned char yEnd = yStart;
+		
+	xmitCMD(0x36); // Memory access control
+	xmitDATA(0x80); // Bottom to top, left to right, rest default
+		
+	xmitCMD(0x2A); // X Address Set
+	xmitDATA(0x00); //
+	xmitDATA(yStart); // Start 0
+	xmitDATA(0x00); //
+	xmitDATA(yEnd); // Finish 239
+		
+	xmitCMD(0x2B); // Y Address Set
+	xmitDATA(xStartH); //
+	xmitDATA(xStartL); // Start 0
+	xmitDATA(xEndH); //
+	xmitDATA(xEndL); // Finish 319
+		
+	xmitCMD(0x2C); // Start writing pixels
+	for(int i=0; i<length; i++) {
+		xmitDATA(colorH);
+		xmitDATA(colorL);
+			
+	}
+}
+
+void fillLCD(short int color)
+{
+	unsigned char colorH = (unsigned char)(color >> 8);
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	
+	xmitCMD(0x36); // Memory access control
+	xmitDATA(0x80); // Bottom to top, left to right, row/column exhange rest default
+	
+	xmitCMD(0x2A); // X Address Set
+	xmitDATA(0x00); //
+	xmitDATA(0x00); // Start 0
+	xmitDATA(0x00); //
+	xmitDATA(0xEF); // Finish 239
+		
+	xmitCMD(0x2B); // Y Address Set
+	xmitDATA(0x00); //
+	xmitDATA(0x00); // Start 0
+	xmitDATA(0x01); //
+	xmitDATA(0x3F); // Finish 319
+		
+	xmitCMD(0x2C); // Start writing pixels	
+	for(int i=0; i<320; i++)
+	for(int j=0; j<240; j++) {
+		xmitDATA(colorH);
+		xmitDATA(colorL);
+	}
+	
+}
+
+// 60, 160, 120, RED
+void xmitVLine(short int xPos, short int yPos, short int length, short int color)
+{
+	unsigned char colorH = (unsigned char)(color >> 8);
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	unsigned char xStartH = (unsigned char)(xPos >> 8);
+	unsigned char xStartL = (unsigned char)(xPos & 0x00FF);
+	unsigned char xEndH = xStartH;
+	unsigned char xEndL = xStartL;
+	unsigned char yStart = (unsigned char)yPos;
+	unsigned char yEnd = (unsigned char)yPos + (unsigned char)length;
+	
+	xmitCMD(0x36); // Memory access control
+	xmitDATA(0xA0); // Bottom to top, left to right, rest default
+	
+	xmitCMD(0x2A); // X Address Set
+	xmitDATA(xStartH); //
+	xmitDATA(xStartL); // Start 0
+	xmitDATA(xEndH); //
+	xmitDATA(xEndL); // Finish 319
+	
+	xmitCMD(0x2B); // /y Address Set
+	xmitDATA(0x00); //
+	xmitDATA(yStart); // Start 0
+	xmitDATA(0x00); //
+	xmitDATA(yEnd); // Finish 239
+
+	xmitCMD(0x2C); // Start writing pixels	
+	for(int i=0; i<length; i++) {
+		xmitDATA(colorH);
+		xmitDATA(colorL);
+	}
+}
+ 
+void xmitText(short int xStart, short int yStart, unsigned char textChar, short int color)
+{
+	
 }
  
 void lcdDelay(unsigned char lcdDel)
