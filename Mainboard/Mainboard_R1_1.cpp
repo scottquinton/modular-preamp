@@ -537,7 +537,7 @@ void drawChar(unsigned char c, short int xStart, short int yStart, short int col
 				xmitDATA(colorL);
 			}
 			else{
-				xmitData(0xFF);
+				xmitDATA(0xFF);
 				xmitDATA(0xFF);
 			}
 		}
