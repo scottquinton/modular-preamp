@@ -22,11 +22,11 @@
 #define WHITE 0xFFFF;
 #define BLACK 0x0000;
 
-#define CHAR_WIDTH 16
-#define CHAR_HEIGHT 16
+#define CHAR_WIDTH 16;
+#define CHAR_HEIGHT 16;
 
 // LCD Functions
-void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned char green, unsigned char blue);
+;void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned char green, unsigned char blue);
 void xmitDATA(unsigned char dataByte);
 void xmitCMD(unsigned char cmdByte);
 void lcdDelay(unsigned char lcdDel);
@@ -34,6 +34,7 @@ void xmitHLine(short int xPos, short int yPos, short int length, short int color
 void xmitVLine(short int xPos, short int yPos, short int length, short int color);
 void xmitText(short int xStart, short int yStart, short int textChar, short int color);
 void fillLCD(short int color);
+void drawString(const char* str, short int xStart, short int yStart, short int color);
 
 // USART Functions
 void sendChar(char cToSend, int chanNum);
@@ -117,6 +118,7 @@ int main(void)
 	
 	//xmitCMD(0x2C); // Start writing pixels
 	
+	/*
 	while (1)
 	{
 		short int colorBG = BLUE;
@@ -134,6 +136,9 @@ int main(void)
 		//xmitPlaid();
 		while(1);
 	}
+	*/
+	short int char_color = WHITE;
+	drawString("HELLOWORLD", 100, 100, char_color);
 }
 
 void init(void) 
@@ -368,6 +373,7 @@ char getByte(int chanNum)
 	return temp;
 }
 
+/*
 void getString(char *sToGet, int chanNum)
 {
 	
@@ -379,6 +385,7 @@ void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned
 	//xmitDATA(0x00); //
 	//xmitDATA(0x1F); // Blue
 }
+*/
 
 void xmitDATA(unsigned char dataByte)
 {
@@ -499,17 +506,24 @@ void xmitVLine(short int xPos, short int yPos, short int length, short int color
 		xmitDATA(colorL);
 	}
 }
- 
+
+int getCharIndex(unsigned char c) {
+	int c_val = (int)(c);
+	if (c >= 'A' && c <= 'Z') c_val -= ('A' + 10);
+	else if (c >= '0' && c <= '9') c_val -= '0';
+	return c_val;
+}
+
 void drawChar(unsigned char c, short int xStart, short int yStart, short int color)
 {
 	unsigned char colorH = (unsigned char)(color >> 8);
 	unsigned char colorL = (unsigned char)(color & 0x00FF);
 	unsigned char xStartH = (unsigned char)(xStart >> 8);
 	unsigned char xStartL = (unsigned char)(xStart & 0x00FF);
-	unsigned char xEndH = (unsigned char)((xStart + CHAR_WIDTH) >> 8);
-	unsigned char xEndL = (unsigned char)((xStart + CHAR_WIDTH) & 0x00FF);
-	unsigned char yStart = (unsigned char)yStart;
-	unsigned char yEnd = (unsigned char)(yStart + CHAR_HEIGHT);
+	unsigned char xEndH = (unsigned char)((xStart + 16) >> 8);
+	unsigned char xEndL = (unsigned char)((xStart + 16) & 0x00FF);
+	unsigned char yStartL = (unsigned char)yStart;
+	unsigned char yEnd = (unsigned char)(yStart + 16);
 	
 	xmitCMD(0x36); // Memory access control
 	xmitDATA(0xA0); // Bottom to top, left to right, rest default
@@ -522,23 +536,24 @@ void drawChar(unsigned char c, short int xStart, short int yStart, short int col
 	
 	xmitCMD(0x2B); // /y Address Set
 	xmitDATA(0x00); //
-	xmitDATA(yStart); // Start 0
+	xmitDATA(yStartL); // Start 0
 	xmitDATA(0x00); //
 	xmitDATA(yEnd); // Finish 239
 	
 	int c_index = getCharIndex(c);
-	const short int chr = font[c_index];
+	const short int* chr = font[c_index];
+	//const short int* chr = font[c_index];
 	
 	xmitCMD(0x2C); // Start writing pixels
-	for(int i=0; i<CHAR_HEIGHT; i++) {
-		for(int j=0; j<CHAR_WIDTH; j++) {
+	for(int i=0; i<16; i++) {
+		for(int j=0; j<16; j++) {
 			if(chr[i] & (1<<j)){
 				xmitDATA(colorH);
 				xmitDATA(colorL);
 			}
 			else{
-				xmitDATA(0xFF);
-				xmitDATA(0xFF);
+				xmitDATA(0x00);
+				xmitDATA(0x00);
 			}
 		}
 	}	
@@ -547,15 +562,8 @@ void drawChar(unsigned char c, short int xStart, short int yStart, short int col
 void drawString(const char* str, short int xStart, short int yStart, short int color) {
 	while (*str) {
 		drawChar(*str++, xStart, yStart, color);
-		xStart += CHAR_WIDTH
+		xStart += CHAR_WIDTH;
 	}
-}
-
-int getCharIndex(unsigned char c) {
-	int c_val = (int)(c);
-	if (c >= 'A' && c <= 'Z') c_val -= ('A' + 10);
-	else if (c >= '0' && c <= '9') c_val -= '0';
-	return c_val;
 }
  
 void lcdDelay(unsigned char lcdDel)

@@ -3,31 +3,31 @@ Mainboard.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000064e  00000000  00000000  00000094  2**1
+  0 .text         000007da  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000001c  00802000  0000064e  000006e2  2**0
+  1 .data         00000528  00802000  000007da  0000086e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000002  0080201c  0080201c  000006fe  2**0
+  2 .bss          00000002  00802528  00802528  00000d96  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000006fe  2**0
+  3 .comment      00000030  00000000  00000000  00000d96  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000730  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000dc8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000080  00000000  00000000  00000770  2**0
+  5 .debug_aranges 00000098  00000000  00000000  00000e08  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000012df  00000000  00000000  000007f0  2**0
+  6 .debug_info   00001b69  00000000  00000000  00000ea0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000002db  00000000  00000000  00001acf  2**0
+  7 .debug_abbrev 00000330  00000000  00000000  00002a09  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000354  00000000  00000000  00001daa  2**0
+  8 .debug_line   00000437  00000000  00000000  00002d39  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000120  00000000  00000000  00002100  2**2
+  9 .debug_frame  00000254  00000000  00000000  00003170  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000709  00000000  00000000  00002220  2**0
+ 10 .debug_str    000007bf  00000000  00000000  000033c4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000397  00000000  00000000  00002929  2**0
+ 11 .debug_loc    00000cf3  00000000  00000000  00003b83  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000070  00000000  00000000  00002cc0  2**0
+ 12 .debug_ranges 000000a0  00000000  00000000  00004876  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -172,41 +172,41 @@ Disassembly of section .text:
  20a:	0c bf       	out	0x3c, r16	; 60
 
 0000020c <__do_copy_data>:
- 20c:	10 e2       	ldi	r17, 0x20	; 32
+ 20c:	15 e2       	ldi	r17, 0x25	; 37
  20e:	a0 e0       	ldi	r26, 0x00	; 0
  210:	b0 e2       	ldi	r27, 0x20	; 32
- 212:	ee e4       	ldi	r30, 0x4E	; 78
- 214:	f6 e0       	ldi	r31, 0x06	; 6
+ 212:	ea ed       	ldi	r30, 0xDA	; 218
+ 214:	f7 e0       	ldi	r31, 0x07	; 7
  216:	00 e0       	ldi	r16, 0x00	; 0
  218:	0b bf       	out	0x3b, r16	; 59
  21a:	02 c0       	rjmp	.+4      	; 0x220 <__do_copy_data+0x14>
  21c:	07 90       	elpm	r0, Z+
  21e:	0d 92       	st	X+, r0
- 220:	ac 31       	cpi	r26, 0x1C	; 28
+ 220:	a8 32       	cpi	r26, 0x28	; 40
  222:	b1 07       	cpc	r27, r17
  224:	d9 f7       	brne	.-10     	; 0x21c <__do_copy_data+0x10>
 
 00000226 <__do_clear_bss>:
- 226:	20 e2       	ldi	r18, 0x20	; 32
- 228:	ac e1       	ldi	r26, 0x1C	; 28
- 22a:	b0 e2       	ldi	r27, 0x20	; 32
+ 226:	25 e2       	ldi	r18, 0x25	; 37
+ 228:	a8 e2       	ldi	r26, 0x28	; 40
+ 22a:	b5 e2       	ldi	r27, 0x25	; 37
  22c:	01 c0       	rjmp	.+2      	; 0x230 <.do_clear_bss_start>
 
 0000022e <.do_clear_bss_loop>:
  22e:	1d 92       	st	X+, r1
 
 00000230 <.do_clear_bss_start>:
- 230:	ae 31       	cpi	r26, 0x1E	; 30
+ 230:	aa 32       	cpi	r26, 0x2A	; 42
  232:	b2 07       	cpc	r27, r18
  234:	e1 f7       	brne	.-8      	; 0x22e <.do_clear_bss_loop>
- 236:	0e 94 9c 02 	call	0x538	; 0x538 <main>
- 23a:	0c 94 25 03 	jmp	0x64a	; 0x64a <_exit>
+ 236:	0e 94 37 03 	call	0x66e	; 0x66e <main>
+ 23a:	0c 94 eb 03 	jmp	0x7d6	; 0x7d6 <_exit>
 
 0000023e <__bad_interrupt>:
  23e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000242 <_Z4initv>:
-	}
+	drawString("HELLOWORLD", 100, 100, char_color);
 }
 
 void init(void) 
@@ -384,8 +384,8 @@ void initUSART(void)
  308:	08 95       	ret
 
 0000030a <_Z8xmitDATAh>:
-	//xmitDATA(0x1F); // Blue
 }
+*/
 
 void xmitDATA(unsigned char dataByte)
 {
@@ -396,554 +396,820 @@ void xmitDATA(unsigned char dataByte)
  310:	95 83       	std	Z+5, r25	; 0x05
 	PORTF.OUT = dataByte;
  312:	80 93 a4 06 	sts	0x06A4, r24
+	//lcdDelay(1);
 	PORTB.OUTCLR = 0b01000000; // WR goes low
  316:	80 e4       	ldi	r24, 0x40	; 64
  318:	86 83       	std	Z+6, r24	; 0x06
+	//lcdDelay(1);
 	PORTB.OUTSET = 0b01000000; // WR goes high
  31a:	85 83       	std	Z+5, r24	; 0x05
  31c:	08 95       	ret
 
-0000031e <_Z9xmitPlaidv>:
-	PORTB.OUTCLR = 0b01000000; // WR goes low
-	PORTB.OUTSET = 0b01000000; // WR goes high
+0000031e <_Z12getCharIndexh>:
+		xmitDATA(colorL);
+	}
 }
 
-void xmitPlaid(void) 
-{
- 31e:	cf 93       	push	r28
- 320:	df 93       	push	r29
- 322:	d0 e0       	ldi	r29, 0x00	; 0
- 324:	0c c0       	rjmp	.+24     	; 0x33e <_Z9xmitPlaidv+0x20>
-	for(int i=0; i<20; i++) 
-		for(int j=0; j<240; j++) {
-			xmitDATA(4*i); //
- 326:	8d 2f       	mov	r24, r29
- 328:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
-			xmitDATA(j); // Blue?
- 32c:	8c 2f       	mov	r24, r28
- 32e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
- 332:	cf 5f       	subi	r28, 0xFF	; 255
+int getCharIndex(unsigned char c) {
+	int c_val = (int)(c);
+ 31e:	28 2f       	mov	r18, r24
+ 320:	30 e0       	ldi	r19, 0x00	; 0
+	if (c >= 'A' && c <= 'Z') c_val -= ('A' + 10);
+ 322:	9f eb       	ldi	r25, 0xBF	; 191
+ 324:	98 0f       	add	r25, r24
+ 326:	9a 31       	cpi	r25, 0x1A	; 26
+ 328:	18 f4       	brcc	.+6      	; 0x330 <_Z12getCharIndexh+0x12>
+ 32a:	2b 54       	subi	r18, 0x4B	; 75
+ 32c:	31 09       	sbc	r19, r1
+ 32e:	06 c0       	rjmp	.+12     	; 0x33c <_Z12getCharIndexh+0x1e>
+	else if (c >= '0' && c <= '9') c_val -= '0';
+ 330:	90 ed       	ldi	r25, 0xD0	; 208
+ 332:	98 0f       	add	r25, r24
+ 334:	9a 30       	cpi	r25, 0x0A	; 10
+ 336:	10 f4       	brcc	.+4      	; 0x33c <_Z12getCharIndexh+0x1e>
+ 338:	20 53       	subi	r18, 0x30	; 48
+ 33a:	31 09       	sbc	r19, r1
+	return c_val;
 }
+ 33c:	c9 01       	movw	r24, r18
+ 33e:	08 95       	ret
 
-void xmitPlaid(void) 
-{
-	for(int i=0; i<20; i++) 
-		for(int j=0; j<240; j++) {
- 334:	c0 3f       	cpi	r28, 0xF0	; 240
- 336:	b9 f7       	brne	.-18     	; 0x326 <_Z9xmitPlaidv+0x8>
- 338:	dc 5f       	subi	r29, 0xFC	; 252
-	PORTB.OUTSET = 0b01000000; // WR goes high
+00000340 <_Z8lcdDelayh>:
+	}
 }
-
-void xmitPlaid(void) 
-{
-	for(int i=0; i<20; i++) 
- 33a:	d0 35       	cpi	r29, 0x50	; 80
- 33c:	11 f0       	breq	.+4      	; 0x342 <_Z9xmitPlaidv+0x24>
-	PORTB.OUTCLR = 0b01000000; // WR goes low
-	PORTB.OUTSET = 0b01000000; // WR goes high
-}
-
-void xmitPlaid(void) 
-{
- 33e:	c0 e0       	ldi	r28, 0x00	; 0
- 340:	f2 cf       	rjmp	.-28     	; 0x326 <_Z9xmitPlaidv+0x8>
-	for(int i=0; i<20; i++) 
-		for(int j=0; j<240; j++) {
-			xmitDATA(4*i); //
-			xmitDATA(j); // Blue?
-		}
-}
- 342:	df 91       	pop	r29
- 344:	cf 91       	pop	r28
- 346:	08 95       	ret
-
-00000348 <_Z8lcdDelayh>:
  
 void lcdDelay(unsigned char lcdDel)
 {
 	for(unsigned char i = 0; i < lcdDel; i++)
- 348:	88 23       	and	r24, r24
- 34a:	29 f0       	breq	.+10     	; 0x356 <_Z8lcdDelayh+0xe>
- 34c:	90 e0       	ldi	r25, 0x00	; 0
+ 340:	88 23       	and	r24, r24
+ 342:	29 f0       	breq	.+10     	; 0x34e <_Z8lcdDelayh+0xe>
+ 344:	90 e0       	ldi	r25, 0x00	; 0
 		asm("NOP");
- 34e:	00 00       	nop
-		}
+ 346:	00 00       	nop
+	}
 }
  
 void lcdDelay(unsigned char lcdDel)
 {
 	for(unsigned char i = 0; i < lcdDel; i++)
- 350:	9f 5f       	subi	r25, 0xFF	; 255
- 352:	98 13       	cpse	r25, r24
- 354:	fc cf       	rjmp	.-8      	; 0x34e <_Z8lcdDelayh+0x6>
- 356:	08 95       	ret
+ 348:	9f 5f       	subi	r25, 0xFF	; 255
+ 34a:	98 13       	cpse	r25, r24
+ 34c:	fc cf       	rjmp	.-8      	; 0x346 <_Z8lcdDelayh+0x6>
+ 34e:	08 95       	ret
 
-00000358 <_Z7xmitCMDh>:
-	PORTB.OUTCLR = 0b01000000; // WR goes low
+00000350 <_Z7xmitCMDh>:
 	PORTB.OUTSET = 0b01000000; // WR goes high
+	//lcdDelay(1);
 }
 
 void xmitCMD(unsigned char cmdByte)
 {
- 358:	cf 93       	push	r28
- 35a:	df 93       	push	r29
+ 350:	cf 93       	push	r28
+ 352:	df 93       	push	r29
 	PORTB.OUTCLR = 0b00100000; // D/C# low for command
- 35c:	c0 e2       	ldi	r28, 0x20	; 32
- 35e:	d6 e0       	ldi	r29, 0x06	; 6
- 360:	90 e2       	ldi	r25, 0x20	; 32
- 362:	9e 83       	std	Y+6, r25	; 0x06
+ 354:	c0 e2       	ldi	r28, 0x20	; 32
+ 356:	d6 e0       	ldi	r29, 0x06	; 6
+ 358:	90 e2       	ldi	r25, 0x20	; 32
+ 35a:	9e 83       	std	Y+6, r25	; 0x06
 	PORTF.OUT = cmdByte;
- 364:	80 93 a4 06 	sts	0x06A4, r24
+ 35c:	80 93 a4 06 	sts	0x06A4, r24
 	lcdDelay(10);
- 368:	8a e0       	ldi	r24, 0x0A	; 10
- 36a:	0e 94 a4 01 	call	0x348	; 0x348 <_Z8lcdDelayh>
+ 360:	8a e0       	ldi	r24, 0x0A	; 10
+ 362:	0e 94 a0 01 	call	0x340	; 0x340 <_Z8lcdDelayh>
 	PORTB.OUTCLR = 0b01000000; // WR goes low
- 36e:	80 e4       	ldi	r24, 0x40	; 64
- 370:	8e 83       	std	Y+6, r24	; 0x06
+ 366:	80 e4       	ldi	r24, 0x40	; 64
+ 368:	8e 83       	std	Y+6, r24	; 0x06
+	//lcdDelay(1);
 	PORTB.OUTSET = 0b01000000; // WR goes high
- 372:	8d 83       	std	Y+5, r24	; 0x05
+ 36a:	8d 83       	std	Y+5, r24	; 0x05
+	//lcdDelay(1);
 }
- 374:	df 91       	pop	r29
- 376:	cf 91       	pop	r28
- 378:	08 95       	ret
+ 36c:	df 91       	pop	r29
+ 36e:	cf 91       	pop	r28
+ 370:	08 95       	ret
 
-0000037a <_Z7initLCDv>:
+00000372 <_Z7initLCDv>:
 	USARTE1.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
 }
 
 void initLCD(void)
 {
 	xmitCMD(0x28); // Turn display off
- 37a:	88 e2       	ldi	r24, 0x28	; 40
- 37c:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 372:	88 e2       	ldi	r24, 0x28	; 40
+ 374:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	
 	xmitCMD(0x11); // Exit sleep mode	
- 380:	81 e1       	ldi	r24, 0x11	; 17
- 382:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 378:	81 e1       	ldi	r24, 0x11	; 17
+ 37a:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	
 	xmitCMD(0x36); // Memory access control
- 386:	86 e3       	ldi	r24, 0x36	; 54
- 388:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 37e:	86 e3       	ldi	r24, 0x36	; 54
+ 380:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	//xmitDATA(0x00, 0x80); // Bottom to top, left to right, rest default
 	xmitDATA(0x80); // Bottom to top, left to right, rest default
- 38c:	80 e8       	ldi	r24, 0x80	; 128
- 38e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 384:	80 e8       	ldi	r24, 0x80	; 128
+ 386:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	
 	xmitCMD(0x3A); // Interface Pixel Format
- 392:	8a e3       	ldi	r24, 0x3A	; 58
- 394:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 38a:	8a e3       	ldi	r24, 0x3A	; 58
+ 38c:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x55); // 65K RGB color format, 16 bits per pixel
- 398:	85 e5       	ldi	r24, 0x55	; 85
- 39a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 390:	85 e5       	ldi	r24, 0x55	; 85
+ 392:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	//xmitDATA(0x00, 0x55); // 65K RGB color format, 16 bits per pixel
 	//xmitDATA(0x00, 0x66); // 256K RGB color format, 18 bits per pixel
 	
 	xmitCMD(0xB2); // Porch control
- 39e:	82 eb       	ldi	r24, 0xB2	; 178
- 3a0:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 396:	82 eb       	ldi	r24, 0xB2	; 178
+ 398:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x0C); //
- 3a4:	8c e0       	ldi	r24, 0x0C	; 12
- 3a6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 39c:	8c e0       	ldi	r24, 0x0C	; 12
+ 39e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x0C); //
- 3aa:	8c e0       	ldi	r24, 0x0C	; 12
- 3ac:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3a2:	8c e0       	ldi	r24, 0x0C	; 12
+ 3a4:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x00); //
- 3b0:	80 e0       	ldi	r24, 0x00	; 0
- 3b2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3a8:	80 e0       	ldi	r24, 0x00	; 0
+ 3aa:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x33); //
- 3b6:	83 e3       	ldi	r24, 0x33	; 51
- 3b8:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3ae:	83 e3       	ldi	r24, 0x33	; 51
+ 3b0:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x33); //
- 3bc:	83 e3       	ldi	r24, 0x33	; 51
- 3be:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3b4:	83 e3       	ldi	r24, 0x33	; 51
+ 3b6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0xB7); // Gate Control
- 3c2:	87 eb       	ldi	r24, 0xB7	; 183
- 3c4:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 3ba:	87 eb       	ldi	r24, 0xB7	; 183
+ 3bc:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x35); //
- 3c8:	85 e3       	ldi	r24, 0x35	; 53
- 3ca:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3c0:	85 e3       	ldi	r24, 0x35	; 53
+ 3c2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0xBB); // VCOM Control
- 3ce:	8b eb       	ldi	r24, 0xBB	; 187
- 3d0:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 3c6:	8b eb       	ldi	r24, 0xBB	; 187
+ 3c8:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x2B); //
- 3d4:	8b e2       	ldi	r24, 0x2B	; 43
- 3d6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3cc:	8b e2       	ldi	r24, 0x2B	; 43
+ 3ce:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0xC0); // LCM Control
- 3da:	80 ec       	ldi	r24, 0xC0	; 192
- 3dc:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 3d2:	80 ec       	ldi	r24, 0xC0	; 192
+ 3d4:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x2C); //
- 3e0:	8c e2       	ldi	r24, 0x2C	; 44
- 3e2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3d8:	8c e2       	ldi	r24, 0x2C	; 44
+ 3da:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0xC2); // VDV and VRH Command Enable
- 3e6:	82 ec       	ldi	r24, 0xC2	; 194
- 3e8:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 3de:	82 ec       	ldi	r24, 0xC2	; 194
+ 3e0:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x01); //
- 3ec:	81 e0       	ldi	r24, 0x01	; 1
- 3ee:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3e4:	81 e0       	ldi	r24, 0x01	; 1
+ 3e6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0xFF); //
- 3f2:	8f ef       	ldi	r24, 0xFF	; 255
- 3f4:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3ea:	8f ef       	ldi	r24, 0xFF	; 255
+ 3ec:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	
 	xmitCMD(0xC3); // VRH Set
- 3f8:	83 ec       	ldi	r24, 0xC3	; 195
- 3fa:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 3f0:	83 ec       	ldi	r24, 0xC3	; 195
+ 3f2:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x11); //
- 3fe:	81 e1       	ldi	r24, 0x11	; 17
- 400:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 3f6:	81 e1       	ldi	r24, 0x11	; 17
+ 3f8:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	
 	xmitCMD(0xC4); // VDV Control
- 404:	84 ec       	ldi	r24, 0xC4	; 196
- 406:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 3fc:	84 ec       	ldi	r24, 0xC4	; 196
+ 3fe:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x20); //
- 40a:	80 e2       	ldi	r24, 0x20	; 32
- 40c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 402:	80 e2       	ldi	r24, 0x20	; 32
+ 404:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	
 	xmitCMD(0xC6); // Frame rate control in normal mode
- 410:	86 ec       	ldi	r24, 0xC6	; 198
- 412:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 408:	86 ec       	ldi	r24, 0xC6	; 198
+ 40a:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x0F); //
- 416:	8f e0       	ldi	r24, 0x0F	; 15
- 418:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 40e:	8f e0       	ldi	r24, 0x0F	; 15
+ 410:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0xD0); // Power Control 1
- 41c:	80 ed       	ldi	r24, 0xD0	; 208
- 41e:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 414:	80 ed       	ldi	r24, 0xD0	; 208
+ 416:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0xA4); //
- 422:	84 ea       	ldi	r24, 0xA4	; 164
- 424:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 41a:	84 ea       	ldi	r24, 0xA4	; 164
+ 41c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0xA1); //
- 428:	81 ea       	ldi	r24, 0xA1	; 161
- 42a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 420:	81 ea       	ldi	r24, 0xA1	; 161
+ 422:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	
 	xmitCMD(0xE0); // Positive Voltage Gamma Control
- 42e:	80 ee       	ldi	r24, 0xE0	; 224
- 430:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 426:	80 ee       	ldi	r24, 0xE0	; 224
+ 428:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0xD0); //
- 434:	80 ed       	ldi	r24, 0xD0	; 208
- 436:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 42c:	80 ed       	ldi	r24, 0xD0	; 208
+ 42e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x00); //
- 43a:	80 e0       	ldi	r24, 0x00	; 0
- 43c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 432:	80 e0       	ldi	r24, 0x00	; 0
+ 434:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x05); //
- 440:	85 e0       	ldi	r24, 0x05	; 5
- 442:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 438:	85 e0       	ldi	r24, 0x05	; 5
+ 43a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x0E); //
- 446:	8e e0       	ldi	r24, 0x0E	; 14
- 448:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 43e:	8e e0       	ldi	r24, 0x0E	; 14
+ 440:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x15); //
- 44c:	85 e1       	ldi	r24, 0x15	; 21
- 44e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 444:	85 e1       	ldi	r24, 0x15	; 21
+ 446:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x0D); //
- 452:	8d e0       	ldi	r24, 0x0D	; 13
- 454:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 44a:	8d e0       	ldi	r24, 0x0D	; 13
+ 44c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x37); //
- 458:	87 e3       	ldi	r24, 0x37	; 55
- 45a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 450:	87 e3       	ldi	r24, 0x37	; 55
+ 452:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x43); //
- 45e:	83 e4       	ldi	r24, 0x43	; 67
- 460:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 456:	83 e4       	ldi	r24, 0x43	; 67
+ 458:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x47); //
- 464:	87 e4       	ldi	r24, 0x47	; 71
- 466:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 45c:	87 e4       	ldi	r24, 0x47	; 71
+ 45e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x09); //
- 46a:	89 e0       	ldi	r24, 0x09	; 9
- 46c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 462:	89 e0       	ldi	r24, 0x09	; 9
+ 464:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x15); //
- 470:	85 e1       	ldi	r24, 0x15	; 21
- 472:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 468:	85 e1       	ldi	r24, 0x15	; 21
+ 46a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x12); //
- 476:	82 e1       	ldi	r24, 0x12	; 18
- 478:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 46e:	82 e1       	ldi	r24, 0x12	; 18
+ 470:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x16); //
- 47c:	86 e1       	ldi	r24, 0x16	; 22
- 47e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 474:	86 e1       	ldi	r24, 0x16	; 22
+ 476:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x19); //
- 482:	89 e1       	ldi	r24, 0x19	; 25
- 484:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 47a:	89 e1       	ldi	r24, 0x19	; 25
+ 47c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0xE1); // Negative Voltage Gamma Control
- 488:	81 ee       	ldi	r24, 0xE1	; 225
- 48a:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 480:	81 ee       	ldi	r24, 0xE1	; 225
+ 482:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0xD0); //
- 48e:	80 ed       	ldi	r24, 0xD0	; 208
- 490:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 486:	80 ed       	ldi	r24, 0xD0	; 208
+ 488:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x00); //
- 494:	80 e0       	ldi	r24, 0x00	; 0
- 496:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 48c:	80 e0       	ldi	r24, 0x00	; 0
+ 48e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x05); //
- 49a:	85 e0       	ldi	r24, 0x05	; 5
- 49c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 492:	85 e0       	ldi	r24, 0x05	; 5
+ 494:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x0D); //
- 4a0:	8d e0       	ldi	r24, 0x0D	; 13
- 4a2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 498:	8d e0       	ldi	r24, 0x0D	; 13
+ 49a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x0C); //
- 4a6:	8c e0       	ldi	r24, 0x0C	; 12
- 4a8:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 49e:	8c e0       	ldi	r24, 0x0C	; 12
+ 4a0:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x06); //
- 4ac:	86 e0       	ldi	r24, 0x06	; 6
- 4ae:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4a4:	86 e0       	ldi	r24, 0x06	; 6
+ 4a6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x2D); //
- 4b2:	8d e2       	ldi	r24, 0x2D	; 45
- 4b4:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4aa:	8d e2       	ldi	r24, 0x2D	; 45
+ 4ac:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x44); //
- 4b8:	84 e4       	ldi	r24, 0x44	; 68
- 4ba:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4b0:	84 e4       	ldi	r24, 0x44	; 68
+ 4b2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x40); //
- 4be:	80 e4       	ldi	r24, 0x40	; 64
- 4c0:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4b6:	80 e4       	ldi	r24, 0x40	; 64
+ 4b8:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x0E); //
- 4c4:	8e e0       	ldi	r24, 0x0E	; 14
- 4c6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4bc:	8e e0       	ldi	r24, 0x0E	; 14
+ 4be:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x1C); //
- 4ca:	8c e1       	ldi	r24, 0x1C	; 28
- 4cc:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4c2:	8c e1       	ldi	r24, 0x1C	; 28
+ 4c4:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x18); //
- 4d0:	88 e1       	ldi	r24, 0x18	; 24
- 4d2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4c8:	88 e1       	ldi	r24, 0x18	; 24
+ 4ca:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x16); //
- 4d6:	86 e1       	ldi	r24, 0x16	; 22
- 4d8:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4ce:	86 e1       	ldi	r24, 0x16	; 22
+ 4d0:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x19); //
- 4dc:	89 e1       	ldi	r24, 0x19	; 25
- 4de:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4d4:	89 e1       	ldi	r24, 0x19	; 25
+ 4d6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0x2A); // X Address Set
- 4e2:	8a e2       	ldi	r24, 0x2A	; 42
- 4e4:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 4da:	8a e2       	ldi	r24, 0x2A	; 42
+ 4dc:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x00); //
- 4e8:	80 e0       	ldi	r24, 0x00	; 0
- 4ea:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4e0:	80 e0       	ldi	r24, 0x00	; 0
+ 4e2:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x00); // Start 0
- 4ee:	80 e0       	ldi	r24, 0x00	; 0
- 4f0:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4e6:	80 e0       	ldi	r24, 0x00	; 0
+ 4e8:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x00); //
- 4f4:	80 e0       	ldi	r24, 0x00	; 0
- 4f6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4ec:	80 e0       	ldi	r24, 0x00	; 0
+ 4ee:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0xEF); // Finish 239
- 4fa:	8f ee       	ldi	r24, 0xEF	; 239
- 4fc:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4f2:	8f ee       	ldi	r24, 0xEF	; 239
+ 4f4:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	
 	xmitCMD(0x2B); // Y Address Set
- 500:	8b e2       	ldi	r24, 0x2B	; 43
- 502:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
+ 4f8:	8b e2       	ldi	r24, 0x2B	; 43
+ 4fa:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
 	xmitDATA(0x00); //
- 506:	80 e0       	ldi	r24, 0x00	; 0
- 508:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 4fe:	80 e0       	ldi	r24, 0x00	; 0
+ 500:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x00); // Start 0
- 50c:	80 e0       	ldi	r24, 0x00	; 0
- 50e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 504:	80 e0       	ldi	r24, 0x00	; 0
+ 506:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x01); //
- 512:	81 e0       	ldi	r24, 0x01	; 1
- 514:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 50a:	81 e0       	ldi	r24, 0x01	; 1
+ 50c:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 	xmitDATA(0x3F); // Finish 319
- 518:	8f e3       	ldi	r24, 0x3F	; 63
- 51a:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 510:	8f e3       	ldi	r24, 0x3F	; 63
+ 512:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
 
 	xmitCMD(0x29); // Turn display on
- 51e:	89 e2       	ldi	r24, 0x29	; 41
- 520:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
- 524:	2f ef       	ldi	r18, 0xFF	; 255
- 526:	81 ee       	ldi	r24, 0xE1	; 225
- 528:	94 e0       	ldi	r25, 0x04	; 4
- 52a:	21 50       	subi	r18, 0x01	; 1
- 52c:	80 40       	sbci	r24, 0x00	; 0
- 52e:	90 40       	sbci	r25, 0x00	; 0
- 530:	e1 f7       	brne	.-8      	; 0x52a <_Z7initLCDv+0x1b0>
- 532:	00 c0       	rjmp	.+0      	; 0x534 <_Z7initLCDv+0x1ba>
- 534:	00 00       	nop
- 536:	08 95       	ret
+ 516:	89 e2       	ldi	r24, 0x29	; 41
+ 518:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
+ 51c:	2f ef       	ldi	r18, 0xFF	; 255
+ 51e:	81 ee       	ldi	r24, 0xE1	; 225
+ 520:	94 e0       	ldi	r25, 0x04	; 4
+ 522:	21 50       	subi	r18, 0x01	; 1
+ 524:	80 40       	sbci	r24, 0x00	; 0
+ 526:	90 40       	sbci	r25, 0x00	; 0
+ 528:	e1 f7       	brne	.-8      	; 0x522 <_Z7initLCDv+0x1b0>
+ 52a:	00 c0       	rjmp	.+0      	; 0x52c <_Z7initLCDv+0x1ba>
+ 52c:	00 00       	nop
+ 52e:	08 95       	ret
 
-00000538 <main>:
+00000530 <_Z8drawCharhsss>:
+	else if (c >= '0' && c <= '9') c_val -= '0';
+	return c_val;
+}
+
+void drawChar(unsigned char c, short int xStart, short int yStart, short int color)
+{
+ 530:	cf 92       	push	r12
+ 532:	df 92       	push	r13
+ 534:	ef 92       	push	r14
+ 536:	ff 92       	push	r15
+ 538:	0f 93       	push	r16
+ 53a:	1f 93       	push	r17
+ 53c:	cf 93       	push	r28
+ 53e:	df 93       	push	r29
+ 540:	08 2f       	mov	r16, r24
+ 542:	eb 01       	movw	r28, r22
+ 544:	14 2f       	mov	r17, r20
+	unsigned char colorH = (unsigned char)(color >> 8);
+ 546:	e3 2e       	mov	r14, r19
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+ 548:	f2 2e       	mov	r15, r18
+	unsigned char xEndH = (unsigned char)((xStart + 16) >> 8);
+	unsigned char xEndL = (unsigned char)((xStart + 16) & 0x00FF);
+	unsigned char yStartL = (unsigned char)yStart;
+	unsigned char yEnd = (unsigned char)(yStart + 16);
+	
+	xmitCMD(0x36); // Memory access control
+ 54a:	86 e3       	ldi	r24, 0x36	; 54
+ 54c:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
+	xmitDATA(0xA0); // Bottom to top, left to right, rest default
+ 550:	80 ea       	ldi	r24, 0xA0	; 160
+ 552:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	
+	xmitCMD(0x2A); // X Address Set
+ 556:	8a e2       	ldi	r24, 0x2A	; 42
+ 558:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
+	xmitDATA(xStartH); //
+ 55c:	8d 2f       	mov	r24, r29
+ 55e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	xmitDATA(xStartL); // Start 0
+ 562:	8c 2f       	mov	r24, r28
+ 564:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+{
+	unsigned char colorH = (unsigned char)(color >> 8);
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	unsigned char xStartH = (unsigned char)(xStart >> 8);
+	unsigned char xStartL = (unsigned char)(xStart & 0x00FF);
+	unsigned char xEndH = (unsigned char)((xStart + 16) >> 8);
+ 568:	ce 01       	movw	r24, r28
+ 56a:	40 96       	adiw	r24, 0x10	; 16
+	xmitDATA(0xA0); // Bottom to top, left to right, rest default
+	
+	xmitCMD(0x2A); // X Address Set
+	xmitDATA(xStartH); //
+	xmitDATA(xStartL); // Start 0
+	xmitDATA(xEndH); //
+ 56c:	89 2f       	mov	r24, r25
+ 56e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	xmitDATA(xEndL); // Finish 319
+ 572:	8c 2f       	mov	r24, r28
+ 574:	80 5f       	subi	r24, 0xF0	; 240
+ 576:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	
+	xmitCMD(0x2B); // /y Address Set
+ 57a:	8b e2       	ldi	r24, 0x2B	; 43
+ 57c:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
+	xmitDATA(0x00); //
+ 580:	80 e0       	ldi	r24, 0x00	; 0
+ 582:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	xmitDATA(yStartL); // Start 0
+ 586:	81 2f       	mov	r24, r17
+ 588:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	xmitDATA(0x00); //
+ 58c:	80 e0       	ldi	r24, 0x00	; 0
+ 58e:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	xmitDATA(yEnd); // Finish 239
+ 592:	80 e1       	ldi	r24, 0x10	; 16
+ 594:	81 0f       	add	r24, r17
+ 596:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	
+	int c_index = getCharIndex(c);
+ 59a:	80 2f       	mov	r24, r16
+ 59c:	0e 94 8f 01 	call	0x31e	; 0x31e <_Z12getCharIndexh>
+	const short int* chr = font[c_index];
+ 5a0:	88 0f       	add	r24, r24
+ 5a2:	99 1f       	adc	r25, r25
+ 5a4:	82 95       	swap	r24
+ 5a6:	92 95       	swap	r25
+ 5a8:	90 7f       	andi	r25, 0xF0	; 240
+ 5aa:	98 27       	eor	r25, r24
+ 5ac:	80 7f       	andi	r24, 0xF0	; 240
+ 5ae:	98 27       	eor	r25, r24
+ 5b0:	ec 01       	movw	r28, r24
+ 5b2:	c9 5d       	subi	r28, 0xD9	; 217
+ 5b4:	df 4d       	sbci	r29, 0xDF	; 223
+	//const short int* chr = font[c_index];
+	
+	xmitCMD(0x2C); // Start writing pixels
+ 5b6:	8c e2       	ldi	r24, 0x2C	; 44
+ 5b8:	0e 94 a8 01 	call	0x350	; 0x350 <_Z7xmitCMDh>
+ 5bc:	8e 01       	movw	r16, r28
+ 5be:	6e 01       	movw	r12, r28
+ 5c0:	80 e2       	ldi	r24, 0x20	; 32
+ 5c2:	c8 0e       	add	r12, r24
+ 5c4:	d1 1c       	adc	r13, r1
+ 5c6:	21 c0       	rjmp	.+66     	; 0x60a <_Z8drawCharhsss+0xda>
+	for(int i=0; i<16; i++) {
+		for(int j=0; j<16; j++) {
+			if(chr[i] & (1<<j)){
+ 5c8:	f8 01       	movw	r30, r16
+ 5ca:	40 81       	ld	r20, Z
+ 5cc:	51 81       	ldd	r21, Z+1	; 0x01
+ 5ce:	0c 2e       	mov	r0, r28
+ 5d0:	02 c0       	rjmp	.+4      	; 0x5d6 <_Z8drawCharhsss+0xa6>
+ 5d2:	55 95       	asr	r21
+ 5d4:	47 95       	ror	r20
+ 5d6:	0a 94       	dec	r0
+ 5d8:	e2 f7       	brpl	.-8      	; 0x5d2 <_Z8drawCharhsss+0xa2>
+ 5da:	40 ff       	sbrs	r20, 0
+ 5dc:	07 c0       	rjmp	.+14     	; 0x5ec <_Z8drawCharhsss+0xbc>
+				xmitDATA(colorH);
+ 5de:	8e 2d       	mov	r24, r14
+ 5e0:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+				xmitDATA(colorL);
+ 5e4:	8f 2d       	mov	r24, r15
+ 5e6:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+ 5ea:	06 c0       	rjmp	.+12     	; 0x5f8 <_Z8drawCharhsss+0xc8>
+			}
+			else{
+				xmitDATA(0x00);
+ 5ec:	80 e0       	ldi	r24, 0x00	; 0
+ 5ee:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+				xmitDATA(0x00);
+ 5f2:	80 e0       	ldi	r24, 0x00	; 0
+ 5f4:	0e 94 85 01 	call	0x30a	; 0x30a <_Z8xmitDATAh>
+	const short int* chr = font[c_index];
+	//const short int* chr = font[c_index];
+	
+	xmitCMD(0x2C); // Start writing pixels
+	for(int i=0; i<16; i++) {
+		for(int j=0; j<16; j++) {
+ 5f8:	21 96       	adiw	r28, 0x01	; 1
+ 5fa:	c0 31       	cpi	r28, 0x10	; 16
+ 5fc:	d1 05       	cpc	r29, r1
+ 5fe:	21 f7       	brne	.-56     	; 0x5c8 <_Z8drawCharhsss+0x98>
+ 600:	0e 5f       	subi	r16, 0xFE	; 254
+ 602:	1f 4f       	sbci	r17, 0xFF	; 255
+	int c_index = getCharIndex(c);
+	const short int* chr = font[c_index];
+	//const short int* chr = font[c_index];
+	
+	xmitCMD(0x2C); // Start writing pixels
+	for(int i=0; i<16; i++) {
+ 604:	0c 15       	cp	r16, r12
+ 606:	1d 05       	cpc	r17, r13
+ 608:	19 f0       	breq	.+6      	; 0x610 <_Z8drawCharhsss+0xe0>
+	else if (c >= '0' && c <= '9') c_val -= '0';
+	return c_val;
+}
+
+void drawChar(unsigned char c, short int xStart, short int yStart, short int color)
+{
+ 60a:	c0 e0       	ldi	r28, 0x00	; 0
+ 60c:	d0 e0       	ldi	r29, 0x00	; 0
+ 60e:	dc cf       	rjmp	.-72     	; 0x5c8 <_Z8drawCharhsss+0x98>
+				xmitDATA(0x00);
+				xmitDATA(0x00);
+			}
+		}
+	}	
+}
+ 610:	df 91       	pop	r29
+ 612:	cf 91       	pop	r28
+ 614:	1f 91       	pop	r17
+ 616:	0f 91       	pop	r16
+ 618:	ff 90       	pop	r15
+ 61a:	ef 90       	pop	r14
+ 61c:	df 90       	pop	r13
+ 61e:	cf 90       	pop	r12
+ 620:	08 95       	ret
+
+00000622 <_Z10drawStringPKcsss>:
+
+void drawString(const char* str, short int xStart, short int yStart, short int color) {
+ 622:	cf 92       	push	r12
+ 624:	df 92       	push	r13
+ 626:	ef 92       	push	r14
+ 628:	ff 92       	push	r15
+ 62a:	0f 93       	push	r16
+ 62c:	1f 93       	push	r17
+ 62e:	cf 93       	push	r28
+ 630:	df 93       	push	r29
+ 632:	fc 01       	movw	r30, r24
+ 634:	eb 01       	movw	r28, r22
+ 636:	7a 01       	movw	r14, r20
+ 638:	69 01       	movw	r12, r18
+	while (*str) {
+ 63a:	80 81       	ld	r24, Z
+ 63c:	88 23       	and	r24, r24
+ 63e:	71 f0       	breq	.+28     	; 0x65c <_Z10drawStringPKcsss+0x3a>
+ 640:	8f 01       	movw	r16, r30
+ 642:	0f 5f       	subi	r16, 0xFF	; 255
+ 644:	1f 4f       	sbci	r17, 0xFF	; 255
+		drawChar(*str++, xStart, yStart, color);
+ 646:	96 01       	movw	r18, r12
+ 648:	a7 01       	movw	r20, r14
+ 64a:	be 01       	movw	r22, r28
+ 64c:	0e 94 98 02 	call	0x530	; 0x530 <_Z8drawCharhsss>
+		xStart += CHAR_WIDTH;
+ 650:	60 96       	adiw	r28, 0x10	; 16
+		}
+	}	
+}
+
+void drawString(const char* str, short int xStart, short int yStart, short int color) {
+	while (*str) {
+ 652:	f8 01       	movw	r30, r16
+ 654:	81 91       	ld	r24, Z+
+ 656:	8f 01       	movw	r16, r30
+ 658:	81 11       	cpse	r24, r1
+ 65a:	f5 cf       	rjmp	.-22     	; 0x646 <_Z10drawStringPKcsss+0x24>
+		drawChar(*str++, xStart, yStart, color);
+		xStart += CHAR_WIDTH;
+	}
+}
+ 65c:	df 91       	pop	r29
+ 65e:	cf 91       	pop	r28
+ 660:	1f 91       	pop	r17
+ 662:	0f 91       	pop	r16
+ 664:	ff 90       	pop	r15
+ 666:	ef 90       	pop	r14
+ 668:	df 90       	pop	r13
+ 66a:	cf 90       	pop	r12
+ 66c:	08 95       	ret
+
+0000066e <main>:
 static int i_max = 175; // Maximum tube heater current
 static int v_min = 100; // Minimum tube plate voltage supply
 static int v_max = 200; // Maximum tube plate voltage supply
 
 int main(void) 
 {
- 538:	cf 93       	push	r28
- 53a:	df 93       	push	r29
- 53c:	cd b7       	in	r28, 0x3d	; 61
- 53e:	de b7       	in	r29, 0x3e	; 62
+ 66e:	2f 92       	push	r2
+ 670:	3f 92       	push	r3
+ 672:	5f 92       	push	r5
+ 674:	6f 92       	push	r6
+ 676:	7f 92       	push	r7
+ 678:	8f 92       	push	r8
+ 67a:	9f 92       	push	r9
+ 67c:	af 92       	push	r10
+ 67e:	bf 92       	push	r11
+ 680:	cf 92       	push	r12
+ 682:	df 92       	push	r13
+ 684:	ef 92       	push	r14
+ 686:	ff 92       	push	r15
+ 688:	0f 93       	push	r16
+ 68a:	1f 93       	push	r17
+ 68c:	cf 93       	push	r28
+ 68e:	df 93       	push	r29
+ 690:	cd b7       	in	r28, 0x3d	; 61
+ 692:	de b7       	in	r29, 0x3e	; 62
+		while(1);
+	}
+	*/
+	short int char_color = WHITE;
+	drawString("HELLOWORLD", 100, 100, char_color);
+}
+ 694:	6d b6       	in	r6, 0x3d	; 61
+ 696:	7e b6       	in	r7, 0x3e	; 62
 	char msg_MB;
 	char msg_UI;
 	bool MA_ON = false;
 	bool MB_ON = false;
 
 	userConfig userQueue[maxConfig];
- 540:	8d b7       	in	r24, 0x3d	; 61
- 542:	9e b7       	in	r25, 0x3e	; 62
- 544:	86 5e       	subi	r24, 0xE6	; 230
- 546:	91 09       	sbc	r25, r1
- 548:	8d bf       	out	0x3d, r24	; 61
- 54a:	9e bf       	out	0x3e, r25	; 62
- 54c:	01 96       	adiw	r24, 0x01	; 1
- 54e:	7c 01       	movw	r14, r24
+ 698:	8d b7       	in	r24, 0x3d	; 61
+ 69a:	9e b7       	in	r25, 0x3e	; 62
+ 69c:	86 5e       	subi	r24, 0xE6	; 230
+ 69e:	91 09       	sbc	r25, r1
+ 6a0:	8d bf       	out	0x3d, r24	; 61
+ 6a2:	9e bf       	out	0x3e, r25	; 62
+ 6a4:	01 96       	adiw	r24, 0x01	; 1
+ 6a6:	4c 01       	movw	r8, r24
 	
 	userQueue[numConfig].name = "HEAVY DIST 1"; // This is a heavily distorted preset
- 550:	80 91 1c 20 	lds	r24, 0x201C
- 554:	90 91 1d 20 	lds	r25, 0x201D
- 558:	0f 2e       	mov	r0, r31
- 55a:	f7 e1       	ldi	r31, 0x17	; 23
- 55c:	9f 2e       	mov	r9, r31
- 55e:	f0 2d       	mov	r31, r0
- 560:	98 9e       	mul	r9, r24
- 562:	f0 01       	movw	r30, r0
- 564:	99 9e       	mul	r9, r25
- 566:	f0 0d       	add	r31, r0
- 568:	11 24       	eor	r1, r1
- 56a:	ee 0d       	add	r30, r14
- 56c:	ff 1d       	adc	r31, r15
- 56e:	20 e0       	ldi	r18, 0x00	; 0
- 570:	30 e2       	ldi	r19, 0x20	; 32
- 572:	20 83       	st	Z, r18
- 574:	31 83       	std	Z+1, r19	; 0x01
+ 6a8:	80 91 28 25 	lds	r24, 0x2528
+ 6ac:	90 91 29 25 	lds	r25, 0x2529
+ 6b0:	0f 2e       	mov	r0, r31
+ 6b2:	f7 e1       	ldi	r31, 0x17	; 23
+ 6b4:	5f 2e       	mov	r5, r31
+ 6b6:	f0 2d       	mov	r31, r0
+ 6b8:	58 9e       	mul	r5, r24
+ 6ba:	f0 01       	movw	r30, r0
+ 6bc:	59 9e       	mul	r5, r25
+ 6be:	f0 0d       	add	r31, r0
+ 6c0:	11 24       	eor	r1, r1
+ 6c2:	e8 0d       	add	r30, r8
+ 6c4:	f9 1d       	adc	r31, r9
+ 6c6:	20 e0       	ldi	r18, 0x00	; 0
+ 6c8:	30 e2       	ldi	r19, 0x20	; 32
+ 6ca:	20 83       	st	Z, r18
+ 6cc:	31 83       	std	Z+1, r19	; 0x01
 	userQueue[numConfig].cleanOn = false;
- 576:	10 8a       	std	Z+16, r1	; 0x10
+ 6ce:	10 8a       	std	Z+16, r1	; 0x10
 	userQueue[numConfig].bass = 75;
- 578:	2b e4       	ldi	r18, 0x4B	; 75
- 57a:	30 e0       	ldi	r19, 0x00	; 0
- 57c:	22 87       	std	Z+10, r18	; 0x0a
- 57e:	33 87       	std	Z+11, r19	; 0x0b
+ 6d0:	2b e4       	ldi	r18, 0x4B	; 75
+ 6d2:	30 e0       	ldi	r19, 0x00	; 0
+ 6d4:	22 87       	std	Z+10, r18	; 0x0a
+ 6d6:	33 87       	std	Z+11, r19	; 0x0b
 	userQueue[numConfig].mids = 85;
- 580:	45 e5       	ldi	r20, 0x55	; 85
- 582:	50 e0       	ldi	r21, 0x00	; 0
- 584:	46 87       	std	Z+14, r20	; 0x0e
- 586:	57 87       	std	Z+15, r21	; 0x0f
+ 6d8:	45 e5       	ldi	r20, 0x55	; 85
+ 6da:	50 e0       	ldi	r21, 0x00	; 0
+ 6dc:	46 87       	std	Z+14, r20	; 0x0e
+ 6de:	57 87       	std	Z+15, r21	; 0x0f
 	userQueue[numConfig].treble = 75;
- 588:	24 87       	std	Z+12, r18	; 0x0c
- 58a:	35 87       	std	Z+13, r19	; 0x0d
+ 6e0:	24 87       	std	Z+12, r18	; 0x0c
+ 6e2:	35 87       	std	Z+13, r19	; 0x0d
 	userQueue[numConfig].gain = 85;
- 58c:	42 83       	std	Z+2, r20	; 0x02
- 58e:	53 83       	std	Z+3, r21	; 0x03
+ 6e4:	42 83       	std	Z+2, r20	; 0x02
+ 6e6:	53 83       	std	Z+3, r21	; 0x03
 	userQueue[numConfig].i_ValveA = 140;
- 590:	0c e8       	ldi	r16, 0x8C	; 140
- 592:	10 e0       	ldi	r17, 0x00	; 0
- 594:	01 8b       	std	Z+17, r16	; 0x11
- 596:	12 8b       	std	Z+18, r17	; 0x12
+ 6e8:	0f 2e       	mov	r0, r31
+ 6ea:	fc e8       	ldi	r31, 0x8C	; 140
+ 6ec:	ef 2e       	mov	r14, r31
+ 6ee:	f1 2c       	mov	r15, r1
+ 6f0:	f0 2d       	mov	r31, r0
+ 6f2:	e1 8a       	std	Z+17, r14	; 0x11
+ 6f4:	f2 8a       	std	Z+18, r15	; 0x12
 	userQueue[numConfig].i_ValveB = 155; // Buffer tube should be HOT
- 598:	ab e9       	ldi	r26, 0x9B	; 155
- 59a:	b0 e0       	ldi	r27, 0x00	; 0
- 59c:	a3 8b       	std	Z+19, r26	; 0x13
- 59e:	b4 8b       	std	Z+20, r27	; 0x14
+ 6f6:	0b e9       	ldi	r16, 0x9B	; 155
+ 6f8:	10 e0       	ldi	r17, 0x00	; 0
+ 6fa:	03 8b       	std	Z+19, r16	; 0x13
+ 6fc:	14 8b       	std	Z+20, r17	; 0x14
 	userQueue[numConfig].auxVol = 0;
- 5a0:	16 82       	std	Z+6, r1	; 0x06
- 5a2:	17 82       	std	Z+7, r1	; 0x07
+ 6fe:	16 82       	std	Z+6, r1	; 0x06
+ 700:	17 82       	std	Z+7, r1	; 0x07
 	userQueue[numConfig].hphVol = 0;
- 5a4:	10 86       	std	Z+8, r1	; 0x08
- 5a6:	11 86       	std	Z+9, r1	; 0x09
+ 702:	10 86       	std	Z+8, r1	; 0x08
+ 704:	11 86       	std	Z+9, r1	; 0x09
 	userQueue[numConfig].volume = 50;
- 5a8:	0f 2e       	mov	r0, r31
- 5aa:	f2 e3       	ldi	r31, 0x32	; 50
- 5ac:	4f 2e       	mov	r4, r31
- 5ae:	51 2c       	mov	r5, r1
- 5b0:	f0 2d       	mov	r31, r0
- 5b2:	44 82       	std	Z+4, r4	; 0x04
- 5b4:	55 82       	std	Z+5, r5	; 0x05
+ 706:	a2 e3       	ldi	r26, 0x32	; 50
+ 708:	b0 e0       	ldi	r27, 0x00	; 0
+ 70a:	a4 83       	std	Z+4, r26	; 0x04
+ 70c:	b5 83       	std	Z+5, r27	; 0x05
 	userQueue[numConfig].v_Valve = 180;
- 5b6:	0f 2e       	mov	r0, r31
- 5b8:	f4 eb       	ldi	r31, 0xB4	; 180
- 5ba:	af 2e       	mov	r10, r31
- 5bc:	b1 2c       	mov	r11, r1
- 5be:	f0 2d       	mov	r31, r0
- 5c0:	a5 8a       	std	Z+21, r10	; 0x15
- 5c2:	b6 8a       	std	Z+22, r11	; 0x16
+ 70e:	0f 2e       	mov	r0, r31
+ 710:	f4 eb       	ldi	r31, 0xB4	; 180
+ 712:	2f 2e       	mov	r2, r31
+ 714:	31 2c       	mov	r3, r1
+ 716:	f0 2d       	mov	r31, r0
+ 718:	25 8a       	std	Z+21, r2	; 0x15
+ 71a:	36 8a       	std	Z+22, r3	; 0x16
 	numConfig++;	
- 5c4:	6c 01       	movw	r12, r24
- 5c6:	6f ef       	ldi	r22, 0xFF	; 255
- 5c8:	c6 1a       	sub	r12, r22
- 5ca:	d6 0a       	sbc	r13, r22
+ 71c:	6c 01       	movw	r12, r24
+ 71e:	6f ef       	ldi	r22, 0xFF	; 255
+ 720:	c6 1a       	sub	r12, r22
+ 722:	d6 0a       	sbc	r13, r22
 	
 	userQueue[numConfig].name = "CLEAN GROOVE 1"; // This is a bass heavy clean preset
- 5cc:	0f 2e       	mov	r0, r31
- 5ce:	fd e0       	ldi	r31, 0x0D	; 13
- 5d0:	6f 2e       	mov	r6, r31
- 5d2:	f0 e2       	ldi	r31, 0x20	; 32
- 5d4:	7f 2e       	mov	r7, r31
- 5d6:	f0 2d       	mov	r31, r0
- 5d8:	67 8a       	std	Z+23, r6	; 0x17
- 5da:	70 8e       	std	Z+24, r7	; 0x18
+ 724:	0f 2e       	mov	r0, r31
+ 726:	fd e0       	ldi	r31, 0x0D	; 13
+ 728:	af 2e       	mov	r10, r31
+ 72a:	f0 e2       	ldi	r31, 0x20	; 32
+ 72c:	bf 2e       	mov	r11, r31
+ 72e:	f0 2d       	mov	r31, r0
+ 730:	a7 8a       	std	Z+23, r10	; 0x17
+ 732:	b0 8e       	std	Z+24, r11	; 0x18
 	userQueue[numConfig].cleanOn = true;
- 5dc:	9c 9c       	mul	r9, r12
- 5de:	f0 01       	movw	r30, r0
- 5e0:	9d 9c       	mul	r9, r13
- 5e2:	f0 0d       	add	r31, r0
- 5e4:	11 24       	eor	r1, r1
- 5e6:	ee 0d       	add	r30, r14
- 5e8:	ff 1d       	adc	r31, r15
- 5ea:	ff 24       	eor	r15, r15
- 5ec:	f3 94       	inc	r15
- 5ee:	f0 8a       	std	Z+16, r15	; 0x10
+ 734:	5c 9c       	mul	r5, r12
+ 736:	f0 01       	movw	r30, r0
+ 738:	5d 9c       	mul	r5, r13
+ 73a:	f0 0d       	add	r31, r0
+ 73c:	11 24       	eor	r1, r1
+ 73e:	e8 0d       	add	r30, r8
+ 740:	f9 1d       	adc	r31, r9
+ 742:	dd 24       	eor	r13, r13
+ 744:	d3 94       	inc	r13
+ 746:	d0 8a       	std	Z+16, r13	; 0x10
 	userQueue[numConfig].bass = 85;
- 5f0:	42 87       	std	Z+10, r20	; 0x0a
- 5f2:	53 87       	std	Z+11, r21	; 0x0b
+ 748:	42 87       	std	Z+10, r20	; 0x0a
+ 74a:	53 87       	std	Z+11, r21	; 0x0b
 	userQueue[numConfig].mids = 75;
- 5f4:	26 87       	std	Z+14, r18	; 0x0e
- 5f6:	37 87       	std	Z+15, r19	; 0x0f
+ 74c:	26 87       	std	Z+14, r18	; 0x0e
+ 74e:	37 87       	std	Z+15, r19	; 0x0f
 	userQueue[numConfig].treble = 75;
- 5f8:	24 87       	std	Z+12, r18	; 0x0c
- 5fa:	35 87       	std	Z+13, r19	; 0x0d
+ 750:	24 87       	std	Z+12, r18	; 0x0c
+ 752:	35 87       	std	Z+13, r19	; 0x0d
 	userQueue[numConfig].gain = 25;
- 5fc:	29 e1       	ldi	r18, 0x19	; 25
- 5fe:	30 e0       	ldi	r19, 0x00	; 0
- 600:	22 83       	std	Z+2, r18	; 0x02
- 602:	33 83       	std	Z+3, r19	; 0x03
+ 754:	29 e1       	ldi	r18, 0x19	; 25
+ 756:	30 e0       	ldi	r19, 0x00	; 0
+ 758:	22 83       	std	Z+2, r18	; 0x02
+ 75a:	33 83       	std	Z+3, r19	; 0x03
 	userQueue[numConfig].i_ValveA = 140;
- 604:	01 8b       	std	Z+17, r16	; 0x11
- 606:	12 8b       	std	Z+18, r17	; 0x12
+ 75c:	e1 8a       	std	Z+17, r14	; 0x11
+ 75e:	f2 8a       	std	Z+18, r15	; 0x12
 	userQueue[numConfig].i_ValveB = 155; // Buffer tube should be HOT
- 608:	a3 8b       	std	Z+19, r26	; 0x13
- 60a:	b4 8b       	std	Z+20, r27	; 0x14
+ 760:	03 8b       	std	Z+19, r16	; 0x13
+ 762:	14 8b       	std	Z+20, r17	; 0x14
 	userQueue[numConfig].auxVol = 0;
- 60c:	16 82       	std	Z+6, r1	; 0x06
- 60e:	17 82       	std	Z+7, r1	; 0x07
+ 764:	16 82       	std	Z+6, r1	; 0x06
+ 766:	17 82       	std	Z+7, r1	; 0x07
 	userQueue[numConfig].hphVol = 0;
- 610:	10 86       	std	Z+8, r1	; 0x08
- 612:	11 86       	std	Z+9, r1	; 0x09
+ 768:	10 86       	std	Z+8, r1	; 0x08
+ 76a:	11 86       	std	Z+9, r1	; 0x09
 	userQueue[numConfig].volume = 50;
- 614:	44 82       	std	Z+4, r4	; 0x04
- 616:	55 82       	std	Z+5, r5	; 0x05
+ 76c:	a4 83       	std	Z+4, r26	; 0x04
+ 76e:	b5 83       	std	Z+5, r27	; 0x05
 	userQueue[numConfig].v_Valve = 180;
- 618:	a5 8a       	std	Z+21, r10	; 0x15
- 61a:	b6 8a       	std	Z+22, r11	; 0x16
+ 770:	25 8a       	std	Z+21, r2	; 0x15
+ 772:	36 8a       	std	Z+22, r3	; 0x16
 	numConfig++;
- 61c:	02 96       	adiw	r24, 0x02	; 2
- 61e:	80 93 1c 20 	sts	0x201C, r24
- 622:	90 93 1d 20 	sts	0x201D, r25
+ 774:	02 96       	adiw	r24, 0x02	; 2
+ 776:	80 93 28 25 	sts	0x2528, r24
+ 77a:	90 93 29 25 	sts	0x2529, r25
 	
 	init();
- 626:	0e 94 21 01 	call	0x242	; 0x242 <_Z4initv>
+ 77e:	0e 94 21 01 	call	0x242	; 0x242 <_Z4initv>
 	initUSART();
- 62a:	0e 94 63 01 	call	0x2c6	; 0x2c6 <_Z9initUSARTv>
+ 782:	0e 94 63 01 	call	0x2c6	; 0x2c6 <_Z9initUSARTv>
 	initLCD();
- 62e:	0e 94 bd 01 	call	0x37a	; 0x37a <_Z7initLCDv>
+ 786:	0e 94 b9 01 	call	0x372	; 0x372 <_Z7initLCDv>
 	
 	PORTB.OUTSET = 0b00010000; // Turn on Both Relays
- 632:	e0 e2       	ldi	r30, 0x20	; 32
- 634:	f6 e0       	ldi	r31, 0x06	; 6
- 636:	80 e1       	ldi	r24, 0x10	; 16
- 638:	85 83       	std	Z+5, r24	; 0x05
+ 78a:	e0 e2       	ldi	r30, 0x20	; 32
+ 78c:	f6 e0       	ldi	r31, 0x06	; 6
+ 78e:	80 e1       	ldi	r24, 0x10	; 16
+ 790:	85 83       	std	Z+5, r24	; 0x05
 	PORTB.OUTSET = 0b00000010; // Turn on Both Relays
- 63a:	82 e0       	ldi	r24, 0x02	; 2
- 63c:	85 83       	std	Z+5, r24	; 0x05
-	
-	xmitCMD(0x2C); // Start writing pixels
- 63e:	8c e2       	ldi	r24, 0x2C	; 44
- 640:	0e 94 ac 01 	call	0x358	; 0x358 <_Z7xmitCMDh>
-	
-	while (1)
-	{
-		xmitPlaid();
- 644:	0e 94 8f 01 	call	0x31e	; 0x31e <_Z9xmitPlaidv>
+ 792:	82 e0       	ldi	r24, 0x02	; 2
+ 794:	85 83       	std	Z+5, r24	; 0x05
+		//xmitPlaid();
+		while(1);
 	}
- 648:	fd cf       	rjmp	.-6      	; 0x644 <main+0x10c>
+	*/
+	short int char_color = WHITE;
+	drawString("HELLOWORLD", 100, 100, char_color);
+ 796:	2f ef       	ldi	r18, 0xFF	; 255
+ 798:	3f ef       	ldi	r19, 0xFF	; 255
+ 79a:	44 e6       	ldi	r20, 0x64	; 100
+ 79c:	50 e0       	ldi	r21, 0x00	; 0
+ 79e:	64 e6       	ldi	r22, 0x64	; 100
+ 7a0:	70 e0       	ldi	r23, 0x00	; 0
+ 7a2:	8c e1       	ldi	r24, 0x1C	; 28
+ 7a4:	90 e2       	ldi	r25, 0x20	; 32
+ 7a6:	0e 94 11 03 	call	0x622	; 0x622 <_Z10drawStringPKcsss>
+}
+ 7aa:	80 e0       	ldi	r24, 0x00	; 0
+ 7ac:	90 e0       	ldi	r25, 0x00	; 0
+ 7ae:	6d be       	out	0x3d, r6	; 61
+ 7b0:	7e be       	out	0x3e, r7	; 62
+ 7b2:	df 91       	pop	r29
+ 7b4:	cf 91       	pop	r28
+ 7b6:	1f 91       	pop	r17
+ 7b8:	0f 91       	pop	r16
+ 7ba:	ff 90       	pop	r15
+ 7bc:	ef 90       	pop	r14
+ 7be:	df 90       	pop	r13
+ 7c0:	cf 90       	pop	r12
+ 7c2:	bf 90       	pop	r11
+ 7c4:	af 90       	pop	r10
+ 7c6:	9f 90       	pop	r9
+ 7c8:	8f 90       	pop	r8
+ 7ca:	7f 90       	pop	r7
+ 7cc:	6f 90       	pop	r6
+ 7ce:	5f 90       	pop	r5
+ 7d0:	3f 90       	pop	r3
+ 7d2:	2f 90       	pop	r2
+ 7d4:	08 95       	ret
 
-0000064a <_exit>:
- 64a:	f8 94       	cli
+000007d6 <_exit>:
+ 7d6:	f8 94       	cli
 
-0000064c <__stop_program>:
- 64c:	ff cf       	rjmp	.-2      	; 0x64c <__stop_program>
+000007d8 <__stop_program>:
+ 7d8:	ff cf       	rjmp	.-2      	; 0x7d8 <__stop_program>
