@@ -14,12 +14,16 @@
 #define F_CPU 32000000UL // 32 MHz
 #include <avr/io.h>
 #include <util/delay.h>
+#include <font.h>
 
 #define RED 0b1111100000000000;
 #define GREEN 0b0000011111100000;
 #define BLUE 0b0000000000011111;
 #define WHITE 0xFFFF;
 #define BLACK 0x0000;
+
+#define CHAR_WIDTH 16
+#define CHAR_HEIGHT 16
 
 // LCD Functions
 void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned char green, unsigned char blue);
@@ -496,9 +500,62 @@ void xmitVLine(short int xPos, short int yPos, short int length, short int color
 	}
 }
  
-void xmitText(short int xStart, short int yStart, unsigned char textChar, short int color)
+void drawChar(unsigned char c, short int xStart, short int yStart, short int color)
 {
+	unsigned char colorH = (unsigned char)(color >> 8);
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	unsigned char xStartH = (unsigned char)(xStart >> 8);
+	unsigned char xStartL = (unsigned char)(xStart & 0x00FF);
+	unsigned char xEndH = (unsigned char)((xStart + CHAR_WIDTH) >> 8);
+	unsigned char xEndL = (unsigned char)((xStart + CHAR_WIDTH) & 0x00FF);
+	unsigned char yStart = (unsigned char)yStart;
+	unsigned char yEnd = (unsigned char)(yStart + CHAR_HEIGHT);
 	
+	xmitCMD(0x36); // Memory access control
+	xmitDATA(0xA0); // Bottom to top, left to right, rest default
+	
+	xmitCMD(0x2A); // X Address Set
+	xmitDATA(xStartH); //
+	xmitDATA(xStartL); // Start 0
+	xmitDATA(xEndH); //
+	xmitDATA(xEndL); // Finish 319
+	
+	xmitCMD(0x2B); // /y Address Set
+	xmitDATA(0x00); //
+	xmitDATA(yStart); // Start 0
+	xmitDATA(0x00); //
+	xmitDATA(yEnd); // Finish 239
+	
+	int c_index = getCharIndex(c);
+	const short int chr = font[c_index];
+	
+	xmitCMD(0x2C); // Start writing pixels
+	for(int i=0; i<CHAR_HEIGHT; i++) {
+		for(int j=0; j<CHAR_WIDTH; j++) {
+			if(chr[i] & (1<<j)){
+				xmitDATA(colorH);
+				xmitDATA(colorL);
+			}
+			else{
+				xmitData(0xFF);
+				xmitDATA(0xFF);
+			}
+		}
+	}	
+}
+
+void drawString(const char* str, short int xStart, short int yStart, short int color) {
+	while (*str) {
+		drawChar(*str++, xStart, yStart, color);
+		xStart += CHAR_WIDTH
+	}
+}
+
+int getCharIndex(unsigned char c) {
+	int c_val = (int)(c);
+	if (c >= 'A' && c <= 'Z') c_val -= ('A' + 10);
+	else if (c >= '0' && c <= '9') c_val -= '0';
+	return c_val;
 }
  
 void lcdDelay(unsigned char lcdDel)
