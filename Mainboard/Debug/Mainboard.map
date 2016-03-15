@@ -22,8 +22,6 @@ Discarded input sections
                 0x00000000       0x5e Mainboard_R1_1.o
  .text._Z9getStringPci
                 0x00000000        0x2 Mainboard_R1_1.o
- .text._Z8xmitTextsshs
-                0x00000000        0x2 Mainboard_R1_1.o
  .text._Z9xmitPIXELjjhhh
                 0x00000000        0x8 Mainboard_R1_1.o
  .bss.userChan  0x00000000        0x2 Mainboard_R1_1.o
@@ -194,7 +192,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x8bc
+.text           0x00000000      0x64e
  *(.vectors)
  .vectors       0x00000000      0x1fc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
                 0x00000000                __vector_default
@@ -389,31 +387,25 @@ END GROUP
  .text._Z8xmitDATAh
                 0x0000030a       0x14 Mainboard_R1_1.o
                 0x0000030a                _Z8xmitDATAh
+ .text._Z9xmitPlaidv
+                0x0000031e       0x2a Mainboard_R1_1.o
+                0x0000031e                _Z9xmitPlaidv
  .text._Z8lcdDelayh
-                0x0000031e       0x10 Mainboard_R1_1.o
-                0x0000031e                _Z8lcdDelayh
+                0x00000348       0x10 Mainboard_R1_1.o
+                0x00000348                _Z8lcdDelayh
  .text._Z7xmitCMDh
-                0x0000032e       0x22 Mainboard_R1_1.o
-                0x0000032e                _Z7xmitCMDh
+                0x00000358       0x22 Mainboard_R1_1.o
+                0x00000358                _Z7xmitCMDh
  .text._Z7initLCDv
-                0x00000350      0x1be Mainboard_R1_1.o
-                0x00000350                _Z7initLCDv
- .text._Z9xmitHLinessss
-                0x0000050e       0xa0 Mainboard_R1_1.o
-                0x0000050e                _Z9xmitHLinessss
- .text._Z7fillLCDs
-                0x000005ae       0xa8 Mainboard_R1_1.o
-                0x000005ae                _Z7fillLCDs
- .text._Z9xmitVLinessss
-                0x00000656       0x9e Mainboard_R1_1.o
-                0x00000656                _Z9xmitVLinessss
- .text.main     0x000006f4      0x1c4 Mainboard_R1_1.o
-                0x000006f4                main
-                0x000008b8                . = ALIGN (0x2)
+                0x0000037a      0x1be Mainboard_R1_1.o
+                0x0000037a                _Z7initLCDv
+ .text.main     0x00000538      0x112 Mainboard_R1_1.o
+                0x00000538                main
+                0x0000064a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000008b8        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
-                0x000008b8                _exit
-                0x000008b8                exit
+ .fini9         0x0000064a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
+                0x0000064a                _exit
+                0x0000064a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -432,11 +424,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000008b8        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
+ .fini0         0x0000064a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
  *(.fini0)
-                0x000008bc                _etext = .
+                0x0000064e                _etext = .
 
-.data           0x00802000       0x1c load address 0x000008bc
+.data           0x00802000       0x1c load address 0x0000064e
                 0x00802000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -458,8 +450,8 @@ END GROUP
                 0x0080201c                numConfig
  *(COMMON)
                 0x0080201e                PROVIDE (__bss_end, .)
-                0x000008bc                __data_load_start = LOADADDR (.data)
-                0x000008d8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000064e                __data_load_start = LOADADDR (.data)
+                0x0000066a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080201e        0x0
                 0x0080201e                PROVIDE (__noinit_start, .)
@@ -530,38 +522,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x98
+.debug_aranges  0x00000000       0x80
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x98 Mainboard_R1_1.o
+                0x00000000       0x80 Mainboard_R1_1.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1af0
+.debug_info     0x00000000     0x12df
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x1af0 Mainboard_R1_1.o
+ .debug_info    0x00000000     0x12df Mainboard_R1_1.o
 
-.debug_abbrev   0x00000000      0x309
+.debug_abbrev   0x00000000      0x2db
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x309 Mainboard_R1_1.o
+ .debug_abbrev  0x00000000      0x2db Mainboard_R1_1.o
 
-.debug_line     0x00000000      0x3e7
+.debug_line     0x00000000      0x354
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x3e7 Mainboard_R1_1.o
+ .debug_line    0x00000000      0x354 Mainboard_R1_1.o
 
-.debug_frame    0x00000000      0x1bc
+.debug_frame    0x00000000      0x120
  *(.debug_frame)
- .debug_frame   0x00000000      0x1bc Mainboard_R1_1.o
+ .debug_frame   0x00000000      0x120 Mainboard_R1_1.o
 
-.debug_str      0x00000000      0x7c5
+.debug_str      0x00000000      0x709
  *(.debug_str)
- .debug_str     0x00000000      0x7c5 Mainboard_R1_1.o
-                                0x81e (size before relaxing)
+ .debug_str     0x00000000      0x709 Mainboard_R1_1.o
+                                0x762 (size before relaxing)
 
-.debug_loc      0x00000000      0x846
+.debug_loc      0x00000000      0x397
  *(.debug_loc)
- .debug_loc     0x00000000      0x846 Mainboard_R1_1.o
+ .debug_loc     0x00000000      0x397 Mainboard_R1_1.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -581,9 +573,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xa0
+.debug_ranges   0x00000000       0x70
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xa0 Mainboard_R1_1.o
+ .debug_ranges  0x00000000       0x70 Mainboard_R1_1.o
 
 .debug_macro
  *(.debug_macro)
