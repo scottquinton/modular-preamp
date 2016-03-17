@@ -36,6 +36,9 @@ void xmitText(short int xStart, short int yStart, short int textChar, short int 
 void fillLCD(short int color);
 void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color);
 void drawChar(unsigned char c, short int xStart, short int yStart, short int text_color, short int bg_color);
+void drawBox(short int topleft_x, short int topleft_y, short int botright_x, short int botright_y, short int color);
+void fillBox(short int topleft_x, short int topleft_y, short int botright_x, short int botright_y, short int color);
+void drawGain(short int channel, short int val);
 void drawDisplay(unsigned char preset_no);
 
 // USART Functions
@@ -121,48 +124,27 @@ int main(void)
 	//xmitCMD(0x2C); // Start writing pixels
 	
 	unsigned char qPos[11] = {0,0,0,0,0,0,0,0,0,0,0};
+	short int encoder_val = 0;
+	
+	short int BKCOL = BLUE;
 	short int char_color = BLACK;
 	short int bg_color = WHITE;
 	fillLCD(bg_color);
+	drawDisplay('1');
 	
 	while (1)
 	{
 		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from Main CPU...
 		{
 			qPos[0] = getByte(3);
-			drawChar(qPos[0], 50, 50, char_color, bg_color);
+			if (qPos[0] > 255) encoder_val = 255;
+			else if (qPos[0] < 0) encoder_val = 0;
+			else encoder_val = qPos[0];
+			drawGain(2, encoder_val);
+			//drawChar(qPos[0], 50, 50, char_color, bg_color);
 		}	
-		
+	
 	}
-<<<<<<< HEAD
-	//drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
-
-=======
-	*/
-	short int BKCOL = BLUE;
-	short int char_color = BLACK;
-	short int bg_color = WHITE;
-	fillLCD(bg_color);
-	/*
-	drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
-	drawString("E", 0, 15, char_color, bg_color);
-	drawString("S", 0, 31, char_color, bg_color);
-	drawString("T", 0, 46, char_color, bg_color);
-	drawString(" ", 0, 61, char_color, bg_color);
-	drawString("T", 0, 76, char_color, bg_color);
-	drawString("E", 0, 91, char_color, bg_color);
-	drawString("S", 0, 106, char_color, bg_color);
-	drawString("T", 0, 121, char_color, bg_color);
-	drawString(" ", 0, 136, char_color, bg_color);
-	drawString("T", 0, 151, char_color, bg_color);
-	drawString("E", 0, 166, char_color, bg_color);
-	drawString("S", 0, 181, char_color, bg_color);
-	drawString("T", 0, 196, char_color, bg_color);
-	drawString(" ", 0, 211, char_color, bg_color);
-	drawString("T", 0, 226, char_color, bg_color);
-	*/
-	drawDisplay('1');
->>>>>>> origin/master
 }
 
 void init(void) 
@@ -470,6 +452,8 @@ void xmitHLine(short int xPos, short int yPos, short int length, short int color
 
 void fillLCD(short int color)
 {
+	fillBox(0, 0, 320, 240, color);
+	/*
 	unsigned char colorH = (unsigned char)(color >> 8);
 	unsigned char colorL = (unsigned char)(color & 0x00FF);
 	
@@ -494,6 +478,7 @@ void fillLCD(short int color)
 		xmitDATA(colorH);
 		xmitDATA(colorL);
 	}
+	*/
 	
 }
 
@@ -594,14 +579,106 @@ void drawChar(unsigned char c, short int xStart, short int yStart, short int tex
 void drawDisplay(unsigned char preset_no) {
 	short int black = BLACK;
 	short int white = WHITE;
+	
+	// Current preset header
 	drawString("PRESET 1", 0, 0, black, white);
-	xmitHLine(0, 16, 319, black);
-	xmitHLine(0, 125, 319, black);
-	xmitVLine(64, 16, 223, black);
-	xmitVLine(128, 16, 223, black);
-	xmitVLine(194, 16, 223, black);
-	xmitVLine(258, 16, 223, black);
+	
+	// Top channel labels
 	drawString("VOL", 5, 30, black, white);
+	drawString("GAIN", 63, 30, black, white);
+	drawString("LOW", 135, 30, black, white);
+	drawString("MID", 200, 30, black, white);
+	drawString("HIGH", 256, 30, black, white);
+	
+	// Bottom channel labels
+	drawString("VOL", 5, 139, black, white);
+	drawString("GAIN", 63, 139, black, white);
+	drawString("LOW", 135, 139, black, white);
+	drawString("MID", 200, 139, black, white);
+	drawString("HIGH", 256, 139, black, white);
+	
+	// Top channel levels
+	drawBox(10, 50, 50, 115, black);	// Vol level
+	drawBox(73, 50, 113, 115, black);	// Gain level
+	drawBox(137, 50, 177, 115, black);	// Low level
+	drawBox(203, 50, 243, 115, black);	// Mid level
+	drawBox(267, 50, 307, 115, black);	// High level
+	
+	// Bottom channel levels
+	drawBox(10, 159, 50, 224, black);	// Vol level
+	drawBox(73, 159, 113, 224, black);	// Gain level
+	drawBox(137, 159, 177, 224, black);	// Low level
+	drawBox(203, 159, 243, 224, black);	// Mid level
+	drawBox(267, 159, 307, 224, black);	// High level
+	
+	// Draw all lines last
+	xmitHLine(0, 16, 319, black);	// Header separator
+	xmitHLine(0, 125, 319, black);	// Top/Bottom Channel separator
+	
+	xmitVLine(63, 16, 223, black);	// Vol/Gain separator
+	xmitVLine(127, 16, 223, black);	// Gain/Low separator
+	xmitVLine(193, 16, 223, black);	// Low/Mid separator
+	xmitVLine(257, 16, 223, black);	// Mid/High separator
+	
+}
+
+void drawBox(short int topleft_x, short int topleft_y, short int botright_x, short int botright_y, short int color){
+	short int height = botright_y - topleft_y;
+	short int width = botright_x - topleft_x;
+	xmitHLine(topleft_x, topleft_y, width, color);	// top
+	xmitHLine(topleft_x, botright_y, width, color);	// bottom
+	xmitVLine(topleft_x, topleft_y, height, color);	// left
+	xmitVLine(botright_x, topleft_y, height, color);	// right
+}
+
+void fillBox(short int topleft_x, short int topleft_y, short int botright_x, short int botright_y, short int color){
+	short int height = botright_y - topleft_y;
+	short int width = botright_x - topleft_x;
+	unsigned char colorH = (unsigned char)(color >> 8);
+	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	unsigned char xStartH = (unsigned char)(topleft_x >> 8);
+	unsigned char xStartL = (unsigned char)(topleft_x & 0x00FF);
+	unsigned char xEndH = (unsigned char)(botright_x >> 8);
+	unsigned char xEndL = (unsigned char)(botright_x & 0x00FF);
+	unsigned char yStart = (unsigned char)topleft_y;
+	unsigned char yEnd = (unsigned char)botright_y;
+	
+	xmitCMD(0x36); // Memory access control
+	xmitDATA(0xA0); // Bottom to top, left to right, rest default
+	
+		xmitCMD(0x2A); // X Address Set
+		xmitDATA(xStartH); //
+		xmitDATA(xStartL); // Start left x
+		xmitDATA(xEndH); //
+		xmitDATA(xEndL); // Finish right x
+		
+		xmitCMD(0x2B); // /y Address Set
+		xmitDATA(0x00); //
+		xmitDATA(yStart); // Start top y
+		xmitDATA(0x00); //
+		xmitDATA(yEnd); // Finish bottom y
+	
+	xmitCMD(0x2C); // Start writing pixels
+	for(int i=0; i<width; i++)
+	for(int j=0; j<height; j++) {
+		xmitDATA(colorH);
+		xmitDATA(colorL);
+	}
+}
+
+void drawGain(short int channel, short int val){
+	short int x_left = 72;		// left wall of level
+	short int x_right =	112;	// right wall of level
+	short int y_low = 223;		// bottom of level
+	short int y_high = 158;		// top of level
+	
+	short int blue = BLUE;
+	short int white = WHITE;
+	
+	short int level = 223 - (val/255)*75;			// Get height to draw level (value from 0-255 mapped to height of box)
+	fillBox(x_left, y_high, x_right, level, white);	// Fill in empty space white
+	fillBox(x_left, level, x_right, y_low, blue);	// Fill in gain level blue
+	
 }
 
 void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color) {
