@@ -36,6 +36,7 @@ void xmitText(short int xStart, short int yStart, short int textChar, short int 
 void fillLCD(short int color);
 void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color);
 void drawChar(unsigned char c, short int xStart, short int yStart, short int text_color, short int bg_color);
+void drawDisplay(unsigned char preset_no);
 
 // USART Functions
 void sendChar(char cToSend, int chanNum);
@@ -133,8 +134,35 @@ int main(void)
 		}	
 		
 	}
+<<<<<<< HEAD
 	//drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
 
+=======
+	*/
+	short int BKCOL = BLUE;
+	short int char_color = BLACK;
+	short int bg_color = WHITE;
+	fillLCD(bg_color);
+	/*
+	drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
+	drawString("E", 0, 15, char_color, bg_color);
+	drawString("S", 0, 31, char_color, bg_color);
+	drawString("T", 0, 46, char_color, bg_color);
+	drawString(" ", 0, 61, char_color, bg_color);
+	drawString("T", 0, 76, char_color, bg_color);
+	drawString("E", 0, 91, char_color, bg_color);
+	drawString("S", 0, 106, char_color, bg_color);
+	drawString("T", 0, 121, char_color, bg_color);
+	drawString(" ", 0, 136, char_color, bg_color);
+	drawString("T", 0, 151, char_color, bg_color);
+	drawString("E", 0, 166, char_color, bg_color);
+	drawString("S", 0, 181, char_color, bg_color);
+	drawString("T", 0, 196, char_color, bg_color);
+	drawString(" ", 0, 211, char_color, bg_color);
+	drawString("T", 0, 226, char_color, bg_color);
+	*/
+	drawDisplay('1');
+>>>>>>> origin/master
 }
 
 void init(void) 
@@ -561,6 +589,19 @@ void drawChar(unsigned char c, short int xStart, short int yStart, short int tex
 			
 		}
 	}	
+}
+
+void drawDisplay(unsigned char preset_no) {
+	short int black = BLACK;
+	short int white = WHITE;
+	drawString("PRESET 1", 0, 0, black, white);
+	xmitHLine(0, 16, 319, black);
+	xmitHLine(0, 125, 319, black);
+	xmitVLine(64, 16, 223, black);
+	xmitVLine(128, 16, 223, black);
+	xmitVLine(194, 16, 223, black);
+	xmitVLine(258, 16, 223, black);
+	drawString("VOL", 5, 30, black, white);
 }
 
 void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color) {
