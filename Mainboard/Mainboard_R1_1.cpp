@@ -119,46 +119,22 @@ int main(void)
 	
 	//xmitCMD(0x2C); // Start writing pixels
 	
-	/*
-	while (1)
-	{
-		short int colorBG = BLUE;
-		short int colorLN = RED;
-		
-		xmitVLine(0, 0, 240, colorLN);
-		xmitVLine(63, 0, 240, colorLN);
-		xmitVLine(127, 0, 240, colorLN);
-		xmitVLine(191, 0, 240, colorLN);
-		xmitVLine(255, 0, 240, colorLN);
-		xmitVLine(319, 0, 240, colorLN);
-		xmitHLine(0, 0, 320, colorLN);
-		xmitHLine(0, 119, 320, colorLN);
-		xmitHLine(0, 239, 320, colorLN);
-		//xmitPlaid();
-		while(1);
-	}
-	*/
-	short int BKCOL = BLUE;
-	fillLCD(BKCOL);
+	unsigned char qPos[11] = {0,0,0,0,0,0,0,0,0,0,0};
 	short int char_color = BLACK;
 	short int bg_color = WHITE;
+	fillLCD(bg_color);
 	
-	drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
-	drawString("E", 0, 15, char_color, bg_color);
-	drawString("S", 0, 31, char_color, bg_color);
-	drawString("T", 0, 46, char_color, bg_color);
-	drawString(" ", 0, 61, char_color, bg_color);
-	drawString("T", 0, 76, char_color, bg_color);
-	drawString("E", 0, 91, char_color, bg_color);
-	drawString("S", 0, 106, char_color, bg_color);
-	drawString("T", 0, 121, char_color, bg_color);
-	drawString(" ", 0, 136, char_color, bg_color);
-	drawString("T", 0, 151, char_color, bg_color);
-	drawString("E", 0, 166, char_color, bg_color);
-	drawString("S", 0, 181, char_color, bg_color);
-	drawString("T", 0, 196, char_color, bg_color);
-	drawString(" ", 0, 211, char_color, bg_color);
-	drawString("T", 0, 226, char_color, bg_color);
+	while (1)
+	{
+		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from Main CPU...
+		{
+			qPos[0] = getByte(3);
+			drawChar(qPos[0], 50, 50, char_color, bg_color);
+		}	
+		
+	}
+	//drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
+
 }
 
 void init(void) 

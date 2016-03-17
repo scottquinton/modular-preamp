@@ -27,42 +27,67 @@ int main(void)
 {
 	bool x = false;
 	char temp;
+	unsigned char qPos[11] = {0,0,0,0,0,0,0,0,0,0,0};
+	bool oldA[11] = {0,0,0,0,0,0,0,0,0,0,0};
+	bool oldB[11] = {0,0,0,0,0,0,0,0,0,0,0};
 	
 	init();
 	initUSART();
-
+	
+	oldA[0] = (PORTC.IN & 0b00010000);
+	oldB[0] = (PORTC.IN & 0b00100000);
+	
 	while (1)
 	{
 		if(PORTC.INTFLAGS != 0 && x == false) {
-			if((PORTC.INTFLAGS & 0b00010000) != 0) {
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00010000;
-				// A0 has been triggered
+			if((PORTC.INTFLAGS & 0b00010000) != 0) { // A0 has been triggered
+				if(oldB[0] && oldA[0]) { // Went from 11 to 10
+					oldA[0] = 0;
+					qPos[0]++;
+				}
+				else if(oldB[0] && !oldA[0]) { // Went from 10 to 11
+					oldA[0] = 1;
+					qPos[0]--;
+				}
+				else if(!oldB[0] && oldA[0]) { // Went from 01 to 00
+					oldA[0] = 0;
+					qPos[0]--;
+				}
+				else { // Went from 00 to 01
+					oldA[0] = 1;
+					qPos[0]++;
+				}
+				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00010000;	
+				sendChar(qPos[0], 0);
 			}
-			else if((PORTC.INTFLAGS & 0b00100000) != 0) {
+			else if((PORTC.INTFLAGS & 0b00100000) != 0) { // B0 has been triggered
+				
+				if(oldB[0] && oldA[0]) { // Went from 11 to 01
+					oldB[0] = 0;
+					qPos[0]--;
+				}
+				else if(oldB[0] && !oldA[0]) { // Went from 10 to 00
+					oldB[0] = 0;
+					qPos[0]++;
+				}
+				else if(!oldB[0] && oldA[0]) { // Went from 01 to 11
+					oldB[0] = 1;
+					qPos[0]++;
+				}
+				else { // Went from 00 to 10
+					oldB[0] = 1;
+					qPos[0]--;
+				}
 				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00100000;
-				// B0 has been triggered
+				sendChar(qPos[0], 0);
 			}
-			PORTD.OUT = 0b00001000;
-			x = true;
 		}
-		else if(PORTC.INTFLAGS != 0 && x == true) {
-			if((PORTC.INTFLAGS & 0b00010000) != 0) {
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00010000;
-				// A0 has been triggered
-			}
-			else if((PORTC.INTFLAGS & 0b00100000) != 0) {
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00100000;
-				// B0 has been triggered
-			}
-			PORTD.OUT = 0b00000000;
-			x = false;
-		}
-		if(USARTD0_STATUS & USART_RXCIF_bm) // If there is unread data from Main CPU...
+		/*if(USARTD0_STATUS & USART_RXCIF_bm) // If there is unread data from Main CPU...
 		{
 			temp = getByte(0);
 			sendChar(temp, 0);
-		}	
-		_delay_ms(1);
+		}	*/
+		//_delay_ms(1);
 	}
 }
 
