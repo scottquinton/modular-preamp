@@ -22,8 +22,8 @@
 #define WHITE 0xFFFF;
 #define BLACK 0x0000;
 
-#define CHAR_WIDTH 16;
-#define CHAR_HEIGHT 16;
+#define CHAR_WIDTH 0x0010; // 16
+#define CHAR_HEIGHT 0x0010;
 
 // LCD Functions
 ;void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned char green, unsigned char blue);
@@ -34,7 +34,8 @@ void xmitHLine(short int xPos, short int yPos, short int length, short int color
 void xmitVLine(short int xPos, short int yPos, short int length, short int color);
 void xmitText(short int xStart, short int yStart, short int textChar, short int color);
 void fillLCD(short int color);
-void drawString(const char* str, short int xStart, short int yStart, short int color);
+void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color);
+void drawChar(unsigned char c, short int xStart, short int yStart, short int text_color, short int bg_color);
 
 // USART Functions
 void sendChar(char cToSend, int chanNum);
@@ -123,7 +124,7 @@ int main(void)
 	{
 		short int colorBG = BLUE;
 		short int colorLN = RED;
-		fillLCD(colorBG);
+		
 		xmitVLine(0, 0, 240, colorLN);
 		xmitVLine(63, 0, 240, colorLN);
 		xmitVLine(127, 0, 240, colorLN);
@@ -137,8 +138,27 @@ int main(void)
 		while(1);
 	}
 	*/
-	short int char_color = WHITE;
-	drawString("HELLOWORLD", 100, 100, char_color);
+	short int BKCOL = BLUE;
+	fillLCD(BKCOL);
+	short int char_color = BLACK;
+	short int bg_color = WHITE;
+	
+	drawString("TEST TEST TEST TEST ", 0, 0, char_color, bg_color);
+	drawString("E", 0, 15, char_color, bg_color);
+	drawString("S", 0, 31, char_color, bg_color);
+	drawString("T", 0, 46, char_color, bg_color);
+	drawString(" ", 0, 61, char_color, bg_color);
+	drawString("T", 0, 76, char_color, bg_color);
+	drawString("E", 0, 91, char_color, bg_color);
+	drawString("S", 0, 106, char_color, bg_color);
+	drawString("T", 0, 121, char_color, bg_color);
+	drawString(" ", 0, 136, char_color, bg_color);
+	drawString("T", 0, 151, char_color, bg_color);
+	drawString("E", 0, 166, char_color, bg_color);
+	drawString("S", 0, 181, char_color, bg_color);
+	drawString("T", 0, 196, char_color, bg_color);
+	drawString(" ", 0, 211, char_color, bg_color);
+	drawString("T", 0, 226, char_color, bg_color);
 }
 
 void init(void) 
@@ -451,7 +471,7 @@ void fillLCD(short int color)
 	
 	xmitCMD(0x36); // Memory access control
 	xmitDATA(0x80); // Bottom to top, left to right, row/column exhange rest default
-	
+
 	xmitCMD(0x2A); // X Address Set
 	xmitDATA(0x00); //
 	xmitDATA(0x00); // Start 0
@@ -509,24 +529,29 @@ void xmitVLine(short int xPos, short int yPos, short int length, short int color
 
 int getCharIndex(unsigned char c) {
 	int c_val = (int)(c);
-	if (c >= 'A' && c <= 'Z') c_val -= ('A' + 10);
+	if (c >= 'A' && c <= 'Z') c_val -= ('A' - 10);
 	else if (c >= '0' && c <= '9') c_val -= '0';
+	else if (c == ' ') c_val = 40;
 	return c_val;
 }
 
-void drawChar(unsigned char c, short int xStart, short int yStart, short int color)
+void drawChar(unsigned char c, short int xStart, short int yStart, short int text_color, short int bg_color)
 {
-	unsigned char colorH = (unsigned char)(color >> 8);
-	unsigned char colorL = (unsigned char)(color & 0x00FF);
+	unsigned char tcolorH = (unsigned char)(text_color >> 8);
+	unsigned char tcolorL = (unsigned char)(text_color & 0x00FF);
+	unsigned char bgcolorH = (unsigned char)(bg_color >> 8);
+	unsigned char bgcolorL = (unsigned char)(bg_color & 0x00FF);
 	unsigned char xStartH = (unsigned char)(xStart >> 8);
 	unsigned char xStartL = (unsigned char)(xStart & 0x00FF);
-	unsigned char xEndH = (unsigned char)((xStart + 16) >> 8);
-	unsigned char xEndL = (unsigned char)((xStart + 16) & 0x00FF);
+	unsigned char xEndH = (unsigned char)((xStart + 15) >> 8);
+	unsigned char xEndL = (unsigned char)((xStart + 15) & 0x00FF);
 	unsigned char yStartL = (unsigned char)yStart;
-	unsigned char yEnd = (unsigned char)(yStart + 16);
+	unsigned char yEnd = (unsigned char)(yStart + 15);	
 	
 	xmitCMD(0x36); // Memory access control
 	xmitDATA(0xA0); // Bottom to top, left to right, rest default
+	//xmitCMD(0x36); // Memory access control
+	//xmitDATA(0xA0); // Bottom to top, left to right, rest default
 	
 	xmitCMD(0x2A); // X Address Set
 	xmitDATA(xStartH); //
@@ -541,28 +566,31 @@ void drawChar(unsigned char c, short int xStart, short int yStart, short int col
 	xmitDATA(yEnd); // Finish 239
 	
 	int c_index = getCharIndex(c);
-	const short int* chr = font[c_index];
-	//const short int* chr = font[c_index];
+	short int chr[16];
+	for(int i=0; i<16; i++)
+		chr[i] = font[c_index][i];
 	
 	xmitCMD(0x2C); // Start writing pixels
 	for(int i=0; i<16; i++) {
 		for(int j=0; j<16; j++) {
-			if(chr[i] & (1<<j)){
-				xmitDATA(colorH);
-				xmitDATA(colorL);
+			
+			if(chr[i] & (1<<(15-j))){
+				xmitDATA(tcolorH);
+				xmitDATA(tcolorL);
 			}
 			else{
-				xmitDATA(0x00);
-				xmitDATA(0x00);
+				xmitDATA(bgcolorH);
+				xmitDATA(bgcolorL);
 			}
+			
 		}
 	}	
 }
 
-void drawString(const char* str, short int xStart, short int yStart, short int color) {
+void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color) {
 	while (*str) {
-		drawChar(*str++, xStart, yStart, color);
-		xStart += CHAR_WIDTH;
+		drawChar(*str++, xStart, yStart, text_color, bg_color);
+		xStart += 16;
 	}
 }
  
