@@ -2,6 +2,8 @@ Archive member included to satisfy reference by file (symbol)
 
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o (exit)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+                              Mainboard_R1_1.o (__tablejump2__)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_copy_data.o)
                               Mainboard_R1_1.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_clear_bss.o)
@@ -39,6 +41,21 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_copy_data.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_copy_data.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_copy_data.o)
@@ -190,49 +207,51 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xdea
+.text           0x00000000      0xf00
  *(.vectors)
  .vectors       0x00000000      0x1fc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
                 0x00000000                __vector_default
                 0x00000000                __vectors
  *(.vectors)
  *(.progmem.gcc*)
-                0x000001fc                . = ALIGN (0x2)
-                0x000001fc                __trampolines_start = .
+ .progmem.gcc_sw_table.main
+                0x000001fc       0x14 Mainboard_R1_1.o
+                0x00000210                . = ALIGN (0x2)
+                0x00000210                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x000001fc        0x0 linker stubs
+ .trampolines   0x00000210       0x14 linker stubs
  *(.trampolines*)
-                0x000001fc                __trampolines_end = .
+                0x00000224                __trampolines_end = .
  *(.progmem*)
-                0x000001fc                . = ALIGN (0x2)
+                0x00000224                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x000001fc                __ctors_start = .
+                0x00000224                __ctors_start = .
  *(.ctors)
-                0x000001fc                __ctors_end = .
-                0x000001fc                __dtors_start = .
+                0x00000224                __ctors_end = .
+                0x00000224                __dtors_start = .
  *(.dtors)
-                0x000001fc                __dtors_end = .
+                0x00000224                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x000001fc        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
-                0x000001fc                __init
+ .init0         0x00000224        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
+                0x00000224                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x000001fc       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
+ .init2         0x00000224       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000020c       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_copy_data.o)
-                0x0000020c                __do_copy_data
- .init4         0x00000226       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_clear_bss.o)
-                0x00000226                __do_clear_bss
+ .init4         0x00000234       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_copy_data.o)
+                0x00000234                __do_copy_data
+ .init4         0x0000024e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_clear_bss.o)
+                0x0000024e                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -243,197 +262,199 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000236        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
+ .init9         0x0000025e        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
  *(.init9)
  *(.text)
- .text          0x0000023e        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
-                0x0000023e                __vector_38
-                0x0000023e                __vector_104
-                0x0000023e                __vector_22
-                0x0000023e                __vector_63
-                0x0000023e                __vector_28
-                0x0000023e                __vector_67
-                0x0000023e                __vector_1
-                0x0000023e                __vector_119
-                0x0000023e                __vector_32
-                0x0000023e                __vector_75
-                0x0000023e                __vector_71
-                0x0000023e                __vector_91
-                0x0000023e                __vector_34
-                0x0000023e                __vector_62
-                0x0000023e                __vector_77
-                0x0000023e                __vector_102
-                0x0000023e                __vector_24
-                0x0000023e                __vector_12
-                0x0000023e                __vector_55
-                0x0000023e                __vector_69
-                0x0000023e                __vector_81
-                0x0000023e                __vector_90
-                0x0000023e                __vector_46
-                0x0000023e                __bad_interrupt
-                0x0000023e                __vector_122
-                0x0000023e                __vector_72
-                0x0000023e                __vector_114
-                0x0000023e                __vector_6
-                0x0000023e                __vector_110
-                0x0000023e                __vector_31
-                0x0000023e                __vector_92
-                0x0000023e                __vector_35
-                0x0000023e                __vector_78
-                0x0000023e                __vector_74
-                0x0000023e                __vector_117
-                0x0000023e                __vector_39
-                0x0000023e                __vector_107
-                0x0000023e                __vector_3
-                0x0000023e                __vector_105
-                0x0000023e                __vector_98
-                0x0000023e                __vector_23
-                0x0000023e                __vector_68
-                0x0000023e                __vector_30
-                0x0000023e                __vector_73
-                0x0000023e                __vector_45
-                0x0000023e                __vector_25
-                0x0000023e                __vector_93
-                0x0000023e                __vector_61
-                0x0000023e                __vector_11
-                0x0000023e                __vector_54
-                0x0000023e                __vector_99
-                0x0000023e                __vector_13
-                0x0000023e                __vector_17
-                0x0000023e                __vector_19
-                0x0000023e                __vector_56
-                0x0000023e                __vector_7
-                0x0000023e                __vector_125
-                0x0000023e                __vector_49
-                0x0000023e                __vector_123
-                0x0000023e                __vector_41
-                0x0000023e                __vector_86
-                0x0000023e                __vector_100
-                0x0000023e                __vector_101
-                0x0000023e                __vector_64
-                0x0000023e                __vector_88
-                0x0000023e                __vector_109
-                0x0000023e                __vector_43
-                0x0000023e                __vector_27
-                0x0000023e                __vector_5
-                0x0000023e                __vector_113
-                0x0000023e                __vector_33
-                0x0000023e                __vector_76
-                0x0000023e                __vector_115
-                0x0000023e                __vector_47
-                0x0000023e                __vector_52
-                0x0000023e                __vector_37
-                0x0000023e                __vector_95
-                0x0000023e                __vector_103
-                0x0000023e                __vector_96
-                0x0000023e                __vector_89
-                0x0000023e                __vector_108
-                0x0000023e                __vector_4
-                0x0000023e                __vector_44
-                0x0000023e                __vector_82
-                0x0000023e                __vector_106
-                0x0000023e                __vector_118
-                0x0000023e                __vector_51
-                0x0000023e                __vector_9
-                0x0000023e                __vector_2
-                0x0000023e                __vector_21
-                0x0000023e                __vector_15
-                0x0000023e                __vector_66
-                0x0000023e                __vector_36
-                0x0000023e                __vector_79
-                0x0000023e                __vector_58
-                0x0000023e                __vector_70
-                0x0000023e                __vector_83
-                0x0000023e                __vector_29
-                0x0000023e                __vector_60
-                0x0000023e                __vector_121
-                0x0000023e                __vector_40
-                0x0000023e                __vector_85
-                0x0000023e                __vector_94
-                0x0000023e                __vector_126
-                0x0000023e                __vector_8
-                0x0000023e                __vector_26
-                0x0000023e                __vector_48
-                0x0000023e                __vector_124
-                0x0000023e                __vector_116
-                0x0000023e                __vector_112
-                0x0000023e                __vector_111
-                0x0000023e                __vector_80
-                0x0000023e                __vector_14
-                0x0000023e                __vector_84
-                0x0000023e                __vector_57
-                0x0000023e                __vector_53
-                0x0000023e                __vector_10
-                0x0000023e                __vector_50
-                0x0000023e                __vector_16
-                0x0000023e                __vector_59
-                0x0000023e                __vector_18
-                0x0000023e                __vector_97
-                0x0000023e                __vector_20
-                0x0000023e                __vector_42
-                0x0000023e                __vector_87
-                0x0000023e                __vector_65
-                0x0000023e                __vector_120
-                0x00000242                . = ALIGN (0x2)
+ .text          0x00000266        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.0.36/gcc/dev/atxmega256a3u/avrxmega6/crtatxmega256a3u.o
+                0x00000266                __vector_38
+                0x00000266                __vector_104
+                0x00000266                __vector_22
+                0x00000266                __vector_63
+                0x00000266                __vector_28
+                0x00000266                __vector_67
+                0x00000266                __vector_1
+                0x00000266                __vector_119
+                0x00000266                __vector_32
+                0x00000266                __vector_75
+                0x00000266                __vector_71
+                0x00000266                __vector_91
+                0x00000266                __vector_34
+                0x00000266                __vector_62
+                0x00000266                __vector_77
+                0x00000266                __vector_102
+                0x00000266                __vector_24
+                0x00000266                __vector_12
+                0x00000266                __vector_55
+                0x00000266                __vector_69
+                0x00000266                __vector_81
+                0x00000266                __vector_90
+                0x00000266                __vector_46
+                0x00000266                __bad_interrupt
+                0x00000266                __vector_122
+                0x00000266                __vector_72
+                0x00000266                __vector_114
+                0x00000266                __vector_6
+                0x00000266                __vector_110
+                0x00000266                __vector_31
+                0x00000266                __vector_92
+                0x00000266                __vector_35
+                0x00000266                __vector_78
+                0x00000266                __vector_74
+                0x00000266                __vector_117
+                0x00000266                __vector_39
+                0x00000266                __vector_107
+                0x00000266                __vector_3
+                0x00000266                __vector_105
+                0x00000266                __vector_98
+                0x00000266                __vector_23
+                0x00000266                __vector_68
+                0x00000266                __vector_30
+                0x00000266                __vector_73
+                0x00000266                __vector_45
+                0x00000266                __vector_25
+                0x00000266                __vector_93
+                0x00000266                __vector_61
+                0x00000266                __vector_11
+                0x00000266                __vector_54
+                0x00000266                __vector_99
+                0x00000266                __vector_13
+                0x00000266                __vector_17
+                0x00000266                __vector_19
+                0x00000266                __vector_56
+                0x00000266                __vector_7
+                0x00000266                __vector_125
+                0x00000266                __vector_49
+                0x00000266                __vector_123
+                0x00000266                __vector_41
+                0x00000266                __vector_86
+                0x00000266                __vector_100
+                0x00000266                __vector_101
+                0x00000266                __vector_64
+                0x00000266                __vector_88
+                0x00000266                __vector_109
+                0x00000266                __vector_43
+                0x00000266                __vector_27
+                0x00000266                __vector_5
+                0x00000266                __vector_113
+                0x00000266                __vector_33
+                0x00000266                __vector_76
+                0x00000266                __vector_115
+                0x00000266                __vector_47
+                0x00000266                __vector_52
+                0x00000266                __vector_37
+                0x00000266                __vector_95
+                0x00000266                __vector_103
+                0x00000266                __vector_96
+                0x00000266                __vector_89
+                0x00000266                __vector_108
+                0x00000266                __vector_4
+                0x00000266                __vector_44
+                0x00000266                __vector_82
+                0x00000266                __vector_106
+                0x00000266                __vector_118
+                0x00000266                __vector_51
+                0x00000266                __vector_9
+                0x00000266                __vector_2
+                0x00000266                __vector_21
+                0x00000266                __vector_15
+                0x00000266                __vector_66
+                0x00000266                __vector_36
+                0x00000266                __vector_79
+                0x00000266                __vector_58
+                0x00000266                __vector_70
+                0x00000266                __vector_83
+                0x00000266                __vector_29
+                0x00000266                __vector_60
+                0x00000266                __vector_121
+                0x00000266                __vector_40
+                0x00000266                __vector_85
+                0x00000266                __vector_94
+                0x00000266                __vector_126
+                0x00000266                __vector_8
+                0x00000266                __vector_26
+                0x00000266                __vector_48
+                0x00000266                __vector_124
+                0x00000266                __vector_116
+                0x00000266                __vector_112
+                0x00000266                __vector_111
+                0x00000266                __vector_80
+                0x00000266                __vector_14
+                0x00000266                __vector_84
+                0x00000266                __vector_57
+                0x00000266                __vector_53
+                0x00000266                __vector_10
+                0x00000266                __vector_50
+                0x00000266                __vector_16
+                0x00000266                __vector_59
+                0x00000266                __vector_18
+                0x00000266                __vector_97
+                0x00000266                __vector_20
+                0x00000266                __vector_42
+                0x00000266                __vector_87
+                0x00000266                __vector_65
+                0x00000266                __vector_120
+                0x0000026a                . = ALIGN (0x2)
  *(.text.*)
  .text._Z4initv
-                0x00000242       0x84 Mainboard_R1_1.o
-                0x00000242                _Z4initv
+                0x0000026a       0x84 Mainboard_R1_1.o
+                0x0000026a                _Z4initv
  .text._Z9initUSARTv
-                0x000002c6       0x44 Mainboard_R1_1.o
-                0x000002c6                _Z9initUSARTv
+                0x000002ee       0x44 Mainboard_R1_1.o
+                0x000002ee                _Z9initUSARTv
  .text._Z7getBytei
-                0x0000030a       0x5e Mainboard_R1_1.o
-                0x0000030a                _Z7getBytei
+                0x00000332       0x5e Mainboard_R1_1.o
+                0x00000332                _Z7getBytei
  .text._Z8xmitDATAh
-                0x00000368       0x14 Mainboard_R1_1.o
-                0x00000368                _Z8xmitDATAh
+                0x00000390       0x14 Mainboard_R1_1.o
+                0x00000390                _Z8xmitDATAh
  .text._Z12getCharIndexh
-                0x0000037c       0x2c Mainboard_R1_1.o
-                0x0000037c                _Z12getCharIndexh
+                0x000003a4       0x2c Mainboard_R1_1.o
+                0x000003a4                _Z12getCharIndexh
  .text._Z8lcdDelayh
-                0x000003a8       0x10 Mainboard_R1_1.o
-                0x000003a8                _Z8lcdDelayh
+                0x000003d0       0x10 Mainboard_R1_1.o
+                0x000003d0                _Z8lcdDelayh
  .text._Z7xmitCMDh
-                0x000003b8       0x22 Mainboard_R1_1.o
-                0x000003b8                _Z7xmitCMDh
+                0x000003e0       0x22 Mainboard_R1_1.o
+                0x000003e0                _Z7xmitCMDh
  .text._Z7initLCDv
-                0x000003da      0x1be Mainboard_R1_1.o
-                0x000003da                _Z7initLCDv
+                0x00000402      0x1be Mainboard_R1_1.o
+                0x00000402                _Z7initLCDv
  .text._Z9xmitHLinessss
-                0x00000598       0x9e Mainboard_R1_1.o
-                0x00000598                _Z9xmitHLinessss
+                0x000005c0       0x9e Mainboard_R1_1.o
+                0x000005c0                _Z9xmitHLinessss
  .text._Z9xmitVLinessss
-                0x00000636       0x9e Mainboard_R1_1.o
-                0x00000636                _Z9xmitVLinessss
+                0x0000065e       0x9e Mainboard_R1_1.o
+                0x0000065e                _Z9xmitVLinessss
  .text._Z7drawBoxsssss
-                0x000006d4       0x7c Mainboard_R1_1.o
-                0x000006d4                _Z7drawBoxsssss
+                0x000006fc       0x7c Mainboard_R1_1.o
+                0x000006fc                _Z7drawBoxsssss
  .text._Z8drawCharhssss
-                0x00000750      0x130 Mainboard_R1_1.o
-                0x00000750                _Z8drawCharhssss
+                0x00000778      0x130 Mainboard_R1_1.o
+                0x00000778                _Z8drawCharhssss
  .text._Z10drawStringPKcssss
-                0x00000880       0x62 Mainboard_R1_1.o
-                0x00000880                _Z10drawStringPKcssss
+                0x000008a8       0x62 Mainboard_R1_1.o
+                0x000008a8                _Z10drawStringPKcssss
  .text._Z11drawDisplayh
-                0x000008e2      0x22e Mainboard_R1_1.o
-                0x000008e2                _Z11drawDisplayh
+                0x0000090a      0x22e Mainboard_R1_1.o
+                0x0000090a                _Z11drawDisplayh
  .text._Z7fillBoxsssss
-                0x00000b10       0xd2 Mainboard_R1_1.o
-                0x00000b10                _Z7fillBoxsssss
+                0x00000b38       0xd2 Mainboard_R1_1.o
+                0x00000b38                _Z7fillBoxsssss
  .text._Z7fillLCDs
-                0x00000be2       0x20 Mainboard_R1_1.o
-                0x00000be2                _Z7fillLCDs
+                0x00000c0a       0x20 Mainboard_R1_1.o
+                0x00000c0a                _Z7fillLCDs
  .text._Z9drawLevelsssss
-                0x00000c02       0x66 Mainboard_R1_1.o
-                0x00000c02                _Z9drawLevelsssss
- .text.main     0x00000c68      0x17e Mainboard_R1_1.o
-                0x00000c68                main
-                0x00000de6                . = ALIGN (0x2)
+                0x00000c2a       0x66 Mainboard_R1_1.o
+                0x00000c2a                _Z9drawLevelsssss
+ .text.main     0x00000c90      0x25c Mainboard_R1_1.o
+                0x00000c90                main
+ .text.libgcc   0x00000eec       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_tablejump2.o)
+                0x00000eec                __tablejump2__
+                0x00000efc                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000de6        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
-                0x00000de6                _exit
-                0x00000de6                exit
+ .fini9         0x00000efc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
+                0x00000efc                _exit
+                0x00000efc                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -452,11 +473,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000de6        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
+ .fini0         0x00000efc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avrxmega6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000dea                _etext = .
+                0x00000f00                _etext = .
 
-.data           0x00802000      0x55c load address 0x00000dea
+.data           0x00802000      0x55c load address 0x00000f00
                 0x00802000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -481,8 +502,8 @@ END GROUP
                 0x0080255c                numConfig
  *(COMMON)
                 0x0080255e                PROVIDE (__bss_end, .)
-                0x00000dea                __data_load_start = LOADADDR (.data)
-                0x00001346                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000f00                __data_load_start = LOADADDR (.data)
+                0x0000145c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080255e        0x0
                 0x0080255e                PROVIDE (__noinit_start, .)
@@ -561,30 +582,30 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2873
+.debug_info     0x00000000     0x2885
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x2873 Mainboard_R1_1.o
+ .debug_info    0x00000000     0x2885 Mainboard_R1_1.o
 
-.debug_abbrev   0x00000000      0x39b
+.debug_abbrev   0x00000000      0x3c2
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x39b Mainboard_R1_1.o
+ .debug_abbrev  0x00000000      0x3c2 Mainboard_R1_1.o
 
-.debug_line     0x00000000      0x4d2
+.debug_line     0x00000000      0x503
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x4d2 Mainboard_R1_1.o
+ .debug_line    0x00000000      0x503 Mainboard_R1_1.o
 
 .debug_frame    0x00000000      0x358
  *(.debug_frame)
  .debug_frame   0x00000000      0x358 Mainboard_R1_1.o
 
-.debug_str      0x00000000      0x8e8
+.debug_str      0x00000000      0x8e2
  *(.debug_str)
- .debug_str     0x00000000      0x8e8 Mainboard_R1_1.o
-                                0x955 (size before relaxing)
+ .debug_str     0x00000000      0x8e2 Mainboard_R1_1.o
+                                0x94f (size before relaxing)
 
-.debug_loc      0x00000000     0x15d0
+.debug_loc      0x00000000     0x16cc
  *(.debug_loc)
- .debug_loc     0x00000000     0x15d0 Mainboard_R1_1.o
+ .debug_loc     0x00000000     0x16cc Mainboard_R1_1.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -604,9 +625,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xd0
+.debug_ranges   0x00000000       0xe8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xd0 Mainboard_R1_1.o
+ .debug_ranges  0x00000000       0xe8 Mainboard_R1_1.o
 
 .debug_macro
  *(.debug_macro)

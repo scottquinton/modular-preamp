@@ -127,7 +127,7 @@ int main(void)
 	
 	short int qPos[11] = {0,0,0,0,0,0,0,0,0,0,0};
 	short int pos = 0;
-	short int cur_q = 0;
+	short int enc = 0;
 	
 	short int BKCOL = BLUE;
 	short int char_color = BLACK;
@@ -141,19 +141,79 @@ int main(void)
 		{
 			char c = getByte(3);
 			if (c >= '0' && c<='9'){
-				cur_q = (int)(c-'0');
+				enc = (int)(c-'0');
 			}
 			if(c == '+'){
-				pos = min(pos+1, 63);
+				qPos[enc] = min(qPos[enc]+1, 63);
 			}
 			else if(c == '-'){
-				pos = max(pos-1, 0);
+				qPos[enc] = max(qPos[enc]-1, 0);
 			}
 			//short int val = qPos[0];
 			//if (val > 255) encoder_val = 255;
 			//else if (val < 0) encoder_val = 0;
 			//else encoder_val = val;
-			drawLevel(76, 114, 160, 223, pos);
+			int y_top = 0;
+			int y_bot = 0;
+			int x_left= 0;
+			int x_right = 0;
+			
+			if(enc<5){
+				y_top = 51;
+				y_bot = 114;
+			}
+			else{
+				y_top = 160;
+				y_bot = 223;
+			}
+			
+			/*
+			// Top channel levels
+			drawBox(10, 50, 50, 115, black);	// Vol level
+			drawBox(75, 50, 115, 115, black);	// Gain level
+			drawBox(140, 50, 180, 115, black);	// Low level
+			drawBox(205, 50, 245, 115, black);	// Mid level
+			drawBox(270, 50, 310, 115, black);	// High level
+			
+			// Bottom channel levels
+			drawBox(10, 159, 50, 224, black);	// Vol level
+			drawBox(75, 159, 115, 224, black);	// Gain level
+			drawBox(140, 159, 180, 224, black);	// Low level
+			drawBox(205, 159, 245, 224, black);	// Mid level
+			drawBox(270, 159, 310, 224, black);	// High level
+			*/
+			
+			switch(enc) {
+				case 0:
+				case 5:
+					x_left = 271;
+					x_right = 309;
+					break;
+				case 1:
+				case 6:
+					x_left = 206;
+					x_right = 244;
+					break;
+				case 2:
+				case 7:
+					x_left = 141;
+					x_right = 179;
+					break;
+				case 3:
+				case 8:
+					x_left = 76;
+					x_right = 114;
+					break;
+				case 4:
+				case 9:
+					x_left = 11;
+					x_right = 49;
+					break;
+				default:
+					break;
+			}
+				
+			drawLevel(x_left, x_right, y_top, y_bot, qPos[enc]);
 			//drawChar(pos, 50, 50, char_color, bg_color);
 		}	
 	
