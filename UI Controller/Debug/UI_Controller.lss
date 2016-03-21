@@ -3,1337 +3,1386 @@ UI_Controller.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000852  00000000  00000000  00000094  2**1
+  0 .text         000008c2  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000062  00802000  00000852  000008e6  2**0
+  1 .data         00000000  00802000  00802000  00000936  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000044  00802062  00802062  00000948  2**0
+  2 .bss          00000365  00802000  00802000  00000936  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000948  2**0
+  3 .comment      00000030  00000000  00000000  00000936  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000978  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000968  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000060  00000000  00000000  000009b8  2**0
+  5 .debug_aranges 00000080  00000000  00000000  000009a8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000086a  00000000  00000000  00000a18  2**0
+  6 .debug_info   000007e8  00000000  00000000  00000a28  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000252  00000000  00000000  00001282  2**0
+  7 .debug_abbrev 0000023f  00000000  00000000  00001210  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002f9  00000000  00000000  000014d4  2**0
+  8 .debug_line   0000031e  00000000  00000000  0000144f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000c4  00000000  00000000  000017d0  2**2
+  9 .debug_frame  000001e8  00000000  00000000  00001770  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000458  00000000  00000000  00001894  2**0
+ 10 .debug_str    00000477  00000000  00000000  00001958  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000002ec  00000000  00000000  00001cec  2**0
+ 11 .debug_loc    0000034d  00000000  00000000  00001dcf  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000050  00000000  00000000  00001fd8  2**0
+ 12 .debug_ranges 00000070  00000000  00000000  0000211c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	0c 94 61 00 	jmp	0xc2	; 0xc2 <__ctors_end>
-   4:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-   8:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-   c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  10:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  14:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  18:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  1c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  20:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  24:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  28:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  2c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  30:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  34:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  38:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  3c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  40:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  44:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  48:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  4c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  50:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  54:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  58:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  5c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  60:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  64:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  68:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  6c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  70:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  74:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  78:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  7c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  80:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  84:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  88:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  8c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  90:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  94:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  98:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  9c:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  a0:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  a4:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  a8:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__bad_interrupt>
-  ac:	f8 01       	movw	r30, r16
-  ae:	0a 02       	muls	r16, r26
-  b0:	1c 02       	muls	r17, r28
-  b2:	2e 02       	muls	r18, r30
-  b4:	40 02       	muls	r20, r16
-  b6:	52 02       	muls	r21, r18
-  b8:	64 02       	muls	r22, r20
-  ba:	76 02       	muls	r23, r22
-  bc:	88 02       	muls	r24, r24
-  be:	9a 02       	muls	r25, r26
-  c0:	ac 02       	muls	r26, r28
+   0:	0c 94 56 00 	jmp	0xac	; 0xac <__ctors_end>
+   4:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+   8:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+   c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  10:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  14:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  18:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  1c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  20:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  24:	0c 94 97 03 	jmp	0x72e	; 0x72e <__vector_9>
+  28:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  2c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  30:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  34:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  38:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  3c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  40:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  44:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  48:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  4c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  50:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  54:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  58:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  5c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  60:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  64:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  68:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  6c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  70:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  74:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  78:	0c 94 2c 03 	jmp	0x658	; 0x658 <__vector_30>
+  7c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  80:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  84:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  88:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  8c:	0c 94 04 04 	jmp	0x808	; 0x808 <__vector_35>
+  90:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  94:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  98:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  9c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  a0:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  a4:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
+  a8:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__bad_interrupt>
 
-000000c2 <__ctors_end>:
-  c2:	11 24       	eor	r1, r1
-  c4:	1f be       	out	0x3f, r1	; 63
-  c6:	cf ef       	ldi	r28, 0xFF	; 255
-  c8:	cd bf       	out	0x3d, r28	; 61
-  ca:	d7 e2       	ldi	r29, 0x27	; 39
-  cc:	de bf       	out	0x3e, r29	; 62
+000000ac <__ctors_end>:
+  ac:	11 24       	eor	r1, r1
+  ae:	1f be       	out	0x3f, r1	; 63
+  b0:	cf ef       	ldi	r28, 0xFF	; 255
+  b2:	cd bf       	out	0x3d, r28	; 61
+  b4:	d7 e2       	ldi	r29, 0x27	; 39
+  b6:	de bf       	out	0x3e, r29	; 62
 
-000000ce <__do_copy_data>:
-  ce:	10 e2       	ldi	r17, 0x20	; 32
-  d0:	a0 e0       	ldi	r26, 0x00	; 0
-  d2:	b0 e2       	ldi	r27, 0x20	; 32
-  d4:	e2 e5       	ldi	r30, 0x52	; 82
-  d6:	f8 e0       	ldi	r31, 0x08	; 8
-  d8:	02 c0       	rjmp	.+4      	; 0xde <__do_copy_data+0x10>
-  da:	05 90       	lpm	r0, Z+
-  dc:	0d 92       	st	X+, r0
-  de:	a2 36       	cpi	r26, 0x62	; 98
-  e0:	b1 07       	cpc	r27, r17
-  e2:	d9 f7       	brne	.-10     	; 0xda <__do_copy_data+0xc>
+000000b8 <__do_clear_bss>:
+  b8:	23 e2       	ldi	r18, 0x23	; 35
+  ba:	a0 e0       	ldi	r26, 0x00	; 0
+  bc:	b0 e2       	ldi	r27, 0x20	; 32
+  be:	01 c0       	rjmp	.+2      	; 0xc2 <.do_clear_bss_start>
 
-000000e4 <__do_clear_bss>:
-  e4:	20 e2       	ldi	r18, 0x20	; 32
-  e6:	a2 e6       	ldi	r26, 0x62	; 98
-  e8:	b0 e2       	ldi	r27, 0x20	; 32
-  ea:	01 c0       	rjmp	.+2      	; 0xee <.do_clear_bss_start>
+000000c0 <.do_clear_bss_loop>:
+  c0:	1d 92       	st	X+, r1
 
-000000ec <.do_clear_bss_loop>:
-  ec:	1d 92       	st	X+, r1
+000000c2 <.do_clear_bss_start>:
+  c2:	a5 36       	cpi	r26, 0x65	; 101
+  c4:	b2 07       	cpc	r27, r18
+  c6:	e1 f7       	brne	.-8      	; 0xc0 <.do_clear_bss_loop>
+  c8:	0e 94 98 01 	call	0x330	; 0x330 <main>
+  cc:	0c 94 5f 04 	jmp	0x8be	; 0x8be <_exit>
 
-000000ee <.do_clear_bss_start>:
-  ee:	a6 3a       	cpi	r26, 0xA6	; 166
-  f0:	b2 07       	cpc	r27, r18
-  f2:	e1 f7       	brne	.-8      	; 0xec <.do_clear_bss_loop>
-  f4:	0e 94 be 02 	call	0x57c	; 0x57c <main>
-  f8:	0c 94 27 04 	jmp	0x84e	; 0x84e <_exit>
+000000d0 <__bad_interrupt>:
+  d0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000fc <__bad_interrupt>:
-  fc:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
-
-00000100 <_Z4initv>:
-		}
+000000d4 <_Z4initv>:
 	}
+	PORTD.INTFLAGS = 0xff;
 }
 
 void init(void)
 {
- 100:	cf 93       	push	r28
- 102:	df 93       	push	r29
+  d4:	cf 93       	push	r28
+  d6:	df 93       	push	r29
 	OSC.CTRL = 0b00000010; // Enable internal 32MHz oscillator
- 104:	82 e0       	ldi	r24, 0x02	; 2
- 106:	80 93 50 00 	sts	0x0050, r24
+  d8:	82 e0       	ldi	r24, 0x02	; 2
+  da:	80 93 50 00 	sts	0x0050, r24
 	//OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
 	//OSC.XOSCCTRL = 0b11010000; // Configure XOSC for High speed operation, high power XTAL1 and XTAL2
 	
 	while((OSC.STATUS & 0b00000010) == 0); // Wait for the internal oscillator to stabilize
- 10a:	e0 e5       	ldi	r30, 0x50	; 80
- 10c:	f0 e0       	ldi	r31, 0x00	; 0
- 10e:	81 81       	ldd	r24, Z+1	; 0x01
- 110:	81 ff       	sbrs	r24, 1
- 112:	fd cf       	rjmp	.-6      	; 0x10e <_Z4initv+0xe>
+  de:	e0 e5       	ldi	r30, 0x50	; 80
+  e0:	f0 e0       	ldi	r31, 0x00	; 0
+  e2:	81 81       	ldd	r24, Z+1	; 0x01
+  e4:	81 ff       	sbrs	r24, 1
+  e6:	fd cf       	rjmp	.-6      	; 0xe2 <_Z4initv+0xe>
 	//while((OSC.STATUS & 0b00001000) == 0); // Wait for the external oscillator to stabilize
 	
 	CCP = 0xD8; // Remove code write lock
- 114:	88 ed       	ldi	r24, 0xD8	; 216
- 116:	84 bf       	out	0x34, r24	; 52
+  e8:	88 ed       	ldi	r24, 0xD8	; 216
+  ea:	84 bf       	out	0x34, r24	; 52
 	CLK.PSCTRL = 0b00000000; // No external clock prescaler
- 118:	e0 e4       	ldi	r30, 0x40	; 64
- 11a:	f0 e0       	ldi	r31, 0x00	; 0
- 11c:	11 82       	std	Z+1, r1	; 0x01
+  ec:	e0 e4       	ldi	r30, 0x40	; 64
+  ee:	f0 e0       	ldi	r31, 0x00	; 0
+  f0:	11 82       	std	Z+1, r1	; 0x01
 	CCP = 0xD8; // Remove code write lock
- 11e:	84 bf       	out	0x34, r24	; 52
+  f2:	84 bf       	out	0x34, r24	; 52
 	CLK.CTRL = 0b00000001; // Internal 32MHz Oscillator
- 120:	81 e0       	ldi	r24, 0x01	; 1
- 122:	80 83       	st	Z, r24
+  f4:	91 e0       	ldi	r25, 0x01	; 1
+  f6:	90 83       	st	Z, r25
 	//CLK.CTRL = 0b00000011; // External Oscillator (32MHz)
 	
 	PORTA.DIR = 0x00; // All inputs
- 124:	80 e0       	ldi	r24, 0x00	; 0
- 126:	96 e0       	ldi	r25, 0x06	; 6
- 128:	dc 01       	movw	r26, r24
- 12a:	1c 92       	st	X, r1
+  f8:	a0 e0       	ldi	r26, 0x00	; 0
+  fa:	b6 e0       	ldi	r27, 0x06	; 6
+  fc:	1c 92       	st	X, r1
 	PORTC.DIR = 0x00; // All inputs
- 12c:	e0 e4       	ldi	r30, 0x40	; 64
- 12e:	f6 e0       	ldi	r31, 0x06	; 6
- 130:	10 82       	st	Z, r1
-	PORTD.DIR = 0b00001000; // All inputs except PD3 (SPI TX)
- 132:	20 e6       	ldi	r18, 0x60	; 96
- 134:	36 e0       	ldi	r19, 0x06	; 6
- 136:	48 e0       	ldi	r20, 0x08	; 8
- 138:	d9 01       	movw	r26, r18
- 13a:	4c 93       	st	X, r20
+  fe:	e0 e4       	ldi	r30, 0x40	; 64
+ 100:	f6 e0       	ldi	r31, 0x06	; 6
+ 102:	10 82       	st	Z, r1
+	PORTD.DIR = 0b00001100; // All inputs except PD2 and PD3 (SPI TX)
+ 104:	20 e6       	ldi	r18, 0x60	; 96
+ 106:	36 e0       	ldi	r19, 0x06	; 6
+ 108:	8c e0       	ldi	r24, 0x0C	; 12
+ 10a:	e9 01       	movw	r28, r18
+ 10c:	88 83       	st	Y, r24
 	
 	PORTA.INTMASK = 0xff;
- 13c:	4f ef       	ldi	r20, 0xFF	; 255
- 13e:	dc 01       	movw	r26, r24
- 140:	1a 96       	adiw	r26, 0x0a	; 10
- 142:	4c 93       	st	X, r20
+ 10e:	8f ef       	ldi	r24, 0xFF	; 255
+ 110:	1a 96       	adiw	r26, 0x0a	; 10
+ 112:	8c 93       	st	X, r24
+ 114:	1a 97       	sbiw	r26, 0x0a	; 10
 	PORTC.INTMASK = 0xff; // Pins 4 & 5 are A8 and B8
- 144:	42 87       	std	Z+10, r20	; 0x0a
-	PORTD.INTMASK = 0xf7;
- 146:	47 ef       	ldi	r20, 0xF7	; 247
- 148:	d9 01       	movw	r26, r18
- 14a:	1a 96       	adiw	r26, 0x0a	; 10
- 14c:	4c 93       	st	X, r20
-	PORTC.INTCTRL = 0b00000010; // Medium Priority Interrupt
- 14e:	42 e0       	ldi	r20, 0x02	; 2
- 150:	41 87       	std	Z+9, r20	; 0x09
+ 116:	82 87       	std	Z+10, r24	; 0x0a
+	PORTD.INTMASK = 0xf3;
+ 118:	43 ef       	ldi	r20, 0xF3	; 243
+ 11a:	4a 87       	std	Y+10, r20	; 0x0a
+	
+	PORTA.INTCTRL = 0b00000001; // Medium Priority Interrupt
+ 11c:	19 96       	adiw	r26, 0x09	; 9
+ 11e:	9c 93       	st	X, r25
+ 120:	19 97       	sbiw	r26, 0x09	; 9
+	PORTC.INTCTRL = 0b00000001; // Medium Priority Interrupt
+ 122:	91 87       	std	Z+9, r25	; 0x09
+	PORTD.INTCTRL = 0b00000001; // Medium Priority Interrupt
+ 124:	99 87       	std	Y+9, r25	; 0x09
+	
 	PORTC.PIN4CTRL = 0x00; // Quadrature Input A8, Sense both edges
- 152:	14 8a       	std	Z+20, r1	; 0x14
+ 126:	14 8a       	std	Z+20, r1	; 0x14
 	PORTC.PIN5CTRL = 0x00; // Quadrature Input B8, Sense both edges
- 154:	15 8a       	std	Z+21, r1	; 0x15
+ 128:	15 8a       	std	Z+21, r1	; 0x15
+	PMIC_CTRL = 0b00000001; // Enable all low-level interrupts
+ 12a:	90 93 a2 00 	sts	0x00A2, r25
+	
+	PORTA.INTFLAGS = 0xff;
+ 12e:	1c 96       	adiw	r26, 0x0c	; 12
+ 130:	8c 93       	st	X, r24
+ 132:	1c 97       	sbiw	r26, 0x0c	; 12
+	PORTC.INTFLAGS = 0xff;
+ 134:	84 87       	std	Z+12, r24	; 0x0c
+	PORTD.INTFLAGS = 0xff;
+ 136:	8c 87       	std	Y+12, r24	; 0x0c
 	
 	SREG = 0b10000000; // Enable global interrupts
- 156:	40 e8       	ldi	r20, 0x80	; 128
- 158:	4f bf       	out	0x3f, r20	; 63
+ 138:	80 e8       	ldi	r24, 0x80	; 128
+ 13a:	8f bf       	out	0x3f, r24	; 63
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 15a:	bf ef       	ldi	r27, 0xFF	; 255
- 15c:	47 ea       	ldi	r20, 0xA7	; 167
- 15e:	51 e6       	ldi	r21, 0x61	; 97
- 160:	b1 50       	subi	r27, 0x01	; 1
- 162:	40 40       	sbci	r20, 0x00	; 0
- 164:	50 40       	sbci	r21, 0x00	; 0
- 166:	e1 f7       	brne	.-8      	; 0x160 <_Z4initv+0x60>
- 168:	00 c0       	rjmp	.+0      	; 0x16a <_Z4initv+0x6a>
- 16a:	00 00       	nop
+ 13c:	df ef       	ldi	r29, 0xFF	; 255
+ 13e:	47 ea       	ldi	r20, 0xA7	; 167
+ 140:	81 e6       	ldi	r24, 0x61	; 97
+ 142:	d1 50       	subi	r29, 0x01	; 1
+ 144:	40 40       	sbci	r20, 0x00	; 0
+ 146:	80 40       	sbci	r24, 0x00	; 0
+ 148:	e1 f7       	brne	.-8      	; 0x142 <_Z4initv+0x6e>
+ 14a:	00 c0       	rjmp	.+0      	; 0x14c <_Z4initv+0x78>
+ 14c:	00 00       	nop
 	
 	_delay_ms(1000); // Wait for stuff to power up etc
 	
-	oldA[0] = (PORTA.IN & 0b00010000);
- 16c:	dc 01       	movw	r26, r24
- 16e:	18 96       	adiw	r26, 0x08	; 8
- 170:	4c 91       	ld	r20, X
- 172:	18 97       	sbiw	r26, 0x08	; 8
- 174:	cf e6       	ldi	r28, 0x6F	; 111
- 176:	d0 e2       	ldi	r29, 0x20	; 32
- 178:	42 95       	swap	r20
- 17a:	41 70       	andi	r20, 0x01	; 1
- 17c:	48 83       	st	Y, r20
-	oldB[0] = (PORTA.IN & 0b00100000);
- 17e:	18 96       	adiw	r26, 0x08	; 8
- 180:	4c 91       	ld	r20, X
- 182:	64 e6       	ldi	r22, 0x64	; 100
- 184:	70 e2       	ldi	r23, 0x20	; 32
- 186:	45 fb       	bst	r20, 5
- 188:	44 27       	eor	r20, r20
- 18a:	40 f9       	bld	r20, 0
- 18c:	db 01       	movw	r26, r22
- 18e:	4c 93       	st	X, r20
-	oldA[1] = (PORTA.IN & 0b01000000);
- 190:	dc 01       	movw	r26, r24
- 192:	18 96       	adiw	r26, 0x08	; 8
- 194:	4c 91       	ld	r20, X
- 196:	18 97       	sbiw	r26, 0x08	; 8
- 198:	46 fb       	bst	r20, 6
- 19a:	44 27       	eor	r20, r20
- 19c:	40 f9       	bld	r20, 0
- 19e:	49 83       	std	Y+1, r20	; 0x01
-	oldB[1] = (PORTA.IN & 0b10000000);
- 1a0:	18 96       	adiw	r26, 0x08	; 8
- 1a2:	4c 91       	ld	r20, X
- 1a4:	44 1f       	adc	r20, r20
- 1a6:	44 27       	eor	r20, r20
- 1a8:	44 1f       	adc	r20, r20
- 1aa:	db 01       	movw	r26, r22
- 1ac:	11 96       	adiw	r26, 0x01	; 1
- 1ae:	4c 93       	st	X, r20
-	oldA[2] = (PORTD.IN & 0b00000001);
- 1b0:	d9 01       	movw	r26, r18
- 1b2:	18 96       	adiw	r26, 0x08	; 8
- 1b4:	4c 91       	ld	r20, X
- 1b6:	18 97       	sbiw	r26, 0x08	; 8
- 1b8:	41 70       	andi	r20, 0x01	; 1
- 1ba:	4a 83       	std	Y+2, r20	; 0x02
-	oldB[2] = (PORTD.IN & 0b00000010);
- 1bc:	18 96       	adiw	r26, 0x08	; 8
- 1be:	4c 91       	ld	r20, X
- 1c0:	46 95       	lsr	r20
- 1c2:	41 70       	andi	r20, 0x01	; 1
- 1c4:	db 01       	movw	r26, r22
- 1c6:	12 96       	adiw	r26, 0x02	; 2
- 1c8:	4c 93       	st	X, r20
-	oldA[3] = (PORTD.IN & 0b00010000);
- 1ca:	d9 01       	movw	r26, r18
- 1cc:	18 96       	adiw	r26, 0x08	; 8
- 1ce:	4c 91       	ld	r20, X
- 1d0:	18 97       	sbiw	r26, 0x08	; 8
- 1d2:	42 95       	swap	r20
- 1d4:	41 70       	andi	r20, 0x01	; 1
- 1d6:	4b 83       	std	Y+3, r20	; 0x03
-	oldB[3] = (PORTD.IN & 0b00100000);
- 1d8:	18 96       	adiw	r26, 0x08	; 8
- 1da:	4c 91       	ld	r20, X
- 1dc:	45 fb       	bst	r20, 5
- 1de:	44 27       	eor	r20, r20
- 1e0:	40 f9       	bld	r20, 0
- 1e2:	db 01       	movw	r26, r22
- 1e4:	13 96       	adiw	r26, 0x03	; 3
- 1e6:	4c 93       	st	X, r20
-	oldA[4] = (PORTD.IN & 0b01000000);
- 1e8:	d9 01       	movw	r26, r18
- 1ea:	18 96       	adiw	r26, 0x08	; 8
- 1ec:	4c 91       	ld	r20, X
- 1ee:	18 97       	sbiw	r26, 0x08	; 8
- 1f0:	46 fb       	bst	r20, 6
- 1f2:	44 27       	eor	r20, r20
- 1f4:	40 f9       	bld	r20, 0
- 1f6:	4c 83       	std	Y+4, r20	; 0x04
-	oldB[4] = (PORTD.IN & 0b10000000);
- 1f8:	18 96       	adiw	r26, 0x08	; 8
- 1fa:	2c 91       	ld	r18, X
- 1fc:	22 1f       	adc	r18, r18
- 1fe:	22 27       	eor	r18, r18
- 200:	22 1f       	adc	r18, r18
- 202:	db 01       	movw	r26, r22
- 204:	14 96       	adiw	r26, 0x04	; 4
- 206:	2c 93       	st	X, r18
-	oldA[5] = (PORTA.IN & 0b00001000);
- 208:	dc 01       	movw	r26, r24
- 20a:	18 96       	adiw	r26, 0x08	; 8
- 20c:	2c 91       	ld	r18, X
- 20e:	18 97       	sbiw	r26, 0x08	; 8
- 210:	23 fb       	bst	r18, 3
- 212:	22 27       	eor	r18, r18
- 214:	20 f9       	bld	r18, 0
- 216:	2d 83       	std	Y+5, r18	; 0x05
-	oldB[5] = (PORTA.IN & 0b00000100);
- 218:	18 96       	adiw	r26, 0x08	; 8
- 21a:	2c 91       	ld	r18, X
- 21c:	22 fb       	bst	r18, 2
- 21e:	22 27       	eor	r18, r18
- 220:	20 f9       	bld	r18, 0
- 222:	db 01       	movw	r26, r22
- 224:	15 96       	adiw	r26, 0x05	; 5
- 226:	2c 93       	st	X, r18
-	oldA[6] = (PORTA.IN & 0b00000010);
- 228:	dc 01       	movw	r26, r24
- 22a:	18 96       	adiw	r26, 0x08	; 8
- 22c:	2c 91       	ld	r18, X
- 22e:	18 97       	sbiw	r26, 0x08	; 8
- 230:	26 95       	lsr	r18
- 232:	21 70       	andi	r18, 0x01	; 1
- 234:	2e 83       	std	Y+6, r18	; 0x06
-	oldB[6] = (PORTA.IN & 0b00000001);
- 236:	18 96       	adiw	r26, 0x08	; 8
- 238:	8c 91       	ld	r24, X
- 23a:	81 70       	andi	r24, 0x01	; 1
- 23c:	db 01       	movw	r26, r22
- 23e:	16 96       	adiw	r26, 0x06	; 6
- 240:	8c 93       	st	X, r24
- 242:	16 97       	sbiw	r26, 0x06	; 6
-	oldA[7] = (PORTC.IN & 0b10000000);
- 244:	80 85       	ldd	r24, Z+8	; 0x08
- 246:	88 1f       	adc	r24, r24
- 248:	88 27       	eor	r24, r24
- 24a:	88 1f       	adc	r24, r24
- 24c:	8f 83       	std	Y+7, r24	; 0x07
-	oldB[7] = (PORTC.IN & 0b01000000);
- 24e:	80 85       	ldd	r24, Z+8	; 0x08
- 250:	86 fb       	bst	r24, 6
- 252:	88 27       	eor	r24, r24
- 254:	80 f9       	bld	r24, 0
- 256:	17 96       	adiw	r26, 0x07	; 7
- 258:	8c 93       	st	X, r24
- 25a:	17 97       	sbiw	r26, 0x07	; 7
-	oldA[8] = (PORTC.IN & 0b00100000);
- 25c:	80 85       	ldd	r24, Z+8	; 0x08
- 25e:	85 fb       	bst	r24, 5
- 260:	88 27       	eor	r24, r24
- 262:	80 f9       	bld	r24, 0
- 264:	88 87       	std	Y+8, r24	; 0x08
-	oldB[8] = (PORTC.IN & 0b00010000);
- 266:	80 85       	ldd	r24, Z+8	; 0x08
- 268:	82 95       	swap	r24
- 26a:	81 70       	andi	r24, 0x01	; 1
- 26c:	18 96       	adiw	r26, 0x08	; 8
- 26e:	8c 93       	st	X, r24
- 270:	18 97       	sbiw	r26, 0x08	; 8
-	oldA[9] = (PORTC.IN & 0b00001000);
- 272:	80 85       	ldd	r24, Z+8	; 0x08
- 274:	83 fb       	bst	r24, 3
- 276:	88 27       	eor	r24, r24
- 278:	80 f9       	bld	r24, 0
- 27a:	89 87       	std	Y+9, r24	; 0x09
-	oldB[9] = (PORTC.IN & 0b00000100);
- 27c:	80 85       	ldd	r24, Z+8	; 0x08
- 27e:	82 fb       	bst	r24, 2
- 280:	88 27       	eor	r24, r24
- 282:	80 f9       	bld	r24, 0
- 284:	19 96       	adiw	r26, 0x09	; 9
- 286:	8c 93       	st	X, r24
- 288:	19 97       	sbiw	r26, 0x09	; 9
-	oldA[10] = (PORTC.IN & 0b00000001);
- 28a:	80 85       	ldd	r24, Z+8	; 0x08
- 28c:	81 70       	andi	r24, 0x01	; 1
- 28e:	8a 87       	std	Y+10, r24	; 0x0a
-	oldB[10] = (PORTC.IN & 0b00000010);
- 290:	80 85       	ldd	r24, Z+8	; 0x08
- 292:	86 95       	lsr	r24
- 294:	81 70       	andi	r24, 0x01	; 1
- 296:	1a 96       	adiw	r26, 0x0a	; 10
- 298:	8c 93       	st	X, r24
+	oldA[0] = (PORTA.IN & A0_MASK);
+ 14e:	18 96       	adiw	r26, 0x08	; 8
+ 150:	4c 91       	ld	r20, X
+ 152:	18 97       	sbiw	r26, 0x08	; 8
+ 154:	42 95       	swap	r20
+ 156:	41 70       	andi	r20, 0x01	; 1
+ 158:	8e e2       	ldi	r24, 0x2E	; 46
+ 15a:	93 e2       	ldi	r25, 0x23	; 35
+ 15c:	ec 01       	movw	r28, r24
+ 15e:	48 83       	st	Y, r20
+	oldB[0] = (PORTA.IN & B0_MASK);
+ 160:	18 96       	adiw	r26, 0x08	; 8
+ 162:	4c 91       	ld	r20, X
+ 164:	18 97       	sbiw	r26, 0x08	; 8
+ 166:	45 fb       	bst	r20, 5
+ 168:	44 27       	eor	r20, r20
+ 16a:	40 f9       	bld	r20, 0
+ 16c:	63 e2       	ldi	r22, 0x23	; 35
+ 16e:	73 e2       	ldi	r23, 0x23	; 35
+ 170:	eb 01       	movw	r28, r22
+ 172:	48 83       	st	Y, r20
+	oldA[1] = (PORTA.IN & A1_MASK);
+ 174:	18 96       	adiw	r26, 0x08	; 8
+ 176:	4c 91       	ld	r20, X
+ 178:	18 97       	sbiw	r26, 0x08	; 8
+ 17a:	46 fb       	bst	r20, 6
+ 17c:	44 27       	eor	r20, r20
+ 17e:	40 f9       	bld	r20, 0
+ 180:	ec 01       	movw	r28, r24
+ 182:	49 83       	std	Y+1, r20	; 0x01
+	oldB[1] = (PORTA.IN & B1_MASK);
+ 184:	18 96       	adiw	r26, 0x08	; 8
+ 186:	4c 91       	ld	r20, X
+ 188:	18 97       	sbiw	r26, 0x08	; 8
+ 18a:	44 1f       	adc	r20, r20
+ 18c:	44 27       	eor	r20, r20
+ 18e:	44 1f       	adc	r20, r20
+ 190:	eb 01       	movw	r28, r22
+ 192:	49 83       	std	Y+1, r20	; 0x01
+	oldA[2] = (PORTD.IN & A2_MASK);
+ 194:	e9 01       	movw	r28, r18
+ 196:	48 85       	ldd	r20, Y+8	; 0x08
+ 198:	41 70       	andi	r20, 0x01	; 1
+ 19a:	ec 01       	movw	r28, r24
+ 19c:	4a 83       	std	Y+2, r20	; 0x02
+	oldB[2] = (PORTD.IN & B2_MASK);
+ 19e:	e9 01       	movw	r28, r18
+ 1a0:	48 85       	ldd	r20, Y+8	; 0x08
+ 1a2:	46 95       	lsr	r20
+ 1a4:	41 70       	andi	r20, 0x01	; 1
+ 1a6:	eb 01       	movw	r28, r22
+ 1a8:	4a 83       	std	Y+2, r20	; 0x02
+	oldA[3] = (PORTD.IN & A3_MASK);
+ 1aa:	e9 01       	movw	r28, r18
+ 1ac:	48 85       	ldd	r20, Y+8	; 0x08
+ 1ae:	42 95       	swap	r20
+ 1b0:	41 70       	andi	r20, 0x01	; 1
+ 1b2:	ec 01       	movw	r28, r24
+ 1b4:	4b 83       	std	Y+3, r20	; 0x03
+	oldB[3] = (PORTD.IN & B3_MASK);
+ 1b6:	e9 01       	movw	r28, r18
+ 1b8:	48 85       	ldd	r20, Y+8	; 0x08
+ 1ba:	45 fb       	bst	r20, 5
+ 1bc:	44 27       	eor	r20, r20
+ 1be:	40 f9       	bld	r20, 0
+ 1c0:	eb 01       	movw	r28, r22
+ 1c2:	4b 83       	std	Y+3, r20	; 0x03
+	oldA[4] = (PORTD.IN & A4_MASK);
+ 1c4:	e9 01       	movw	r28, r18
+ 1c6:	48 85       	ldd	r20, Y+8	; 0x08
+ 1c8:	46 fb       	bst	r20, 6
+ 1ca:	44 27       	eor	r20, r20
+ 1cc:	40 f9       	bld	r20, 0
+ 1ce:	ec 01       	movw	r28, r24
+ 1d0:	4c 83       	std	Y+4, r20	; 0x04
+	oldB[4] = (PORTD.IN & B4_MASK);
+ 1d2:	e9 01       	movw	r28, r18
+ 1d4:	28 85       	ldd	r18, Y+8	; 0x08
+ 1d6:	22 1f       	adc	r18, r18
+ 1d8:	22 27       	eor	r18, r18
+ 1da:	22 1f       	adc	r18, r18
+ 1dc:	eb 01       	movw	r28, r22
+ 1de:	2c 83       	std	Y+4, r18	; 0x04
+	oldA[5] = (PORTA.IN & A5_MASK);
+ 1e0:	18 96       	adiw	r26, 0x08	; 8
+ 1e2:	2c 91       	ld	r18, X
+ 1e4:	18 97       	sbiw	r26, 0x08	; 8
+ 1e6:	23 fb       	bst	r18, 3
+ 1e8:	22 27       	eor	r18, r18
+ 1ea:	20 f9       	bld	r18, 0
+ 1ec:	ec 01       	movw	r28, r24
+ 1ee:	2d 83       	std	Y+5, r18	; 0x05
+	oldB[5] = (PORTA.IN & B5_MASK);
+ 1f0:	18 96       	adiw	r26, 0x08	; 8
+ 1f2:	2c 91       	ld	r18, X
+ 1f4:	18 97       	sbiw	r26, 0x08	; 8
+ 1f6:	22 fb       	bst	r18, 2
+ 1f8:	22 27       	eor	r18, r18
+ 1fa:	20 f9       	bld	r18, 0
+ 1fc:	eb 01       	movw	r28, r22
+ 1fe:	2d 83       	std	Y+5, r18	; 0x05
+	oldA[6] = (PORTA.IN & A6_MASK);
+ 200:	18 96       	adiw	r26, 0x08	; 8
+ 202:	2c 91       	ld	r18, X
+ 204:	18 97       	sbiw	r26, 0x08	; 8
+ 206:	26 95       	lsr	r18
+ 208:	21 70       	andi	r18, 0x01	; 1
+ 20a:	ec 01       	movw	r28, r24
+ 20c:	2e 83       	std	Y+6, r18	; 0x06
+	oldB[6] = (PORTA.IN & B6_MASK);
+ 20e:	18 96       	adiw	r26, 0x08	; 8
+ 210:	2c 91       	ld	r18, X
+ 212:	21 70       	andi	r18, 0x01	; 1
+ 214:	db 01       	movw	r26, r22
+ 216:	16 96       	adiw	r26, 0x06	; 6
+ 218:	2c 93       	st	X, r18
+ 21a:	16 97       	sbiw	r26, 0x06	; 6
+	oldA[7] = (PORTC.IN & A7_MASK);
+ 21c:	20 85       	ldd	r18, Z+8	; 0x08
+ 21e:	22 1f       	adc	r18, r18
+ 220:	22 27       	eor	r18, r18
+ 222:	22 1f       	adc	r18, r18
+ 224:	2f 83       	std	Y+7, r18	; 0x07
+	oldB[7] = (PORTC.IN & B7_MASK);
+ 226:	20 85       	ldd	r18, Z+8	; 0x08
+ 228:	26 fb       	bst	r18, 6
+ 22a:	22 27       	eor	r18, r18
+ 22c:	20 f9       	bld	r18, 0
+ 22e:	17 96       	adiw	r26, 0x07	; 7
+ 230:	2c 93       	st	X, r18
+ 232:	17 97       	sbiw	r26, 0x07	; 7
+	oldA[8] = (PORTC.IN & A8_MASK);
+ 234:	20 85       	ldd	r18, Z+8	; 0x08
+ 236:	25 fb       	bst	r18, 5
+ 238:	22 27       	eor	r18, r18
+ 23a:	20 f9       	bld	r18, 0
+ 23c:	28 87       	std	Y+8, r18	; 0x08
+	oldB[8] = (PORTC.IN & B8_MASK);
+ 23e:	20 85       	ldd	r18, Z+8	; 0x08
+ 240:	22 95       	swap	r18
+ 242:	21 70       	andi	r18, 0x01	; 1
+ 244:	18 96       	adiw	r26, 0x08	; 8
+ 246:	2c 93       	st	X, r18
+ 248:	18 97       	sbiw	r26, 0x08	; 8
+	oldA[9] = (PORTC.IN & A9_MASK);
+ 24a:	20 85       	ldd	r18, Z+8	; 0x08
+ 24c:	23 fb       	bst	r18, 3
+ 24e:	22 27       	eor	r18, r18
+ 250:	20 f9       	bld	r18, 0
+ 252:	29 87       	std	Y+9, r18	; 0x09
+	oldB[9] = (PORTC.IN & B9_MASK);
+ 254:	20 85       	ldd	r18, Z+8	; 0x08
+ 256:	22 fb       	bst	r18, 2
+ 258:	22 27       	eor	r18, r18
+ 25a:	20 f9       	bld	r18, 0
+ 25c:	19 96       	adiw	r26, 0x09	; 9
+ 25e:	2c 93       	st	X, r18
+ 260:	19 97       	sbiw	r26, 0x09	; 9
+	oldA[10] = (PORTC.IN & A10_MASK);
+ 262:	20 85       	ldd	r18, Z+8	; 0x08
+ 264:	21 70       	andi	r18, 0x01	; 1
+ 266:	2a 87       	std	Y+10, r18	; 0x0a
+	oldB[10] = (PORTC.IN & B10_MASK);
+ 268:	80 85       	ldd	r24, Z+8	; 0x08
+ 26a:	86 95       	lsr	r24
+ 26c:	81 70       	andi	r24, 0x01	; 1
+ 26e:	1a 96       	adiw	r26, 0x0a	; 10
+ 270:	8c 93       	st	X, r24
 }
- 29a:	df 91       	pop	r29
- 29c:	cf 91       	pop	r28
- 29e:	08 95       	ret
+ 272:	df 91       	pop	r29
+ 274:	cf 91       	pop	r28
+ 276:	08 95       	ret
 
-000002a0 <_Z9initUSARTv>:
+00000278 <_Z9initUSARTv>:
+}
 
 void initUSART(void)
 {
-	// Configure SPI interface and speeds etc for USARTD0 @ 9600bps
-	USARTD0.BAUDCTRLA = 0x0C; // BSEL = 12
- 2a0:	e0 ec       	ldi	r30, 0xC0	; 192
- 2a2:	f9 e0       	ldi	r31, 0x09	; 9
- 2a4:	8c e0       	ldi	r24, 0x0C	; 12
- 2a6:	86 83       	std	Z+6, r24	; 0x06
-	USARTD0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
- 2a8:	80 e4       	ldi	r24, 0x40	; 64
- 2aa:	87 83       	std	Z+7, r24	; 0x07
+	// Configure SPI interface and speeds etc for USARTD0 @ 57600bps
+	USARTD0.BAUDCTRLA = 0x22; // BSEL = 34
+ 278:	e0 ec       	ldi	r30, 0xC0	; 192
+ 27a:	f9 e0       	ldi	r31, 0x09	; 9
+ 27c:	82 e2       	ldi	r24, 0x22	; 34
+ 27e:	86 83       	std	Z+6, r24	; 0x06
+	USARTD0.BAUDCTRLB = 0x00; // BSCALE = 0
+ 280:	17 82       	std	Z+7, r1	; 0x07
 	USARTD0.CTRLA = 0x00; // Interrupts off
- 2ac:	12 82       	std	Z+2, r1	; 0x02
+ 282:	12 82       	std	Z+2, r1	; 0x02
 	USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
- 2ae:	88 e1       	ldi	r24, 0x18	; 24
- 2b0:	83 83       	std	Z+3, r24	; 0x03
+ 284:	88 e1       	ldi	r24, 0x18	; 24
+ 286:	83 83       	std	Z+3, r24	; 0x03
 	USARTD0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
- 2b2:	83 e0       	ldi	r24, 0x03	; 3
- 2b4:	84 83       	std	Z+4, r24	; 0x04
+ 288:	83 e0       	ldi	r24, 0x03	; 3
+ 28a:	84 83       	std	Z+4, r24	; 0x04
 	USARTD0.CTRLD = 0b00000000; // Asynchronous, No parity, 1 stop bit, 8 data bits
- 2b6:	15 82       	std	Z+5, r1	; 0x05
- 2b8:	08 95       	ret
+ 28c:	15 82       	std	Z+5, r1	; 0x05
+ 28e:	08 95       	ret
 
-000002ba <_Z8sendCharci>:
+00000290 <_Z8sendCharh>:
 }
 
-void sendChar(char cToSend, int chanNum)
+
+
+void sendChar(volatile unsigned char cToSend)
 {
-	switch(chanNum)
- 2ba:	67 2b       	or	r22, r23
- 2bc:	39 f4       	brne	.+14     	; 0x2cc <_Z8sendCharci+0x12>
-	{
-		case 0:
-		while(!(USARTD0_STATUS & USART_DREIF_bm));
- 2be:	e1 ec       	ldi	r30, 0xC1	; 193
- 2c0:	f9 e0       	ldi	r31, 0x09	; 9
- 2c2:	90 81       	ld	r25, Z
- 2c4:	95 ff       	sbrs	r25, 5
- 2c6:	fd cf       	rjmp	.-6      	; 0x2c2 <_Z8sendCharci+0x8>
-		USARTD0_DATA = cToSend;
- 2c8:	80 93 c0 09 	sts	0x09C0, r24
- 2cc:	08 95       	ret
-
-000002ce <_Z7sendStrPci>:
-		break;
-	}
+ 290:	cf 93       	push	r28
+ 292:	df 93       	push	r29
+ 294:	1f 92       	push	r1
+ 296:	cd b7       	in	r28, 0x3d	; 61
+ 298:	de b7       	in	r29, 0x3e	; 62
+ 29a:	89 83       	std	Y+1, r24	; 0x01
+	while(!(USARTD0_STATUS & USART_DREIF_bm));
+ 29c:	e1 ec       	ldi	r30, 0xC1	; 193
+ 29e:	f9 e0       	ldi	r31, 0x09	; 9
+ 2a0:	80 81       	ld	r24, Z
+ 2a2:	85 ff       	sbrs	r24, 5
+ 2a4:	fd cf       	rjmp	.-6      	; 0x2a0 <_Z8sendCharh+0x10>
+	USARTD0_DATA = cToSend;
+ 2a6:	89 81       	ldd	r24, Y+1	; 0x01
+ 2a8:	80 93 c0 09 	sts	0x09C0, r24
 }
+ 2ac:	0f 90       	pop	r0
+ 2ae:	df 91       	pop	r29
+ 2b0:	cf 91       	pop	r28
+ 2b2:	08 95       	ret
 
-void sendStr(char *sToSend, int chanNum)
+000002b4 <_Z7sendStrv>:
+
+void sendStr(void)
 {
- 2ce:	0f 93       	push	r16
- 2d0:	1f 93       	push	r17
- 2d2:	cf 93       	push	r28
- 2d4:	df 93       	push	r29
- 2d6:	ec 01       	movw	r28, r24
-	while(*sToSend)
- 2d8:	88 81       	ld	r24, Y
- 2da:	88 23       	and	r24, r24
- 2dc:	41 f0       	breq	.+16     	; 0x2ee <_Z7sendStrPci+0x20>
- 2de:	8b 01       	movw	r16, r22
- 2e0:	21 96       	adiw	r28, 0x01	; 1
-	sendChar(*sToSend++, chanNum);
- 2e2:	b8 01       	movw	r22, r16
- 2e4:	0e 94 5d 01 	call	0x2ba	; 0x2ba <_Z8sendCharci>
-	}
-}
+ 2b4:	cf 93       	push	r28
+ 2b6:	df 93       	push	r29
+ 2b8:	00 d0       	rcall	.+0      	; 0x2ba <_Z7sendStrv+0x6>
+ 2ba:	cd b7       	in	r28, 0x3d	; 61
+ 2bc:	de b7       	in	r29, 0x3e	; 62
+	volatile unsigned char mIndex = mToSend-1;
+ 2be:	80 91 00 20 	lds	r24, 0x2000
+ 2c2:	81 50       	subi	r24, 0x01	; 1
+ 2c4:	8a 83       	std	Y+2, r24	; 0x02
+	volatile unsigned char index = 0;
+ 2c6:	19 82       	std	Y+1, r1	; 0x01
+	while(msg[mIndex][index] != '\0') {
+ 2c8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2ca:	e9 81       	ldd	r30, Y+1	; 0x01
+ 2cc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ce:	94 e0       	ldi	r25, 0x04	; 4
+ 2d0:	89 9f       	mul	r24, r25
+ 2d2:	e0 0d       	add	r30, r0
+ 2d4:	f1 1d       	adc	r31, r1
+ 2d6:	11 24       	eor	r1, r1
+ 2d8:	ef 5f       	subi	r30, 0xFF	; 255
+ 2da:	ff 4d       	sbci	r31, 0xDF	; 223
+ 2dc:	80 81       	ld	r24, Z
+ 2de:	88 23       	and	r24, r24
+ 2e0:	e9 f0       	breq	.+58     	; 0x31c <_Z7sendStrv+0x68>
+		sendChar(msg[mIndex][index]);
+ 2e2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2e4:	e9 81       	ldd	r30, Y+1	; 0x01
+ 2e6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2e8:	94 e0       	ldi	r25, 0x04	; 4
+ 2ea:	89 9f       	mul	r24, r25
+ 2ec:	e0 0d       	add	r30, r0
+ 2ee:	f1 1d       	adc	r31, r1
+ 2f0:	11 24       	eor	r1, r1
+ 2f2:	ef 5f       	subi	r30, 0xFF	; 255
+ 2f4:	ff 4d       	sbci	r31, 0xDF	; 223
+ 2f6:	80 81       	ld	r24, Z
+ 2f8:	0e 94 48 01 	call	0x290	; 0x290 <_Z8sendCharh>
+		index++;
+ 2fc:	89 81       	ldd	r24, Y+1	; 0x01
+ 2fe:	8f 5f       	subi	r24, 0xFF	; 255
+ 300:	89 83       	std	Y+1, r24	; 0x01
 
-void sendStr(char *sToSend, int chanNum)
+void sendStr(void)
 {
-	while(*sToSend)
- 2e8:	89 91       	ld	r24, Y+
- 2ea:	81 11       	cpse	r24, r1
- 2ec:	fa cf       	rjmp	.-12     	; 0x2e2 <_Z7sendStrPci+0x14>
-	sendChar(*sToSend++, chanNum);
+	volatile unsigned char mIndex = mToSend-1;
+	volatile unsigned char index = 0;
+	while(msg[mIndex][index] != '\0') {
+ 302:	8a 81       	ldd	r24, Y+2	; 0x02
+ 304:	e9 81       	ldd	r30, Y+1	; 0x01
+ 306:	f0 e0       	ldi	r31, 0x00	; 0
+ 308:	94 e0       	ldi	r25, 0x04	; 4
+ 30a:	89 9f       	mul	r24, r25
+ 30c:	e0 0d       	add	r30, r0
+ 30e:	f1 1d       	adc	r31, r1
+ 310:	11 24       	eor	r1, r1
+ 312:	ef 5f       	subi	r30, 0xFF	; 255
+ 314:	ff 4d       	sbci	r31, 0xDF	; 223
+ 316:	80 81       	ld	r24, Z
+ 318:	81 11       	cpse	r24, r1
+ 31a:	e3 cf       	rjmp	.-58     	; 0x2e2 <_Z7sendStrv+0x2e>
+		sendChar(msg[mIndex][index]);
+		index++;
+	}
+	mToSend--;
+ 31c:	80 91 00 20 	lds	r24, 0x2000
+ 320:	81 50       	subi	r24, 0x01	; 1
+ 322:	80 93 00 20 	sts	0x2000, r24
 }
- 2ee:	df 91       	pop	r29
- 2f0:	cf 91       	pop	r28
- 2f2:	1f 91       	pop	r17
- 2f4:	0f 91       	pop	r16
- 2f6:	08 95       	ret
+ 326:	0f 90       	pop	r0
+ 328:	0f 90       	pop	r0
+ 32a:	df 91       	pop	r29
+ 32c:	cf 91       	pop	r28
+ 32e:	08 95       	ret
 
-000002f8 <_Z7decodeBh>:
-	}
-	return temp;
-}
-
-void decodeB(unsigned char chanQ){
-	oldB[chanQ] = !oldB[chanQ];
- 2f8:	90 e0       	ldi	r25, 0x00	; 0
- 2fa:	fc 01       	movw	r30, r24
- 2fc:	ec 59       	subi	r30, 0x9C	; 156
- 2fe:	ff 4d       	sbci	r31, 0xDF	; 223
- 300:	30 81       	ld	r19, Z
- 302:	21 e0       	ldi	r18, 0x01	; 1
- 304:	23 27       	eor	r18, r19
- 306:	20 83       	st	Z, r18
-	if (oldB[chanQ] == oldA[chanQ]){
- 308:	fc 01       	movw	r30, r24
- 30a:	e1 59       	subi	r30, 0x91	; 145
- 30c:	ff 4d       	sbci	r31, 0xDF	; 223
- 30e:	30 81       	ld	r19, Z
- 310:	23 13       	cpse	r18, r19
- 312:	16 c0       	rjmp	.+44     	; 0x340 <_Z7decodeBh+0x48>
-		qPos[chanQ]++;
- 314:	88 0f       	add	r24, r24
- 316:	99 1f       	adc	r25, r25
- 318:	88 0f       	add	r24, r24
- 31a:	99 1f       	adc	r25, r25
- 31c:	fc 01       	movw	r30, r24
- 31e:	e6 58       	subi	r30, 0x86	; 134
- 320:	ff 4d       	sbci	r31, 0xDF	; 223
- 322:	80 81       	ld	r24, Z
- 324:	91 81       	ldd	r25, Z+1	; 0x01
- 326:	a2 81       	ldd	r26, Z+2	; 0x02
- 328:	b3 81       	ldd	r27, Z+3	; 0x03
- 32a:	01 96       	adiw	r24, 0x01	; 1
- 32c:	a1 1d       	adc	r26, r1
- 32e:	b1 1d       	adc	r27, r1
- 330:	80 83       	st	Z, r24
- 332:	91 83       	std	Z+1, r25	; 0x01
- 334:	a2 83       	std	Z+2, r26	; 0x02
- 336:	b3 83       	std	Z+3, r27	; 0x03
-		qInc = 1;
- 338:	81 e0       	ldi	r24, 0x01	; 1
- 33a:	80 93 63 20 	sts	0x2063, r24
- 33e:	08 95       	ret
-	}
-	else{
-		qPos[chanQ]--;
- 340:	88 0f       	add	r24, r24
- 342:	99 1f       	adc	r25, r25
- 344:	88 0f       	add	r24, r24
- 346:	99 1f       	adc	r25, r25
- 348:	fc 01       	movw	r30, r24
- 34a:	e6 58       	subi	r30, 0x86	; 134
- 34c:	ff 4d       	sbci	r31, 0xDF	; 223
- 34e:	80 81       	ld	r24, Z
- 350:	91 81       	ldd	r25, Z+1	; 0x01
- 352:	a2 81       	ldd	r26, Z+2	; 0x02
- 354:	b3 81       	ldd	r27, Z+3	; 0x03
- 356:	01 97       	sbiw	r24, 0x01	; 1
- 358:	a1 09       	sbc	r26, r1
- 35a:	b1 09       	sbc	r27, r1
- 35c:	80 83       	st	Z, r24
- 35e:	91 83       	std	Z+1, r25	; 0x01
- 360:	a2 83       	std	Z+2, r26	; 0x02
- 362:	b3 83       	std	Z+3, r27	; 0x03
-		qInc = 0;
- 364:	10 92 63 20 	sts	0x2063, r1
- 368:	08 95       	ret
-
-0000036a <_Z7decodeAh>:
-	}
-}
-
-void decodeA(unsigned char chanQ) {
-	oldA[chanQ] = !oldA[chanQ];
- 36a:	90 e0       	ldi	r25, 0x00	; 0
- 36c:	fc 01       	movw	r30, r24
- 36e:	e1 59       	subi	r30, 0x91	; 145
- 370:	ff 4d       	sbci	r31, 0xDF	; 223
- 372:	30 81       	ld	r19, Z
- 374:	21 e0       	ldi	r18, 0x01	; 1
- 376:	23 27       	eor	r18, r19
- 378:	20 83       	st	Z, r18
-	if (oldA[chanQ] != oldB[chanQ]){
- 37a:	fc 01       	movw	r30, r24
- 37c:	ec 59       	subi	r30, 0x9C	; 156
- 37e:	ff 4d       	sbci	r31, 0xDF	; 223
- 380:	30 81       	ld	r19, Z
- 382:	23 17       	cp	r18, r19
- 384:	b1 f0       	breq	.+44     	; 0x3b2 <_Z7decodeAh+0x48>
-		qPos[chanQ]++;
- 386:	88 0f       	add	r24, r24
- 388:	99 1f       	adc	r25, r25
- 38a:	88 0f       	add	r24, r24
- 38c:	99 1f       	adc	r25, r25
- 38e:	fc 01       	movw	r30, r24
- 390:	e6 58       	subi	r30, 0x86	; 134
- 392:	ff 4d       	sbci	r31, 0xDF	; 223
- 394:	80 81       	ld	r24, Z
- 396:	91 81       	ldd	r25, Z+1	; 0x01
- 398:	a2 81       	ldd	r26, Z+2	; 0x02
- 39a:	b3 81       	ldd	r27, Z+3	; 0x03
- 39c:	01 96       	adiw	r24, 0x01	; 1
- 39e:	a1 1d       	adc	r26, r1
- 3a0:	b1 1d       	adc	r27, r1
- 3a2:	80 83       	st	Z, r24
- 3a4:	91 83       	std	Z+1, r25	; 0x01
- 3a6:	a2 83       	std	Z+2, r26	; 0x02
- 3a8:	b3 83       	std	Z+3, r27	; 0x03
-		qInc = 1;
- 3aa:	81 e0       	ldi	r24, 0x01	; 1
- 3ac:	80 93 63 20 	sts	0x2063, r24
- 3b0:	08 95       	ret
-	}
-	else{
-		qPos[chanQ]--;
- 3b2:	88 0f       	add	r24, r24
- 3b4:	99 1f       	adc	r25, r25
- 3b6:	88 0f       	add	r24, r24
- 3b8:	99 1f       	adc	r25, r25
- 3ba:	fc 01       	movw	r30, r24
- 3bc:	e6 58       	subi	r30, 0x86	; 134
- 3be:	ff 4d       	sbci	r31, 0xDF	; 223
- 3c0:	80 81       	ld	r24, Z
- 3c2:	91 81       	ldd	r25, Z+1	; 0x01
- 3c4:	a2 81       	ldd	r26, Z+2	; 0x02
- 3c6:	b3 81       	ldd	r27, Z+3	; 0x03
- 3c8:	01 97       	sbiw	r24, 0x01	; 1
- 3ca:	a1 09       	sbc	r26, r1
- 3cc:	b1 09       	sbc	r27, r1
- 3ce:	80 83       	st	Z, r24
- 3d0:	91 83       	std	Z+1, r25	; 0x01
- 3d2:	a2 83       	std	Z+2, r26	; 0x02
- 3d4:	b3 83       	std	Z+3, r27	; 0x03
-		qInc = 0;
- 3d6:	10 92 63 20 	sts	0x2063, r1
- 3da:	08 95       	ret
-
-000003dc <_Z8get_msgSh>:
-	}
-}
-
-
-void get_msgS(unsigned char qChan) {
-	switch(qChan) {
- 3dc:	90 e0       	ldi	r25, 0x00	; 0
- 3de:	8b 30       	cpi	r24, 0x0B	; 11
- 3e0:	91 05       	cpc	r25, r1
- 3e2:	08 f0       	brcs	.+2      	; 0x3e6 <_Z8get_msgSh+0xa>
- 3e4:	ca c0       	rjmp	.+404    	; 0x57a <_Z8get_msgSh+0x19e>
- 3e6:	fc 01       	movw	r30, r24
- 3e8:	ea 5a       	subi	r30, 0xAA	; 170
- 3ea:	ff 4f       	sbci	r31, 0xFF	; 255
- 3ec:	0c 94 21 04 	jmp	0x842	; 0x842 <__tablejump2__>
-		case 0:
-		if(qInc)
- 3f0:	80 91 63 20 	lds	r24, 0x2063
- 3f4:	88 23       	and	r24, r24
- 3f6:	39 f0       	breq	.+14     	; 0x406 <_Z8get_msgSh+0x2a>
-		msgS = "Q0+";
- 3f8:	82 e0       	ldi	r24, 0x02	; 2
- 3fa:	90 e2       	ldi	r25, 0x20	; 32
- 3fc:	80 93 00 20 	sts	0x2000, r24
- 400:	90 93 01 20 	sts	0x2001, r25
- 404:	08 95       	ret
-		else
-		msgS = "Q0-";
- 406:	86 e0       	ldi	r24, 0x06	; 6
- 408:	90 e2       	ldi	r25, 0x20	; 32
- 40a:	80 93 00 20 	sts	0x2000, r24
- 40e:	90 93 01 20 	sts	0x2001, r25
- 412:	08 95       	ret
-		break;
-		case 1:
-		if(qInc)
- 414:	80 91 63 20 	lds	r24, 0x2063
- 418:	88 23       	and	r24, r24
- 41a:	39 f0       	breq	.+14     	; 0x42a <_Z8get_msgSh+0x4e>
-		msgS = "Q1+";
- 41c:	8a e0       	ldi	r24, 0x0A	; 10
- 41e:	90 e2       	ldi	r25, 0x20	; 32
- 420:	80 93 00 20 	sts	0x2000, r24
- 424:	90 93 01 20 	sts	0x2001, r25
- 428:	08 95       	ret
-		else
-		msgS = "Q1-";
- 42a:	8e e0       	ldi	r24, 0x0E	; 14
- 42c:	90 e2       	ldi	r25, 0x20	; 32
- 42e:	80 93 00 20 	sts	0x2000, r24
- 432:	90 93 01 20 	sts	0x2001, r25
- 436:	08 95       	ret
-		break;
-		case 2:
-		if(qInc)
- 438:	80 91 63 20 	lds	r24, 0x2063
- 43c:	88 23       	and	r24, r24
- 43e:	39 f0       	breq	.+14     	; 0x44e <_Z8get_msgSh+0x72>
-		msgS = "Q2+";
- 440:	82 e1       	ldi	r24, 0x12	; 18
- 442:	90 e2       	ldi	r25, 0x20	; 32
- 444:	80 93 00 20 	sts	0x2000, r24
- 448:	90 93 01 20 	sts	0x2001, r25
- 44c:	08 95       	ret
-		else
-		msgS = "Q2-";
- 44e:	86 e1       	ldi	r24, 0x16	; 22
- 450:	90 e2       	ldi	r25, 0x20	; 32
- 452:	80 93 00 20 	sts	0x2000, r24
- 456:	90 93 01 20 	sts	0x2001, r25
- 45a:	08 95       	ret
-		break;
-		case 3:
-		if(qInc)
- 45c:	80 91 63 20 	lds	r24, 0x2063
- 460:	88 23       	and	r24, r24
- 462:	39 f0       	breq	.+14     	; 0x472 <_Z8get_msgSh+0x96>
-		msgS = "Q3+";
- 464:	8a e1       	ldi	r24, 0x1A	; 26
- 466:	90 e2       	ldi	r25, 0x20	; 32
- 468:	80 93 00 20 	sts	0x2000, r24
- 46c:	90 93 01 20 	sts	0x2001, r25
- 470:	08 95       	ret
-		else
-		msgS = "Q3-";
- 472:	8e e1       	ldi	r24, 0x1E	; 30
- 474:	90 e2       	ldi	r25, 0x20	; 32
- 476:	80 93 00 20 	sts	0x2000, r24
- 47a:	90 93 01 20 	sts	0x2001, r25
- 47e:	08 95       	ret
-		break;
-		case 4:
-		if(qInc)
- 480:	80 91 63 20 	lds	r24, 0x2063
- 484:	88 23       	and	r24, r24
- 486:	39 f0       	breq	.+14     	; 0x496 <_Z8get_msgSh+0xba>
-		msgS = "Q4+";
- 488:	82 e2       	ldi	r24, 0x22	; 34
- 48a:	90 e2       	ldi	r25, 0x20	; 32
- 48c:	80 93 00 20 	sts	0x2000, r24
- 490:	90 93 01 20 	sts	0x2001, r25
- 494:	08 95       	ret
-		else
-		msgS = "Q4-";
- 496:	86 e2       	ldi	r24, 0x26	; 38
- 498:	90 e2       	ldi	r25, 0x20	; 32
- 49a:	80 93 00 20 	sts	0x2000, r24
- 49e:	90 93 01 20 	sts	0x2001, r25
- 4a2:	08 95       	ret
-		break;
-		case 5:
-		if(qInc)
- 4a4:	80 91 63 20 	lds	r24, 0x2063
- 4a8:	88 23       	and	r24, r24
- 4aa:	39 f0       	breq	.+14     	; 0x4ba <_Z8get_msgSh+0xde>
-		msgS = "Q5+";
- 4ac:	8a e2       	ldi	r24, 0x2A	; 42
- 4ae:	90 e2       	ldi	r25, 0x20	; 32
- 4b0:	80 93 00 20 	sts	0x2000, r24
- 4b4:	90 93 01 20 	sts	0x2001, r25
- 4b8:	08 95       	ret
-		else
-		msgS = "Q5-";
- 4ba:	8e e2       	ldi	r24, 0x2E	; 46
- 4bc:	90 e2       	ldi	r25, 0x20	; 32
- 4be:	80 93 00 20 	sts	0x2000, r24
- 4c2:	90 93 01 20 	sts	0x2001, r25
- 4c6:	08 95       	ret
-		break;
-		case 6:
-		if(qInc)
- 4c8:	80 91 63 20 	lds	r24, 0x2063
- 4cc:	88 23       	and	r24, r24
- 4ce:	39 f0       	breq	.+14     	; 0x4de <_Z8get_msgSh+0x102>
-		msgS = "Q6+";
- 4d0:	82 e3       	ldi	r24, 0x32	; 50
- 4d2:	90 e2       	ldi	r25, 0x20	; 32
- 4d4:	80 93 00 20 	sts	0x2000, r24
- 4d8:	90 93 01 20 	sts	0x2001, r25
- 4dc:	08 95       	ret
-		else
-		msgS = "Q6-";
- 4de:	86 e3       	ldi	r24, 0x36	; 54
- 4e0:	90 e2       	ldi	r25, 0x20	; 32
- 4e2:	80 93 00 20 	sts	0x2000, r24
- 4e6:	90 93 01 20 	sts	0x2001, r25
- 4ea:	08 95       	ret
-		break;
-		case 7:
-		if(qInc)
- 4ec:	80 91 63 20 	lds	r24, 0x2063
- 4f0:	88 23       	and	r24, r24
- 4f2:	39 f0       	breq	.+14     	; 0x502 <_Z8get_msgSh+0x126>
-		msgS = "Q7+";
- 4f4:	8a e3       	ldi	r24, 0x3A	; 58
- 4f6:	90 e2       	ldi	r25, 0x20	; 32
- 4f8:	80 93 00 20 	sts	0x2000, r24
- 4fc:	90 93 01 20 	sts	0x2001, r25
- 500:	08 95       	ret
-		else
-		msgS = "Q7-";
- 502:	8e e3       	ldi	r24, 0x3E	; 62
- 504:	90 e2       	ldi	r25, 0x20	; 32
- 506:	80 93 00 20 	sts	0x2000, r24
- 50a:	90 93 01 20 	sts	0x2001, r25
- 50e:	08 95       	ret
-		break;
-		case 8:
-		if(qInc)
- 510:	80 91 63 20 	lds	r24, 0x2063
- 514:	88 23       	and	r24, r24
- 516:	39 f0       	breq	.+14     	; 0x526 <_Z8get_msgSh+0x14a>
-		msgS = "Q8+";
- 518:	82 e4       	ldi	r24, 0x42	; 66
- 51a:	90 e2       	ldi	r25, 0x20	; 32
- 51c:	80 93 00 20 	sts	0x2000, r24
- 520:	90 93 01 20 	sts	0x2001, r25
- 524:	08 95       	ret
-		else
-		msgS = "Q8-";
- 526:	86 e4       	ldi	r24, 0x46	; 70
- 528:	90 e2       	ldi	r25, 0x20	; 32
- 52a:	80 93 00 20 	sts	0x2000, r24
- 52e:	90 93 01 20 	sts	0x2001, r25
- 532:	08 95       	ret
-		break;
-		case 9:
-		if(qInc)
- 534:	80 91 63 20 	lds	r24, 0x2063
- 538:	88 23       	and	r24, r24
- 53a:	39 f0       	breq	.+14     	; 0x54a <_Z8get_msgSh+0x16e>
-		msgS = "Q9+";
- 53c:	8a e4       	ldi	r24, 0x4A	; 74
- 53e:	90 e2       	ldi	r25, 0x20	; 32
- 540:	80 93 00 20 	sts	0x2000, r24
- 544:	90 93 01 20 	sts	0x2001, r25
- 548:	08 95       	ret
-		else
-		msgS = "Q9-";
- 54a:	8e e4       	ldi	r24, 0x4E	; 78
- 54c:	90 e2       	ldi	r25, 0x20	; 32
- 54e:	80 93 00 20 	sts	0x2000, r24
- 552:	90 93 01 20 	sts	0x2001, r25
- 556:	08 95       	ret
-		break;
-		case 10:
-		if(qInc)
- 558:	80 91 63 20 	lds	r24, 0x2063
- 55c:	88 23       	and	r24, r24
- 55e:	39 f0       	breq	.+14     	; 0x56e <_Z8get_msgSh+0x192>
-		msgS = "QA+";
- 560:	82 e5       	ldi	r24, 0x52	; 82
- 562:	90 e2       	ldi	r25, 0x20	; 32
- 564:	80 93 00 20 	sts	0x2000, r24
- 568:	90 93 01 20 	sts	0x2001, r25
- 56c:	08 95       	ret
-		else
-		msgS = "QA-";
- 56e:	86 e5       	ldi	r24, 0x56	; 86
- 570:	90 e2       	ldi	r25, 0x20	; 32
- 572:	80 93 00 20 	sts	0x2000, r24
- 576:	90 93 01 20 	sts	0x2001, r25
- 57a:	08 95       	ret
-
-0000057c <main>:
-char* msgL = "Q0_0000"; // Quadrature position string
-char* msgS = "Q0+"; // Quadrature change string, 0-A (11 knobs)
+00000330 <main>:
+volatile unsigned char msg[200][4];// = {"Q0+", "Q0+", "Q0+", "Q0+", "Q0+", "Q0+", "Q0+", "Q0+", "Q0+", "Q0+"}; // Quadrature change string, 0-A (11 knobs)
+volatile unsigned char mToSend = 0; // Output buffer counter
 
 int main(void)
 {
 	init();
- 57c:	0e 94 80 00 	call	0x100	; 0x100 <_Z4initv>
+ 330:	0e 94 6a 00 	call	0xd4	; 0xd4 <_Z4initv>
 	initUSART();
- 580:	0e 94 50 01 	call	0x2a0	; 0x2a0 <_Z9initUSARTv>
+ 334:	0e 94 3c 01 	call	0x278	; 0x278 <_Z9initUSARTv>
+		if(mToSend != 0) {
+			sendStr();
+		}
+		else {
+			SREG = 0b00000000; // Disable global interrupts
+			oldA[0] = (PORTA.IN & A0_MASK);
+ 338:	0f 2e       	mov	r0, r31
+ 33a:	c1 2c       	mov	r12, r1
+ 33c:	f6 e0       	ldi	r31, 0x06	; 6
+ 33e:	df 2e       	mov	r13, r31
+ 340:	f0 2d       	mov	r31, r0
+ 342:	0e e2       	ldi	r16, 0x2E	; 46
+ 344:	13 e2       	ldi	r17, 0x23	; 35
+			oldB[0] = (PORTA.IN & B0_MASK);
+ 346:	c3 e2       	ldi	r28, 0x23	; 35
+ 348:	d3 e2       	ldi	r29, 0x23	; 35
+			oldA[1] = (PORTA.IN & A1_MASK);
+			oldB[1] = (PORTA.IN & B1_MASK);
+			oldA[2] = (PORTD.IN & A2_MASK);
+ 34a:	0f 2e       	mov	r0, r31
+ 34c:	f0 e6       	ldi	r31, 0x60	; 96
+ 34e:	af 2e       	mov	r10, r31
+ 350:	f6 e0       	ldi	r31, 0x06	; 6
+ 352:	bf 2e       	mov	r11, r31
+ 354:	f0 2d       	mov	r31, r0
+			oldB[4] = (PORTD.IN & B4_MASK);
+			oldA[5] = (PORTA.IN & A5_MASK);
+			oldB[5] = (PORTA.IN & B5_MASK);
+			oldA[6] = (PORTA.IN & A6_MASK);
+			oldB[6] = (PORTA.IN & B6_MASK);
+			oldA[7] = (PORTC.IN & A7_MASK);
+ 356:	0f 2e       	mov	r0, r31
+ 358:	f0 e4       	ldi	r31, 0x40	; 64
+ 35a:	ef 2e       	mov	r14, r31
+ 35c:	f6 e0       	ldi	r31, 0x06	; 6
+ 35e:	ff 2e       	mov	r15, r31
+ 360:	f0 2d       	mov	r31, r0
+			oldB[8] = (PORTC.IN & B8_MASK);
+			oldA[9] = (PORTC.IN & A9_MASK);
+			oldB[9] = (PORTC.IN & B9_MASK);
+			oldA[10] = (PORTC.IN & A10_MASK);
+			oldB[10] = (PORTC.IN & B10_MASK);		
+			SREG = 0b10000000; // Enable global interrupts
+ 362:	68 94       	set
+ 364:	99 24       	eor	r9, r9
+ 366:	97 f8       	bld	r9, 7
+	
+	//unsigned int index = 100;
 	
 	while (1)
 	{
-		if(((PORTA.INTFLAGS & 0xff) != 0) || ((PORTC.INTFLAGS & 0xff) != 0)  || ((PORTD.INTFLAGS & 0xff) != 0) ) {
- 584:	c0 e0       	ldi	r28, 0x00	; 0
- 586:	d6 e0       	ldi	r29, 0x06	; 6
- 588:	0f 2e       	mov	r0, r31
- 58a:	f0 e4       	ldi	r31, 0x40	; 64
- 58c:	ef 2e       	mov	r14, r31
- 58e:	f6 e0       	ldi	r31, 0x06	; 6
- 590:	ff 2e       	mov	r15, r31
- 592:	f0 2d       	mov	r31, r0
- 594:	00 e6       	ldi	r16, 0x60	; 96
- 596:	16 e0       	ldi	r17, 0x06	; 6
-				qNum = 10;
-				decodeA(qNum);
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00000001;
-			}
-			else if((PORTC.INTFLAGS & 0b00000010) != 0) { // B10 has been triggered
-				qNum = 10;
- 598:	0f 2e       	mov	r0, r31
- 59a:	fa e0       	ldi	r31, 0x0A	; 10
- 59c:	7f 2e       	mov	r7, r31
- 59e:	f0 2d       	mov	r31, r0
-				qNum = 9;
-				decodeA(qNum);
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00001000;
-			}
-			else if((PORTC.INTFLAGS & 0b00000100) != 0) { // B9 has been triggered
-				qNum = 9;
- 5a0:	0f 2e       	mov	r0, r31
- 5a2:	f9 e0       	ldi	r31, 0x09	; 9
- 5a4:	8f 2e       	mov	r8, r31
- 5a6:	f0 2d       	mov	r31, r0
-				qNum = 8;
-				decodeA(qNum);
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00100000;
-			}
-			else if((PORTC.INTFLAGS & 0b00010000) != 0) { // B8 has been triggered
-				qNum = 8;
- 5a8:	68 94       	set
- 5aa:	99 24       	eor	r9, r9
- 5ac:	93 f8       	bld	r9, 3
-				qNum = 7;
-				decodeA(qNum);
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b10000000;
-			}
-			else if((PORTC.INTFLAGS & 0b01000000) != 0) { // B7 has been triggered
-				qNum = 7;
- 5ae:	0f 2e       	mov	r0, r31
- 5b0:	f7 e0       	ldi	r31, 0x07	; 7
- 5b2:	af 2e       	mov	r10, r31
- 5b4:	f0 2d       	mov	r31, r0
-				qNum = 6;
-				decodeA(qNum);
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00000010;
-			}
-			else if((PORTA.INTFLAGS & 0b00000001) != 0) { // B6 has been triggered
-				qNum = 6;
- 5b6:	0f 2e       	mov	r0, r31
- 5b8:	f6 e0       	ldi	r31, 0x06	; 6
- 5ba:	bf 2e       	mov	r11, r31
- 5bc:	f0 2d       	mov	r31, r0
-				qNum = 5;
-				decodeA(qNum);
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00001000;
-			}
-			else if((PORTA.INTFLAGS & 0b00000100) != 0) { // B5 has been triggered
-				qNum = 5;
- 5be:	0f 2e       	mov	r0, r31
- 5c0:	f5 e0       	ldi	r31, 0x05	; 5
- 5c2:	cf 2e       	mov	r12, r31
- 5c4:	f0 2d       	mov	r31, r0
-				qNum = 4;
-				decodeA(qNum);
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b01000000;
-			}
-			else if((PORTD.INTFLAGS & 0b10000000) != 0) { // B4 has been triggered
-				qNum = 4;
- 5c6:	68 94       	set
- 5c8:	dd 24       	eor	r13, r13
- 5ca:	d2 f8       	bld	r13, 2
-	init();
-	initUSART();
-	
-	while (1)
-	{
-		if(((PORTA.INTFLAGS & 0xff) != 0) || ((PORTC.INTFLAGS & 0xff) != 0)  || ((PORTD.INTFLAGS & 0xff) != 0) ) {
- 5cc:	9c 85       	ldd	r25, Y+12	; 0x0c
- 5ce:	91 11       	cpse	r25, r1
- 5d0:	08 c0       	rjmp	.+16     	; 0x5e2 <main+0x66>
- 5d2:	f7 01       	movw	r30, r14
- 5d4:	94 85       	ldd	r25, Z+12	; 0x0c
- 5d6:	91 11       	cpse	r25, r1
- 5d8:	04 c0       	rjmp	.+8      	; 0x5e2 <main+0x66>
- 5da:	f8 01       	movw	r30, r16
- 5dc:	94 85       	ldd	r25, Z+12	; 0x0c
- 5de:	99 23       	and	r25, r25
- 5e0:	a9 f3       	breq	.-22     	; 0x5cc <main+0x50>
-			if((PORTA.INTFLAGS & 0b00010000) != 0) { // A0 has been triggered
- 5e2:	9c 85       	ldd	r25, Y+12	; 0x0c
- 5e4:	94 ff       	sbrs	r25, 4
- 5e6:	09 c0       	rjmp	.+18     	; 0x5fa <main+0x7e>
-				qNum = 0;
- 5e8:	10 92 62 20 	sts	0x2062, r1
-				decodeA(qNum);
- 5ec:	80 e0       	ldi	r24, 0x00	; 0
- 5ee:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00010000;
- 5f2:	8c 85       	ldd	r24, Y+12	; 0x0c
- 5f4:	80 61       	ori	r24, 0x10	; 16
- 5f6:	8c 87       	std	Y+12, r24	; 0x0c
- 5f8:	17 c1       	rjmp	.+558    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b00100000) != 0) { // B0 has been triggered
- 5fa:	9c 85       	ldd	r25, Y+12	; 0x0c
- 5fc:	95 ff       	sbrs	r25, 5
- 5fe:	09 c0       	rjmp	.+18     	; 0x612 <main+0x96>
-				qNum = 0;
- 600:	10 92 62 20 	sts	0x2062, r1
-				decodeB(qNum);
- 604:	80 e0       	ldi	r24, 0x00	; 0
- 606:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00100000;
- 60a:	8c 85       	ldd	r24, Y+12	; 0x0c
- 60c:	80 62       	ori	r24, 0x20	; 32
- 60e:	8c 87       	std	Y+12, r24	; 0x0c
- 610:	0b c1       	rjmp	.+534    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b01000000) != 0) { // A1 has been triggered
- 612:	8c 85       	ldd	r24, Y+12	; 0x0c
- 614:	86 ff       	sbrs	r24, 6
- 616:	09 c0       	rjmp	.+18     	; 0x62a <main+0xae>
-				qNum = 1;
- 618:	81 e0       	ldi	r24, 0x01	; 1
- 61a:	80 93 62 20 	sts	0x2062, r24
-				decodeA(qNum);
- 61e:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b01000000;
- 622:	8c 85       	ldd	r24, Y+12	; 0x0c
- 624:	80 64       	ori	r24, 0x40	; 64
- 626:	8c 87       	std	Y+12, r24	; 0x0c
- 628:	ff c0       	rjmp	.+510    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b10000000) != 0) { // B1 has been triggered
- 62a:	8c 85       	ldd	r24, Y+12	; 0x0c
- 62c:	88 23       	and	r24, r24
- 62e:	4c f4       	brge	.+18     	; 0x642 <main+0xc6>
-				qNum = 1;
- 630:	81 e0       	ldi	r24, 0x01	; 1
- 632:	80 93 62 20 	sts	0x2062, r24
-				decodeB(qNum);
- 636:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b10000000;
- 63a:	8c 85       	ldd	r24, Y+12	; 0x0c
- 63c:	80 68       	ori	r24, 0x80	; 128
- 63e:	8c 87       	std	Y+12, r24	; 0x0c
- 640:	f3 c0       	rjmp	.+486    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTD.INTFLAGS & 0b00000001) != 0) { // A2 has been triggered
- 642:	f8 01       	movw	r30, r16
- 644:	84 85       	ldd	r24, Z+12	; 0x0c
- 646:	80 ff       	sbrs	r24, 0
- 648:	0a c0       	rjmp	.+20     	; 0x65e <main+0xe2>
-				qNum = 2;
- 64a:	82 e0       	ldi	r24, 0x02	; 2
- 64c:	80 93 62 20 	sts	0x2062, r24
-				decodeA(qNum);
- 650:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b00000001;
- 654:	f8 01       	movw	r30, r16
- 656:	84 85       	ldd	r24, Z+12	; 0x0c
- 658:	81 60       	ori	r24, 0x01	; 1
- 65a:	84 87       	std	Z+12, r24	; 0x0c
- 65c:	e5 c0       	rjmp	.+458    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTD.INTFLAGS & 0b00000010) != 0) { // B2 has been triggered
- 65e:	f8 01       	movw	r30, r16
- 660:	84 85       	ldd	r24, Z+12	; 0x0c
- 662:	81 ff       	sbrs	r24, 1
- 664:	0a c0       	rjmp	.+20     	; 0x67a <main+0xfe>
-				qNum = 2;
- 666:	82 e0       	ldi	r24, 0x02	; 2
- 668:	80 93 62 20 	sts	0x2062, r24
-				decodeB(qNum);
- 66c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b00000010;
- 670:	f8 01       	movw	r30, r16
- 672:	84 85       	ldd	r24, Z+12	; 0x0c
- 674:	82 60       	ori	r24, 0x02	; 2
- 676:	84 87       	std	Z+12, r24	; 0x0c
- 678:	d7 c0       	rjmp	.+430    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTD.INTFLAGS & 0b00010000) != 0) { // A3 has been triggered
- 67a:	f8 01       	movw	r30, r16
- 67c:	84 85       	ldd	r24, Z+12	; 0x0c
+		if(mToSend != 0) {
+ 368:	80 91 00 20 	lds	r24, 0x2000
+ 36c:	88 23       	and	r24, r24
+ 36e:	19 f0       	breq	.+6      	; 0x376 <main+0x46>
+			sendStr();
+ 370:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <_Z7sendStrv>
+ 374:	7e c0       	rjmp	.+252    	; 0x472 <main+0x142>
+		}
+		else {
+			SREG = 0b00000000; // Disable global interrupts
+ 376:	1f be       	out	0x3f, r1	; 63
+			oldA[0] = (PORTA.IN & A0_MASK);
+ 378:	f6 01       	movw	r30, r12
+ 37a:	80 85       	ldd	r24, Z+8	; 0x08
+ 37c:	82 95       	swap	r24
+ 37e:	81 70       	andi	r24, 0x01	; 1
+ 380:	f8 01       	movw	r30, r16
+ 382:	80 83       	st	Z, r24
+			oldB[0] = (PORTA.IN & B0_MASK);
+ 384:	f6 01       	movw	r30, r12
+ 386:	80 85       	ldd	r24, Z+8	; 0x08
+ 388:	85 fb       	bst	r24, 5
+ 38a:	88 27       	eor	r24, r24
+ 38c:	80 f9       	bld	r24, 0
+ 38e:	88 83       	st	Y, r24
+			oldA[1] = (PORTA.IN & A1_MASK);
+ 390:	80 85       	ldd	r24, Z+8	; 0x08
+ 392:	86 fb       	bst	r24, 6
+ 394:	88 27       	eor	r24, r24
+ 396:	80 f9       	bld	r24, 0
+ 398:	f8 01       	movw	r30, r16
+ 39a:	81 83       	std	Z+1, r24	; 0x01
+			oldB[1] = (PORTA.IN & B1_MASK);
+ 39c:	f6 01       	movw	r30, r12
+ 39e:	80 85       	ldd	r24, Z+8	; 0x08
+ 3a0:	88 1f       	adc	r24, r24
+ 3a2:	88 27       	eor	r24, r24
+ 3a4:	88 1f       	adc	r24, r24
+ 3a6:	89 83       	std	Y+1, r24	; 0x01
+			oldA[2] = (PORTD.IN & A2_MASK);
+ 3a8:	f5 01       	movw	r30, r10
+ 3aa:	80 85       	ldd	r24, Z+8	; 0x08
+ 3ac:	81 70       	andi	r24, 0x01	; 1
+ 3ae:	f8 01       	movw	r30, r16
+ 3b0:	82 83       	std	Z+2, r24	; 0x02
+			oldB[2] = (PORTD.IN & B2_MASK);
+ 3b2:	f5 01       	movw	r30, r10
+ 3b4:	80 85       	ldd	r24, Z+8	; 0x08
+ 3b6:	86 95       	lsr	r24
+ 3b8:	81 70       	andi	r24, 0x01	; 1
+ 3ba:	8a 83       	std	Y+2, r24	; 0x02
+			oldA[3] = (PORTD.IN & A3_MASK);
+ 3bc:	80 85       	ldd	r24, Z+8	; 0x08
+ 3be:	82 95       	swap	r24
+ 3c0:	81 70       	andi	r24, 0x01	; 1
+ 3c2:	f8 01       	movw	r30, r16
+ 3c4:	83 83       	std	Z+3, r24	; 0x03
+			oldB[3] = (PORTD.IN & B3_MASK);
+ 3c6:	f5 01       	movw	r30, r10
+ 3c8:	80 85       	ldd	r24, Z+8	; 0x08
+ 3ca:	85 fb       	bst	r24, 5
+ 3cc:	88 27       	eor	r24, r24
+ 3ce:	80 f9       	bld	r24, 0
+ 3d0:	8b 83       	std	Y+3, r24	; 0x03
+			oldA[4] = (PORTD.IN & A4_MASK);
+ 3d2:	80 85       	ldd	r24, Z+8	; 0x08
+ 3d4:	86 fb       	bst	r24, 6
+ 3d6:	88 27       	eor	r24, r24
+ 3d8:	80 f9       	bld	r24, 0
+ 3da:	f8 01       	movw	r30, r16
+ 3dc:	84 83       	std	Z+4, r24	; 0x04
+			oldB[4] = (PORTD.IN & B4_MASK);
+ 3de:	f5 01       	movw	r30, r10
+ 3e0:	80 85       	ldd	r24, Z+8	; 0x08
+ 3e2:	88 1f       	adc	r24, r24
+ 3e4:	88 27       	eor	r24, r24
+ 3e6:	88 1f       	adc	r24, r24
+ 3e8:	8c 83       	std	Y+4, r24	; 0x04
+			oldA[5] = (PORTA.IN & A5_MASK);
+ 3ea:	f6 01       	movw	r30, r12
+ 3ec:	80 85       	ldd	r24, Z+8	; 0x08
+ 3ee:	83 fb       	bst	r24, 3
+ 3f0:	88 27       	eor	r24, r24
+ 3f2:	80 f9       	bld	r24, 0
+ 3f4:	f8 01       	movw	r30, r16
+ 3f6:	85 83       	std	Z+5, r24	; 0x05
+			oldB[5] = (PORTA.IN & B5_MASK);
+ 3f8:	f6 01       	movw	r30, r12
+ 3fa:	80 85       	ldd	r24, Z+8	; 0x08
+ 3fc:	82 fb       	bst	r24, 2
+ 3fe:	88 27       	eor	r24, r24
+ 400:	80 f9       	bld	r24, 0
+ 402:	8d 83       	std	Y+5, r24	; 0x05
+			oldA[6] = (PORTA.IN & A6_MASK);
+ 404:	80 85       	ldd	r24, Z+8	; 0x08
+ 406:	86 95       	lsr	r24
+ 408:	81 70       	andi	r24, 0x01	; 1
+ 40a:	f8 01       	movw	r30, r16
+ 40c:	86 83       	std	Z+6, r24	; 0x06
+			oldB[6] = (PORTA.IN & B6_MASK);
+ 40e:	f6 01       	movw	r30, r12
+ 410:	80 85       	ldd	r24, Z+8	; 0x08
+ 412:	81 70       	andi	r24, 0x01	; 1
+ 414:	8e 83       	std	Y+6, r24	; 0x06
+			oldA[7] = (PORTC.IN & A7_MASK);
+ 416:	f7 01       	movw	r30, r14
+ 418:	80 85       	ldd	r24, Z+8	; 0x08
+ 41a:	88 1f       	adc	r24, r24
+ 41c:	88 27       	eor	r24, r24
+ 41e:	88 1f       	adc	r24, r24
+ 420:	f8 01       	movw	r30, r16
+ 422:	87 83       	std	Z+7, r24	; 0x07
+			oldB[7] = (PORTC.IN & B7_MASK);
+ 424:	f7 01       	movw	r30, r14
+ 426:	80 85       	ldd	r24, Z+8	; 0x08
+ 428:	86 fb       	bst	r24, 6
+ 42a:	88 27       	eor	r24, r24
+ 42c:	80 f9       	bld	r24, 0
+ 42e:	8f 83       	std	Y+7, r24	; 0x07
+			oldA[8] = (PORTC.IN & A8_MASK);
+ 430:	80 85       	ldd	r24, Z+8	; 0x08
+ 432:	85 fb       	bst	r24, 5
+ 434:	88 27       	eor	r24, r24
+ 436:	80 f9       	bld	r24, 0
+ 438:	f8 01       	movw	r30, r16
+ 43a:	80 87       	std	Z+8, r24	; 0x08
+			oldB[8] = (PORTC.IN & B8_MASK);
+ 43c:	f7 01       	movw	r30, r14
+ 43e:	80 85       	ldd	r24, Z+8	; 0x08
+ 440:	82 95       	swap	r24
+ 442:	81 70       	andi	r24, 0x01	; 1
+ 444:	88 87       	std	Y+8, r24	; 0x08
+			oldA[9] = (PORTC.IN & A9_MASK);
+ 446:	80 85       	ldd	r24, Z+8	; 0x08
+ 448:	83 fb       	bst	r24, 3
+ 44a:	88 27       	eor	r24, r24
+ 44c:	80 f9       	bld	r24, 0
+ 44e:	f8 01       	movw	r30, r16
+ 450:	81 87       	std	Z+9, r24	; 0x09
+			oldB[9] = (PORTC.IN & B9_MASK);
+ 452:	f7 01       	movw	r30, r14
+ 454:	80 85       	ldd	r24, Z+8	; 0x08
+ 456:	82 fb       	bst	r24, 2
+ 458:	88 27       	eor	r24, r24
+ 45a:	80 f9       	bld	r24, 0
+ 45c:	89 87       	std	Y+9, r24	; 0x09
+			oldA[10] = (PORTC.IN & A10_MASK);
+ 45e:	80 85       	ldd	r24, Z+8	; 0x08
+ 460:	81 70       	andi	r24, 0x01	; 1
+ 462:	f8 01       	movw	r30, r16
+ 464:	82 87       	std	Z+10, r24	; 0x0a
+			oldB[10] = (PORTC.IN & B10_MASK);		
+ 466:	f7 01       	movw	r30, r14
+ 468:	80 85       	ldd	r24, Z+8	; 0x08
+ 46a:	86 95       	lsr	r24
+ 46c:	81 70       	andi	r24, 0x01	; 1
+ 46e:	8a 87       	std	Y+10, r24	; 0x0a
+			SREG = 0b10000000; // Enable global interrupts
+ 470:	9f be       	out	0x3f, r9	; 63
+ 472:	8f ef       	ldi	r24, 0xFF	; 255
+ 474:	9c e7       	ldi	r25, 0x7C	; 124
+ 476:	01 97       	sbiw	r24, 0x01	; 1
+ 478:	f1 f7       	brne	.-4      	; 0x476 <main+0x146>
+ 47a:	00 c0       	rjmp	.+0      	; 0x47c <main+0x14c>
+ 47c:	00 00       	nop
+ 47e:	74 cf       	rjmp	.-280    	; 0x368 <main+0x38>
+
+00000480 <_Z7get_msgv>:
+	bufferMsg();
+}
+
+
+void get_msg(void) {
+	msg[mToSend][0] = 'Q';
+ 480:	e0 91 00 20 	lds	r30, 0x2000
+ 484:	f0 e0       	ldi	r31, 0x00	; 0
+ 486:	ee 0f       	add	r30, r30
+ 488:	ff 1f       	adc	r31, r31
+ 48a:	ee 0f       	add	r30, r30
+ 48c:	ff 1f       	adc	r31, r31
+ 48e:	ef 5f       	subi	r30, 0xFF	; 255
+ 490:	ff 4d       	sbci	r31, 0xDF	; 223
+ 492:	81 e5       	ldi	r24, 0x51	; 81
+ 494:	80 83       	st	Z, r24
+	if(qNum>=0 && qNum < 10)
+ 496:	80 91 21 23 	lds	r24, 0x2321
+ 49a:	80 91 21 23 	lds	r24, 0x2321
+ 49e:	8a 30       	cpi	r24, 0x0A	; 10
+ 4a0:	70 f4       	brcc	.+28     	; 0x4be <_Z7get_msgv+0x3e>
+		msg[mToSend][1] = qNum + (unsigned char)('0');
+ 4a2:	e0 91 00 20 	lds	r30, 0x2000
+ 4a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 4a8:	80 91 21 23 	lds	r24, 0x2321
+ 4ac:	80 5d       	subi	r24, 0xD0	; 208
+ 4ae:	ee 0f       	add	r30, r30
+ 4b0:	ff 1f       	adc	r31, r31
+ 4b2:	ee 0f       	add	r30, r30
+ 4b4:	ff 1f       	adc	r31, r31
+ 4b6:	ef 5f       	subi	r30, 0xFF	; 255
+ 4b8:	ff 4d       	sbci	r31, 0xDF	; 223
+ 4ba:	81 83       	std	Z+1, r24	; 0x01
+ 4bc:	0b c0       	rjmp	.+22     	; 0x4d4 <_Z7get_msgv+0x54>
+	else
+		msg[mToSend][1] = 'A';
+ 4be:	e0 91 00 20 	lds	r30, 0x2000
+ 4c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4c4:	ee 0f       	add	r30, r30
+ 4c6:	ff 1f       	adc	r31, r31
+ 4c8:	ee 0f       	add	r30, r30
+ 4ca:	ff 1f       	adc	r31, r31
+ 4cc:	ef 5f       	subi	r30, 0xFF	; 255
+ 4ce:	ff 4d       	sbci	r31, 0xDF	; 223
+ 4d0:	81 e4       	ldi	r24, 0x41	; 65
+ 4d2:	81 83       	std	Z+1, r24	; 0x01
+	if(qInc)
+ 4d4:	80 91 22 23 	lds	r24, 0x2322
+ 4d8:	88 23       	and	r24, r24
+ 4da:	61 f0       	breq	.+24     	; 0x4f4 <_Z7get_msgv+0x74>
+		msg[mToSend][2] = '+';
+ 4dc:	e0 91 00 20 	lds	r30, 0x2000
+ 4e0:	f0 e0       	ldi	r31, 0x00	; 0
+ 4e2:	ee 0f       	add	r30, r30
+ 4e4:	ff 1f       	adc	r31, r31
+ 4e6:	ee 0f       	add	r30, r30
+ 4e8:	ff 1f       	adc	r31, r31
+ 4ea:	ef 5f       	subi	r30, 0xFF	; 255
+ 4ec:	ff 4d       	sbci	r31, 0xDF	; 223
+ 4ee:	8b e2       	ldi	r24, 0x2B	; 43
+ 4f0:	82 83       	std	Z+2, r24	; 0x02
+ 4f2:	08 95       	ret
+	else
+		msg[mToSend][2] = '-';
+ 4f4:	e0 91 00 20 	lds	r30, 0x2000
+ 4f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 4fa:	ee 0f       	add	r30, r30
+ 4fc:	ff 1f       	adc	r31, r31
+ 4fe:	ee 0f       	add	r30, r30
+ 500:	ff 1f       	adc	r31, r31
+ 502:	ef 5f       	subi	r30, 0xFF	; 255
+ 504:	ff 4d       	sbci	r31, 0xDF	; 223
+ 506:	8d e2       	ldi	r24, 0x2D	; 45
+ 508:	82 83       	std	Z+2, r24	; 0x02
+ 50a:	08 95       	ret
+
+0000050c <_Z9bufferMsgv>:
+	oldA[10] = (PORTC.IN & A10_MASK);
+	oldB[10] = (PORTC.IN & B10_MASK);
+}
+
+void bufferMsg(void) {
+	if(mToSend<=200) {
+ 50c:	80 91 00 20 	lds	r24, 0x2000
+ 510:	89 3c       	cpi	r24, 0xC9	; 201
+ 512:	38 f4       	brcc	.+14     	; 0x522 <_Z9bufferMsgv+0x16>
+		get_msg();
+ 514:	0e 94 40 02 	call	0x480	; 0x480 <_Z7get_msgv>
+		mToSend++;
+ 518:	80 91 00 20 	lds	r24, 0x2000
+ 51c:	8f 5f       	subi	r24, 0xFF	; 255
+ 51e:	80 93 00 20 	sts	0x2000, r24
+ 522:	08 95       	ret
+
+00000524 <_Z7decodeBv>:
+	while(!(USARTD0_STATUS & USART_RXCIF_bm));
+	return USARTD0_DATA;
+}
+
+void decodeB(void){
+	oldB[qNum] = !oldB[qNum];
+ 524:	e0 91 21 23 	lds	r30, 0x2321
+ 528:	f0 e0       	ldi	r31, 0x00	; 0
+ 52a:	a0 91 21 23 	lds	r26, 0x2321
+ 52e:	b0 e0       	ldi	r27, 0x00	; 0
+ 530:	ad 5d       	subi	r26, 0xDD	; 221
+ 532:	bc 4d       	sbci	r27, 0xDC	; 220
+ 534:	9c 91       	ld	r25, X
+ 536:	81 e0       	ldi	r24, 0x01	; 1
+ 538:	89 27       	eor	r24, r25
+ 53a:	ed 5d       	subi	r30, 0xDD	; 221
+ 53c:	fc 4d       	sbci	r31, 0xDC	; 220
+ 53e:	80 83       	st	Z, r24
+	if (oldB[qNum] == oldA[qNum]){
+ 540:	e0 91 21 23 	lds	r30, 0x2321
+ 544:	f0 e0       	ldi	r31, 0x00	; 0
+ 546:	ed 5d       	subi	r30, 0xDD	; 221
+ 548:	fc 4d       	sbci	r31, 0xDC	; 220
+ 54a:	90 81       	ld	r25, Z
+ 54c:	e0 91 21 23 	lds	r30, 0x2321
+ 550:	f0 e0       	ldi	r31, 0x00	; 0
+ 552:	e2 5d       	subi	r30, 0xD2	; 210
+ 554:	fc 4d       	sbci	r31, 0xDC	; 220
+ 556:	80 81       	ld	r24, Z
+ 558:	98 13       	cpse	r25, r24
+ 55a:	18 c0       	rjmp	.+48     	; 0x58c <_Z7decodeBv+0x68>
+		qPos[qNum]++;
+ 55c:	e0 91 21 23 	lds	r30, 0x2321
+ 560:	f0 e0       	ldi	r31, 0x00	; 0
+ 562:	ee 0f       	add	r30, r30
+ 564:	ff 1f       	adc	r31, r31
+ 566:	ee 0f       	add	r30, r30
+ 568:	ff 1f       	adc	r31, r31
+ 56a:	e7 5c       	subi	r30, 0xC7	; 199
+ 56c:	fc 4d       	sbci	r31, 0xDC	; 220
+ 56e:	80 81       	ld	r24, Z
+ 570:	91 81       	ldd	r25, Z+1	; 0x01
+ 572:	a2 81       	ldd	r26, Z+2	; 0x02
+ 574:	b3 81       	ldd	r27, Z+3	; 0x03
+ 576:	01 96       	adiw	r24, 0x01	; 1
+ 578:	a1 1d       	adc	r26, r1
+ 57a:	b1 1d       	adc	r27, r1
+ 57c:	80 83       	st	Z, r24
+ 57e:	91 83       	std	Z+1, r25	; 0x01
+ 580:	a2 83       	std	Z+2, r26	; 0x02
+ 582:	b3 83       	std	Z+3, r27	; 0x03
+		qInc = 1;
+ 584:	81 e0       	ldi	r24, 0x01	; 1
+ 586:	80 93 22 23 	sts	0x2322, r24
+ 58a:	16 c0       	rjmp	.+44     	; 0x5b8 <_Z7decodeBv+0x94>
+	}
+	else{
+		qPos[qNum]--;
+ 58c:	e0 91 21 23 	lds	r30, 0x2321
+ 590:	f0 e0       	ldi	r31, 0x00	; 0
+ 592:	ee 0f       	add	r30, r30
+ 594:	ff 1f       	adc	r31, r31
+ 596:	ee 0f       	add	r30, r30
+ 598:	ff 1f       	adc	r31, r31
+ 59a:	e7 5c       	subi	r30, 0xC7	; 199
+ 59c:	fc 4d       	sbci	r31, 0xDC	; 220
+ 59e:	80 81       	ld	r24, Z
+ 5a0:	91 81       	ldd	r25, Z+1	; 0x01
+ 5a2:	a2 81       	ldd	r26, Z+2	; 0x02
+ 5a4:	b3 81       	ldd	r27, Z+3	; 0x03
+ 5a6:	01 97       	sbiw	r24, 0x01	; 1
+ 5a8:	a1 09       	sbc	r26, r1
+ 5aa:	b1 09       	sbc	r27, r1
+ 5ac:	80 83       	st	Z, r24
+ 5ae:	91 83       	std	Z+1, r25	; 0x01
+ 5b0:	a2 83       	std	Z+2, r26	; 0x02
+ 5b2:	b3 83       	std	Z+3, r27	; 0x03
+		qInc = 0;
+ 5b4:	10 92 22 23 	sts	0x2322, r1
+	}
+	bufferMsg();
+ 5b8:	0e 94 86 02 	call	0x50c	; 0x50c <_Z9bufferMsgv>
+ 5bc:	08 95       	ret
+
+000005be <_Z7decodeAv>:
+}
+
+void decodeA(void) {
+	oldA[qNum] = !oldA[qNum];
+ 5be:	e0 91 21 23 	lds	r30, 0x2321
+ 5c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 5c4:	a0 91 21 23 	lds	r26, 0x2321
+ 5c8:	b0 e0       	ldi	r27, 0x00	; 0
+ 5ca:	a2 5d       	subi	r26, 0xD2	; 210
+ 5cc:	bc 4d       	sbci	r27, 0xDC	; 220
+ 5ce:	9c 91       	ld	r25, X
+ 5d0:	81 e0       	ldi	r24, 0x01	; 1
+ 5d2:	89 27       	eor	r24, r25
+ 5d4:	e2 5d       	subi	r30, 0xD2	; 210
+ 5d6:	fc 4d       	sbci	r31, 0xDC	; 220
+ 5d8:	80 83       	st	Z, r24
+	if (oldA[qNum] != oldB[qNum]){
+ 5da:	e0 91 21 23 	lds	r30, 0x2321
+ 5de:	f0 e0       	ldi	r31, 0x00	; 0
+ 5e0:	e2 5d       	subi	r30, 0xD2	; 210
+ 5e2:	fc 4d       	sbci	r31, 0xDC	; 220
+ 5e4:	90 81       	ld	r25, Z
+ 5e6:	e0 91 21 23 	lds	r30, 0x2321
+ 5ea:	f0 e0       	ldi	r31, 0x00	; 0
+ 5ec:	ed 5d       	subi	r30, 0xDD	; 221
+ 5ee:	fc 4d       	sbci	r31, 0xDC	; 220
+ 5f0:	80 81       	ld	r24, Z
+ 5f2:	98 17       	cp	r25, r24
+ 5f4:	c1 f0       	breq	.+48     	; 0x626 <_Z7decodeAv+0x68>
+		qPos[qNum]++;
+ 5f6:	e0 91 21 23 	lds	r30, 0x2321
+ 5fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 5fc:	ee 0f       	add	r30, r30
+ 5fe:	ff 1f       	adc	r31, r31
+ 600:	ee 0f       	add	r30, r30
+ 602:	ff 1f       	adc	r31, r31
+ 604:	e7 5c       	subi	r30, 0xC7	; 199
+ 606:	fc 4d       	sbci	r31, 0xDC	; 220
+ 608:	80 81       	ld	r24, Z
+ 60a:	91 81       	ldd	r25, Z+1	; 0x01
+ 60c:	a2 81       	ldd	r26, Z+2	; 0x02
+ 60e:	b3 81       	ldd	r27, Z+3	; 0x03
+ 610:	01 96       	adiw	r24, 0x01	; 1
+ 612:	a1 1d       	adc	r26, r1
+ 614:	b1 1d       	adc	r27, r1
+ 616:	80 83       	st	Z, r24
+ 618:	91 83       	std	Z+1, r25	; 0x01
+ 61a:	a2 83       	std	Z+2, r26	; 0x02
+ 61c:	b3 83       	std	Z+3, r27	; 0x03
+		qInc = 1;
+ 61e:	81 e0       	ldi	r24, 0x01	; 1
+ 620:	80 93 22 23 	sts	0x2322, r24
+ 624:	16 c0       	rjmp	.+44     	; 0x652 <_Z7decodeAv+0x94>
+	}
+	else{
+		qPos[qNum]--;
+ 626:	e0 91 21 23 	lds	r30, 0x2321
+ 62a:	f0 e0       	ldi	r31, 0x00	; 0
+ 62c:	ee 0f       	add	r30, r30
+ 62e:	ff 1f       	adc	r31, r31
+ 630:	ee 0f       	add	r30, r30
+ 632:	ff 1f       	adc	r31, r31
+ 634:	e7 5c       	subi	r30, 0xC7	; 199
+ 636:	fc 4d       	sbci	r31, 0xDC	; 220
+ 638:	80 81       	ld	r24, Z
+ 63a:	91 81       	ldd	r25, Z+1	; 0x01
+ 63c:	a2 81       	ldd	r26, Z+2	; 0x02
+ 63e:	b3 81       	ldd	r27, Z+3	; 0x03
+ 640:	01 97       	sbiw	r24, 0x01	; 1
+ 642:	a1 09       	sbc	r26, r1
+ 644:	b1 09       	sbc	r27, r1
+ 646:	80 83       	st	Z, r24
+ 648:	91 83       	std	Z+1, r25	; 0x01
+ 64a:	a2 83       	std	Z+2, r26	; 0x02
+ 64c:	b3 83       	std	Z+3, r27	; 0x03
+		qInc = 0;
+ 64e:	10 92 22 23 	sts	0x2322, r1
+	}
+	bufferMsg();
+ 652:	0e 94 86 02 	call	0x50c	; 0x50c <_Z9bufferMsgv>
+ 656:	08 95       	ret
+
+00000658 <__vector_30>:
+		_delay_ms(4);
+	}
+}
+
+ISR(PORTA_INT_vect)
+{
+ 658:	1f 92       	push	r1
+ 65a:	0f 92       	push	r0
+ 65c:	0f b6       	in	r0, 0x3f	; 63
+ 65e:	0f 92       	push	r0
+ 660:	11 24       	eor	r1, r1
+ 662:	2f 93       	push	r18
+ 664:	3f 93       	push	r19
+ 666:	4f 93       	push	r20
+ 668:	5f 93       	push	r21
+ 66a:	6f 93       	push	r22
+ 66c:	7f 93       	push	r23
+ 66e:	8f 93       	push	r24
+ 670:	9f 93       	push	r25
+ 672:	af 93       	push	r26
+ 674:	bf 93       	push	r27
+ 676:	ef 93       	push	r30
+ 678:	ff 93       	push	r31
+	if((PORTA.INTFLAGS & A0_MASK) != 0) { // A0 has been triggered
+ 67a:	80 91 0c 06 	lds	r24, 0x060C
  67e:	84 ff       	sbrs	r24, 4
- 680:	0a c0       	rjmp	.+20     	; 0x696 <main+0x11a>
-				qNum = 3;
- 682:	83 e0       	ldi	r24, 0x03	; 3
- 684:	80 93 62 20 	sts	0x2062, r24
-				decodeA(qNum);
- 688:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b00010000;
- 68c:	f8 01       	movw	r30, r16
- 68e:	84 85       	ldd	r24, Z+12	; 0x0c
- 690:	80 61       	ori	r24, 0x10	; 16
- 692:	84 87       	std	Z+12, r24	; 0x0c
- 694:	c9 c0       	rjmp	.+402    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTD.INTFLAGS & 0b00100000) != 0) { // B3 has been triggered
- 696:	f8 01       	movw	r30, r16
- 698:	84 85       	ldd	r24, Z+12	; 0x0c
- 69a:	85 ff       	sbrs	r24, 5
- 69c:	0a c0       	rjmp	.+20     	; 0x6b2 <main+0x136>
-				qNum = 3;
- 69e:	83 e0       	ldi	r24, 0x03	; 3
- 6a0:	80 93 62 20 	sts	0x2062, r24
-				decodeB(qNum);
- 6a4:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b00100000;
- 6a8:	f8 01       	movw	r30, r16
- 6aa:	84 85       	ldd	r24, Z+12	; 0x0c
- 6ac:	80 62       	ori	r24, 0x20	; 32
- 6ae:	84 87       	std	Z+12, r24	; 0x0c
- 6b0:	bb c0       	rjmp	.+374    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTD.INTFLAGS & 0b01000000) != 0) { // A4 has been triggered
- 6b2:	f8 01       	movw	r30, r16
- 6b4:	84 85       	ldd	r24, Z+12	; 0x0c
- 6b6:	86 ff       	sbrs	r24, 6
- 6b8:	0a c0       	rjmp	.+20     	; 0x6ce <main+0x152>
-				qNum = 4;
- 6ba:	d0 92 62 20 	sts	0x2062, r13
-				decodeA(qNum);
- 6be:	8d 2d       	mov	r24, r13
- 6c0:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b01000000;
- 6c4:	f8 01       	movw	r30, r16
- 6c6:	84 85       	ldd	r24, Z+12	; 0x0c
- 6c8:	80 64       	ori	r24, 0x40	; 64
- 6ca:	84 87       	std	Z+12, r24	; 0x0c
- 6cc:	ad c0       	rjmp	.+346    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTD.INTFLAGS & 0b10000000) != 0) { // B4 has been triggered
- 6ce:	f8 01       	movw	r30, r16
- 6d0:	84 85       	ldd	r24, Z+12	; 0x0c
- 6d2:	88 23       	and	r24, r24
- 6d4:	54 f4       	brge	.+20     	; 0x6ea <main+0x16e>
-				qNum = 4;
- 6d6:	d0 92 62 20 	sts	0x2062, r13
-				decodeB(qNum);
- 6da:	8d 2d       	mov	r24, r13
- 6dc:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTD.INTFLAGS = PORTD.INTFLAGS | 0b10000000;
- 6e0:	f8 01       	movw	r30, r16
- 6e2:	84 85       	ldd	r24, Z+12	; 0x0c
- 6e4:	80 68       	ori	r24, 0x80	; 128
- 6e6:	84 87       	std	Z+12, r24	; 0x0c
- 6e8:	9f c0       	rjmp	.+318    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b00001000) != 0) { // A5 has been triggered
- 6ea:	8c 85       	ldd	r24, Y+12	; 0x0c
- 6ec:	83 ff       	sbrs	r24, 3
- 6ee:	09 c0       	rjmp	.+18     	; 0x702 <main+0x186>
-				qNum = 5;
- 6f0:	c0 92 62 20 	sts	0x2062, r12
-				decodeA(qNum);
- 6f4:	8c 2d       	mov	r24, r12
- 6f6:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00001000;
- 6fa:	8c 85       	ldd	r24, Y+12	; 0x0c
- 6fc:	88 60       	ori	r24, 0x08	; 8
- 6fe:	8c 87       	std	Y+12, r24	; 0x0c
- 700:	93 c0       	rjmp	.+294    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b00000100) != 0) { // B5 has been triggered
- 702:	8c 85       	ldd	r24, Y+12	; 0x0c
- 704:	82 ff       	sbrs	r24, 2
- 706:	09 c0       	rjmp	.+18     	; 0x71a <main+0x19e>
-				qNum = 5;
- 708:	c0 92 62 20 	sts	0x2062, r12
-				decodeB(qNum);
- 70c:	8c 2d       	mov	r24, r12
- 70e:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00000100;
- 712:	8c 85       	ldd	r24, Y+12	; 0x0c
- 714:	84 60       	ori	r24, 0x04	; 4
- 716:	8c 87       	std	Y+12, r24	; 0x0c
- 718:	87 c0       	rjmp	.+270    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b00000010) != 0) { // A6 has been triggered
- 71a:	8c 85       	ldd	r24, Y+12	; 0x0c
- 71c:	81 ff       	sbrs	r24, 1
- 71e:	09 c0       	rjmp	.+18     	; 0x732 <main+0x1b6>
-				qNum = 6;
- 720:	b0 92 62 20 	sts	0x2062, r11
-				decodeA(qNum);
- 724:	8b 2d       	mov	r24, r11
- 726:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00000010;
- 72a:	8c 85       	ldd	r24, Y+12	; 0x0c
- 72c:	82 60       	ori	r24, 0x02	; 2
- 72e:	8c 87       	std	Y+12, r24	; 0x0c
- 730:	7b c0       	rjmp	.+246    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTA.INTFLAGS & 0b00000001) != 0) { // B6 has been triggered
- 732:	8c 85       	ldd	r24, Y+12	; 0x0c
- 734:	80 ff       	sbrs	r24, 0
- 736:	09 c0       	rjmp	.+18     	; 0x74a <main+0x1ce>
-				qNum = 6;
- 738:	b0 92 62 20 	sts	0x2062, r11
-				decodeB(qNum);
- 73c:	8b 2d       	mov	r24, r11
- 73e:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTA.INTFLAGS = PORTA.INTFLAGS | 0b00000001;
- 742:	8c 85       	ldd	r24, Y+12	; 0x0c
- 744:	81 60       	ori	r24, 0x01	; 1
- 746:	8c 87       	std	Y+12, r24	; 0x0c
- 748:	6f c0       	rjmp	.+222    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b10000000) != 0) { // A7 has been triggered
- 74a:	f7 01       	movw	r30, r14
- 74c:	84 85       	ldd	r24, Z+12	; 0x0c
- 74e:	88 23       	and	r24, r24
- 750:	54 f4       	brge	.+20     	; 0x766 <main+0x1ea>
-				qNum = 7;
- 752:	a0 92 62 20 	sts	0x2062, r10
-				decodeA(qNum);
- 756:	8a 2d       	mov	r24, r10
- 758:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b10000000;
- 75c:	f7 01       	movw	r30, r14
- 75e:	84 85       	ldd	r24, Z+12	; 0x0c
- 760:	80 68       	ori	r24, 0x80	; 128
- 762:	84 87       	std	Z+12, r24	; 0x0c
- 764:	61 c0       	rjmp	.+194    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b01000000) != 0) { // B7 has been triggered
- 766:	f7 01       	movw	r30, r14
- 768:	84 85       	ldd	r24, Z+12	; 0x0c
- 76a:	86 ff       	sbrs	r24, 6
- 76c:	0a c0       	rjmp	.+20     	; 0x782 <main+0x206>
-				qNum = 7;
- 76e:	a0 92 62 20 	sts	0x2062, r10
-				decodeB(qNum);
- 772:	8a 2d       	mov	r24, r10
- 774:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b01000000;
- 778:	f7 01       	movw	r30, r14
- 77a:	84 85       	ldd	r24, Z+12	; 0x0c
- 77c:	80 64       	ori	r24, 0x40	; 64
- 77e:	84 87       	std	Z+12, r24	; 0x0c
- 780:	53 c0       	rjmp	.+166    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b00100000) != 0) { // A8 has been triggered
- 782:	f7 01       	movw	r30, r14
- 784:	84 85       	ldd	r24, Z+12	; 0x0c
- 786:	85 ff       	sbrs	r24, 5
- 788:	0a c0       	rjmp	.+20     	; 0x79e <main+0x222>
-				qNum = 8;
- 78a:	90 92 62 20 	sts	0x2062, r9
-				decodeA(qNum);
- 78e:	89 2d       	mov	r24, r9
- 790:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00100000;
- 794:	f7 01       	movw	r30, r14
- 796:	84 85       	ldd	r24, Z+12	; 0x0c
- 798:	80 62       	ori	r24, 0x20	; 32
- 79a:	84 87       	std	Z+12, r24	; 0x0c
- 79c:	45 c0       	rjmp	.+138    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b00010000) != 0) { // B8 has been triggered
- 79e:	f7 01       	movw	r30, r14
- 7a0:	84 85       	ldd	r24, Z+12	; 0x0c
- 7a2:	84 ff       	sbrs	r24, 4
- 7a4:	0a c0       	rjmp	.+20     	; 0x7ba <main+0x23e>
-				qNum = 8;
- 7a6:	90 92 62 20 	sts	0x2062, r9
-				decodeB(qNum);
- 7aa:	89 2d       	mov	r24, r9
- 7ac:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00010000;
- 7b0:	f7 01       	movw	r30, r14
- 7b2:	84 85       	ldd	r24, Z+12	; 0x0c
- 7b4:	80 61       	ori	r24, 0x10	; 16
- 7b6:	84 87       	std	Z+12, r24	; 0x0c
- 7b8:	37 c0       	rjmp	.+110    	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b00001000) != 0) { // A9 has been triggered
- 7ba:	f7 01       	movw	r30, r14
- 7bc:	84 85       	ldd	r24, Z+12	; 0x0c
- 7be:	83 ff       	sbrs	r24, 3
- 7c0:	0a c0       	rjmp	.+20     	; 0x7d6 <main+0x25a>
-				qNum = 9;
- 7c2:	80 92 62 20 	sts	0x2062, r8
-				decodeA(qNum);
- 7c6:	88 2d       	mov	r24, r8
- 7c8:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00001000;
- 7cc:	f7 01       	movw	r30, r14
- 7ce:	84 85       	ldd	r24, Z+12	; 0x0c
- 7d0:	88 60       	ori	r24, 0x08	; 8
- 7d2:	84 87       	std	Z+12, r24	; 0x0c
- 7d4:	29 c0       	rjmp	.+82     	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b00000100) != 0) { // B9 has been triggered
- 7d6:	f7 01       	movw	r30, r14
- 7d8:	84 85       	ldd	r24, Z+12	; 0x0c
- 7da:	82 ff       	sbrs	r24, 2
- 7dc:	0a c0       	rjmp	.+20     	; 0x7f2 <main+0x276>
-				qNum = 9;
- 7de:	80 92 62 20 	sts	0x2062, r8
-				decodeB(qNum);
- 7e2:	88 2d       	mov	r24, r8
- 7e4:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00000100;
- 7e8:	f7 01       	movw	r30, r14
- 7ea:	84 85       	ldd	r24, Z+12	; 0x0c
- 7ec:	84 60       	ori	r24, 0x04	; 4
- 7ee:	84 87       	std	Z+12, r24	; 0x0c
- 7f0:	1b c0       	rjmp	.+54     	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b00000001) != 0) { // A10 has been triggered
- 7f2:	f7 01       	movw	r30, r14
- 7f4:	84 85       	ldd	r24, Z+12	; 0x0c
- 7f6:	80 ff       	sbrs	r24, 0
- 7f8:	0a c0       	rjmp	.+20     	; 0x80e <main+0x292>
-				qNum = 10;
- 7fa:	70 92 62 20 	sts	0x2062, r7
-				decodeA(qNum);
- 7fe:	87 2d       	mov	r24, r7
- 800:	0e 94 b5 01 	call	0x36a	; 0x36a <_Z7decodeAh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00000001;
- 804:	f7 01       	movw	r30, r14
- 806:	84 85       	ldd	r24, Z+12	; 0x0c
- 808:	81 60       	ori	r24, 0x01	; 1
- 80a:	84 87       	std	Z+12, r24	; 0x0c
- 80c:	0d c0       	rjmp	.+26     	; 0x828 <main+0x2ac>
-			}
-			else if((PORTC.INTFLAGS & 0b00000010) != 0) { // B10 has been triggered
- 80e:	f7 01       	movw	r30, r14
- 810:	84 85       	ldd	r24, Z+12	; 0x0c
- 812:	81 ff       	sbrs	r24, 1
- 814:	09 c0       	rjmp	.+18     	; 0x828 <main+0x2ac>
-				qNum = 10;
- 816:	70 92 62 20 	sts	0x2062, r7
-				decodeB(qNum);
- 81a:	87 2d       	mov	r24, r7
- 81c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7decodeBh>
-				PORTC.INTFLAGS = PORTC.INTFLAGS | 0b00000010;
- 820:	f7 01       	movw	r30, r14
- 822:	84 85       	ldd	r24, Z+12	; 0x0c
- 824:	82 60       	ori	r24, 0x02	; 2
- 826:	84 87       	std	Z+12, r24	; 0x0c
-			}
-			get_msgS(qNum);
- 828:	80 91 62 20 	lds	r24, 0x2062
- 82c:	0e 94 ee 01 	call	0x3dc	; 0x3dc <_Z8get_msgSh>
-			sendStr(msgS, 0);
- 830:	60 e0       	ldi	r22, 0x00	; 0
- 832:	70 e0       	ldi	r23, 0x00	; 0
- 834:	80 91 00 20 	lds	r24, 0x2000
- 838:	90 91 01 20 	lds	r25, 0x2001
- 83c:	0e 94 67 01 	call	0x2ce	; 0x2ce <_Z7sendStrPci>
- 840:	c5 ce       	rjmp	.-630    	; 0x5cc <main+0x50>
+ 680:	04 c0       	rjmp	.+8      	; 0x68a <__vector_30+0x32>
+		qNum = 0;
+ 682:	10 92 21 23 	sts	0x2321, r1
+		decodeA();
+ 686:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || A0_MASK;
+	}
+	if((PORTA.INTFLAGS & B0_MASK) != 0) { // B0 has been triggered
+ 68a:	80 91 0c 06 	lds	r24, 0x060C
+ 68e:	85 ff       	sbrs	r24, 5
+ 690:	04 c0       	rjmp	.+8      	; 0x69a <__vector_30+0x42>
+		qNum = 0;
+ 692:	10 92 21 23 	sts	0x2321, r1
+		decodeB();
+ 696:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || B0_MASK;
+	}
+	if((PORTA.INTFLAGS & A1_MASK) != 0) { // A1 has been triggered
+ 69a:	80 91 0c 06 	lds	r24, 0x060C
+ 69e:	86 ff       	sbrs	r24, 6
+ 6a0:	05 c0       	rjmp	.+10     	; 0x6ac <__vector_30+0x54>
+		qNum = 1;
+ 6a2:	81 e0       	ldi	r24, 0x01	; 1
+ 6a4:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 6a8:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || A1_MASK;
+	}
+	if((PORTA.INTFLAGS & B1_MASK) != 0) { // B1 has been triggered
+ 6ac:	80 91 0c 06 	lds	r24, 0x060C
+ 6b0:	88 23       	and	r24, r24
+ 6b2:	2c f4       	brge	.+10     	; 0x6be <__vector_30+0x66>
+		qNum = 1;
+ 6b4:	81 e0       	ldi	r24, 0x01	; 1
+ 6b6:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 6ba:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || B1_MASK;
+	}
+	if((PORTA.INTFLAGS & A5_MASK) != 0) { // A5 has been triggered
+ 6be:	80 91 0c 06 	lds	r24, 0x060C
+ 6c2:	83 ff       	sbrs	r24, 3
+ 6c4:	05 c0       	rjmp	.+10     	; 0x6d0 <__vector_30+0x78>
+		qNum = 5;
+ 6c6:	85 e0       	ldi	r24, 0x05	; 5
+ 6c8:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 6cc:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || A5_MASK;
+	}
+	if((PORTA.INTFLAGS & B5_MASK) != 0) { // B5 has been triggered
+ 6d0:	80 91 0c 06 	lds	r24, 0x060C
+ 6d4:	82 ff       	sbrs	r24, 2
+ 6d6:	05 c0       	rjmp	.+10     	; 0x6e2 <__vector_30+0x8a>
+		qNum = 5;
+ 6d8:	85 e0       	ldi	r24, 0x05	; 5
+ 6da:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 6de:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || B5_MASK;
+	}
+	if((PORTA.INTFLAGS & A6_MASK) != 0) { // A6 has been triggered
+ 6e2:	80 91 0c 06 	lds	r24, 0x060C
+ 6e6:	81 ff       	sbrs	r24, 1
+ 6e8:	05 c0       	rjmp	.+10     	; 0x6f4 <__vector_30+0x9c>
+		qNum = 6;
+ 6ea:	86 e0       	ldi	r24, 0x06	; 6
+ 6ec:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 6f0:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || A6_MASK;
+	}
+	if ((PORTA.INTFLAGS & B6_MASK) != 0) { // B6 has been triggered
+ 6f4:	80 91 0c 06 	lds	r24, 0x060C
+ 6f8:	80 ff       	sbrs	r24, 0
+ 6fa:	05 c0       	rjmp	.+10     	; 0x706 <__vector_30+0xae>
+		qNum = 6;
+ 6fc:	86 e0       	ldi	r24, 0x06	; 6
+ 6fe:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 702:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+		//PORTA.INTFLAGS = PORTA.INTFLAGS || B6_MASK;
+	}
+	PORTA.INTFLAGS = 0xff;
+ 706:	8f ef       	ldi	r24, 0xFF	; 255
+ 708:	80 93 0c 06 	sts	0x060C, r24
+}
+ 70c:	ff 91       	pop	r31
+ 70e:	ef 91       	pop	r30
+ 710:	bf 91       	pop	r27
+ 712:	af 91       	pop	r26
+ 714:	9f 91       	pop	r25
+ 716:	8f 91       	pop	r24
+ 718:	7f 91       	pop	r23
+ 71a:	6f 91       	pop	r22
+ 71c:	5f 91       	pop	r21
+ 71e:	4f 91       	pop	r20
+ 720:	3f 91       	pop	r19
+ 722:	2f 91       	pop	r18
+ 724:	0f 90       	pop	r0
+ 726:	0f be       	out	0x3f, r0	; 63
+ 728:	0f 90       	pop	r0
+ 72a:	1f 90       	pop	r1
+ 72c:	18 95       	reti
 
-00000842 <__tablejump2__>:
- 842:	ee 0f       	add	r30, r30
- 844:	ff 1f       	adc	r31, r31
- 846:	05 90       	lpm	r0, Z+
- 848:	f4 91       	lpm	r31, Z
- 84a:	e0 2d       	mov	r30, r0
- 84c:	09 94       	ijmp
+0000072e <__vector_9>:
 
-0000084e <_exit>:
- 84e:	f8 94       	cli
+ISR(PORTC_INT_vect)
+{
+ 72e:	1f 92       	push	r1
+ 730:	0f 92       	push	r0
+ 732:	0f b6       	in	r0, 0x3f	; 63
+ 734:	0f 92       	push	r0
+ 736:	11 24       	eor	r1, r1
+ 738:	2f 93       	push	r18
+ 73a:	3f 93       	push	r19
+ 73c:	4f 93       	push	r20
+ 73e:	5f 93       	push	r21
+ 740:	6f 93       	push	r22
+ 742:	7f 93       	push	r23
+ 744:	8f 93       	push	r24
+ 746:	9f 93       	push	r25
+ 748:	af 93       	push	r26
+ 74a:	bf 93       	push	r27
+ 74c:	ef 93       	push	r30
+ 74e:	ff 93       	push	r31
+	if((PORTC.INTFLAGS & A7_MASK) != 0) { // A7 has been triggered
+ 750:	80 91 4c 06 	lds	r24, 0x064C
+ 754:	88 23       	and	r24, r24
+ 756:	2c f4       	brge	.+10     	; 0x762 <__vector_9+0x34>
+		qNum = 7;
+ 758:	87 e0       	ldi	r24, 0x07	; 7
+ 75a:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 75e:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || A7_MASK;
+	}
+	if((PORTC.INTFLAGS & B7_MASK) != 0) { // B7 has been triggered
+ 762:	80 91 4c 06 	lds	r24, 0x064C
+ 766:	86 ff       	sbrs	r24, 6
+ 768:	05 c0       	rjmp	.+10     	; 0x774 <__vector_9+0x46>
+		qNum = 7;
+ 76a:	87 e0       	ldi	r24, 0x07	; 7
+ 76c:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 770:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || B7_MASK;
+	}
+	if((PORTC.INTFLAGS & A8_MASK) != 0) { // A8 has been triggered
+ 774:	80 91 4c 06 	lds	r24, 0x064C
+ 778:	85 ff       	sbrs	r24, 5
+ 77a:	05 c0       	rjmp	.+10     	; 0x786 <__vector_9+0x58>
+		qNum = 8;
+ 77c:	88 e0       	ldi	r24, 0x08	; 8
+ 77e:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 782:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || A8_MASK;		
+	}
+	if((PORTC.INTFLAGS & B8_MASK) != 0) { // B8 has been triggered
+ 786:	80 91 4c 06 	lds	r24, 0x064C
+ 78a:	84 ff       	sbrs	r24, 4
+ 78c:	05 c0       	rjmp	.+10     	; 0x798 <__vector_9+0x6a>
+		qNum = 8;
+ 78e:	88 e0       	ldi	r24, 0x08	; 8
+ 790:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 794:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || B8_MASK;		
+	}
+	if((PORTC.INTFLAGS & A9_MASK) != 0) { // A9 has been triggered
+ 798:	80 91 4c 06 	lds	r24, 0x064C
+ 79c:	83 ff       	sbrs	r24, 3
+ 79e:	05 c0       	rjmp	.+10     	; 0x7aa <__vector_9+0x7c>
+		qNum = 9;
+ 7a0:	89 e0       	ldi	r24, 0x09	; 9
+ 7a2:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 7a6:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || A9_MASK;		
+	}
+	if((PORTC.INTFLAGS & B9_MASK) != 0) { // B9 has been triggered
+ 7aa:	80 91 4c 06 	lds	r24, 0x064C
+ 7ae:	82 ff       	sbrs	r24, 2
+ 7b0:	05 c0       	rjmp	.+10     	; 0x7bc <__vector_9+0x8e>
+		qNum = 9;
+ 7b2:	89 e0       	ldi	r24, 0x09	; 9
+ 7b4:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 7b8:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || B9_MASK;		
+	}
+	if((PORTC.INTFLAGS & A10_MASK) != 0) { // A10 has been triggered
+ 7bc:	80 91 4c 06 	lds	r24, 0x064C
+ 7c0:	80 ff       	sbrs	r24, 0
+ 7c2:	05 c0       	rjmp	.+10     	; 0x7ce <__vector_9+0xa0>
+		qNum = 10;
+ 7c4:	8a e0       	ldi	r24, 0x0A	; 10
+ 7c6:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 7ca:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || A10_MASK;		
+	}
+	if((PORTC.INTFLAGS & B10_MASK) != 0) { // B10 has been triggered
+ 7ce:	80 91 4c 06 	lds	r24, 0x064C
+ 7d2:	81 ff       	sbrs	r24, 1
+ 7d4:	05 c0       	rjmp	.+10     	; 0x7e0 <__vector_9+0xb2>
+		qNum = 10;
+ 7d6:	8a e0       	ldi	r24, 0x0A	; 10
+ 7d8:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 7dc:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTC.INTFLAGS = PORTC.INTFLAGS || B10_MASK;		
+	}
+	PORTC.INTFLAGS = 0xff;
+ 7e0:	8f ef       	ldi	r24, 0xFF	; 255
+ 7e2:	80 93 4c 06 	sts	0x064C, r24
+}
+ 7e6:	ff 91       	pop	r31
+ 7e8:	ef 91       	pop	r30
+ 7ea:	bf 91       	pop	r27
+ 7ec:	af 91       	pop	r26
+ 7ee:	9f 91       	pop	r25
+ 7f0:	8f 91       	pop	r24
+ 7f2:	7f 91       	pop	r23
+ 7f4:	6f 91       	pop	r22
+ 7f6:	5f 91       	pop	r21
+ 7f8:	4f 91       	pop	r20
+ 7fa:	3f 91       	pop	r19
+ 7fc:	2f 91       	pop	r18
+ 7fe:	0f 90       	pop	r0
+ 800:	0f be       	out	0x3f, r0	; 63
+ 802:	0f 90       	pop	r0
+ 804:	1f 90       	pop	r1
+ 806:	18 95       	reti
 
-00000850 <__stop_program>:
- 850:	ff cf       	rjmp	.-2      	; 0x850 <__stop_program>
+00000808 <__vector_35>:
+
+ISR(PORTD_INT_vect)
+{
+ 808:	1f 92       	push	r1
+ 80a:	0f 92       	push	r0
+ 80c:	0f b6       	in	r0, 0x3f	; 63
+ 80e:	0f 92       	push	r0
+ 810:	11 24       	eor	r1, r1
+ 812:	2f 93       	push	r18
+ 814:	3f 93       	push	r19
+ 816:	4f 93       	push	r20
+ 818:	5f 93       	push	r21
+ 81a:	6f 93       	push	r22
+ 81c:	7f 93       	push	r23
+ 81e:	8f 93       	push	r24
+ 820:	9f 93       	push	r25
+ 822:	af 93       	push	r26
+ 824:	bf 93       	push	r27
+ 826:	ef 93       	push	r30
+ 828:	ff 93       	push	r31
+	if((PORTD.INTFLAGS & A2_MASK) != 0) { // A2 has been triggered
+ 82a:	80 91 6c 06 	lds	r24, 0x066C
+ 82e:	80 ff       	sbrs	r24, 0
+ 830:	05 c0       	rjmp	.+10     	; 0x83c <__vector_35+0x34>
+		qNum = 2;
+ 832:	82 e0       	ldi	r24, 0x02	; 2
+ 834:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 838:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTD.INTFLAGS = PORTD.INTFLAGS || A2_MASK;		
+	}
+	if((PORTD.INTFLAGS & B2_MASK) != 0) { // B2 has been triggered
+ 83c:	80 91 6c 06 	lds	r24, 0x066C
+ 840:	81 ff       	sbrs	r24, 1
+ 842:	05 c0       	rjmp	.+10     	; 0x84e <__vector_35+0x46>
+		qNum = 2;
+ 844:	82 e0       	ldi	r24, 0x02	; 2
+ 846:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 84a:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTD.INTFLAGS = PORTD.INTFLAGS || B2_MASK;			
+	}
+	if((PORTD.INTFLAGS & A3_MASK) != 0) { // A3 has been triggered
+ 84e:	80 91 6c 06 	lds	r24, 0x066C
+ 852:	84 ff       	sbrs	r24, 4
+ 854:	05 c0       	rjmp	.+10     	; 0x860 <__vector_35+0x58>
+		qNum = 3;
+ 856:	83 e0       	ldi	r24, 0x03	; 3
+ 858:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 85c:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTD.INTFLAGS = PORTD.INTFLAGS || A3_MASK;			
+	}
+	if((PORTD.INTFLAGS & B3_MASK) != 0) { // B3 has been triggered
+ 860:	80 91 6c 06 	lds	r24, 0x066C
+ 864:	85 ff       	sbrs	r24, 5
+ 866:	05 c0       	rjmp	.+10     	; 0x872 <__vector_35+0x6a>
+		qNum = 3;
+ 868:	83 e0       	ldi	r24, 0x03	; 3
+ 86a:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 86e:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTD.INTFLAGS = PORTD.INTFLAGS || B3_MASK;				
+	}
+	if((PORTD.INTFLAGS & A4_MASK) != 0) { // A4 has been triggered
+ 872:	80 91 6c 06 	lds	r24, 0x066C
+ 876:	86 ff       	sbrs	r24, 6
+ 878:	05 c0       	rjmp	.+10     	; 0x884 <__vector_35+0x7c>
+		qNum = 4;
+ 87a:	84 e0       	ldi	r24, 0x04	; 4
+ 87c:	80 93 21 23 	sts	0x2321, r24
+		decodeA();
+ 880:	0e 94 df 02 	call	0x5be	; 0x5be <_Z7decodeAv>
+	//	PORTD.INTFLAGS = PORTD.INTFLAGS || A4_MASK;			
+	}
+	if((PORTD.INTFLAGS & B4_MASK) != 0) { // B4 has been triggered
+ 884:	80 91 6c 06 	lds	r24, 0x066C
+ 888:	88 23       	and	r24, r24
+ 88a:	2c f4       	brge	.+10     	; 0x896 <__vector_35+0x8e>
+		qNum = 4;
+ 88c:	84 e0       	ldi	r24, 0x04	; 4
+ 88e:	80 93 21 23 	sts	0x2321, r24
+		decodeB();
+ 892:	0e 94 92 02 	call	0x524	; 0x524 <_Z7decodeBv>
+	//	PORTD.INTFLAGS = PORTD.INTFLAGS || B4_MASK;		
+	}
+	PORTD.INTFLAGS = 0xff;
+ 896:	8f ef       	ldi	r24, 0xFF	; 255
+ 898:	80 93 6c 06 	sts	0x066C, r24
+}
+ 89c:	ff 91       	pop	r31
+ 89e:	ef 91       	pop	r30
+ 8a0:	bf 91       	pop	r27
+ 8a2:	af 91       	pop	r26
+ 8a4:	9f 91       	pop	r25
+ 8a6:	8f 91       	pop	r24
+ 8a8:	7f 91       	pop	r23
+ 8aa:	6f 91       	pop	r22
+ 8ac:	5f 91       	pop	r21
+ 8ae:	4f 91       	pop	r20
+ 8b0:	3f 91       	pop	r19
+ 8b2:	2f 91       	pop	r18
+ 8b4:	0f 90       	pop	r0
+ 8b6:	0f be       	out	0x3f, r0	; 63
+ 8b8:	0f 90       	pop	r0
+ 8ba:	1f 90       	pop	r1
+ 8bc:	18 95       	reti
+
+000008be <_exit>:
+ 8be:	f8 94       	cli
+
+000008c0 <__stop_program>:
+ 8c0:	ff cf       	rjmp	.-2      	; 0x8c0 <__stop_program>

@@ -288,9 +288,9 @@ void initUSART(void)
 	USARTE0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
 	USARTE0.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
 	
-	// Configure SPI interface and speeds etc for USARTE1 @ 9600bps
-	USARTE1.BAUDCTRLA = 0x0C; // BSEL = 12
-	USARTE1.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+	// Configure SPI interface and speeds etc for USARTE1 @ 57600bps
+	USARTE1.BAUDCTRLA = 0x22; // BSEL = 22
+	USARTE1.BAUDCTRLB = 0x00; // BSCALE = 0
 	USARTE1.CTRLA = 0x00; // Interrupts off
 	USARTE1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
 	USARTE1.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
