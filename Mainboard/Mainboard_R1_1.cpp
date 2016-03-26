@@ -44,7 +44,7 @@ int min(short int a, short int b);
 int max(short int a, short int b);
 
 // USART Functions
-void sendChar(char cToSend, int chanNum);
+void sendChar(unsigned char cToSend, int chanNum);
 void sendStr(char *sToSend, int chanNum);
 char getByte(int chanNum);
 void getString(char *sToGet, int chanNum);
@@ -137,7 +137,10 @@ int main(void)
 	
 	while (1)
 	{
-		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from Main CPU...
+		//sendStr("ABC", 2);
+		sendChar(0x00, 2);
+		_delay_ms(100);
+		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from UI controller
 		{
 			char c = getByte(3);
 			if (c >= '0' && c<='9'){
@@ -267,29 +270,29 @@ void init(void)
 
 void initUSART(void)
 {
-	// Configure SPI interface and speeds etc for USARTD0 @ 9600bps
-	USARTD0.BAUDCTRLA = 0x0C; // BSEL = 12
-	USARTD0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
-	USARTD0.CTRLA = 0x00; // Interrupts off
-	USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
-	USARTD0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
+	// Configure SPI interface and speeds etc for AUXILLARY USARTD0 @ 9600bps
+	//USARTD0.BAUDCTRLA = 0x0C; // BSEL = 12
+	//USARTD0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+	//USARTD0.CTRLA = 0x00; // Interrupts off
+	//USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
+	//USARTD0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
 	
-	// Configure SPI interface and speeds etc for USARTD1 @ 9600bps
-	USARTD1.BAUDCTRLA = 0x0C; // BSEL = 12
-	USARTD1.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+	// Configure SPI interface and speeds etc for Module A USARTD1 @ 57600bps
+	USARTD1.BAUDCTRLA = 0x22; // BSEL = 34
+	USARTD1.BAUDCTRLB = 0x00; // BSCALE = 0
 	USARTD1.CTRLA = 0x00; // Interrupts off
 	USARTD1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
 	USARTD1.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits	
 		
-	// Configure SPI interface and speeds etc for USARTE0 @ 9600bps
-	USARTE0.BAUDCTRLA = 0x0C; // BSEL = 12
-	USARTE0.BAUDCTRLB = 0x40; // BSCALE = 4 (2^(4-1) = 15)
+	// Configure SPI interface and speeds etc for Module B USARTE0 @ 57600bps
+	USARTE0.BAUDCTRLA = 0x22; // BSEL = 34
+	USARTE0.BAUDCTRLB = 0x00; // BSCALE = 0
 	USARTE0.CTRLA = 0x00; // Interrupts off
 	USARTE0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
 	USARTE0.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
 	
-	// Configure SPI interface and speeds etc for USARTE1 @ 57600bps
-	USARTE1.BAUDCTRLA = 0x22; // BSEL = 22
+	// Configure SPI interface and speeds etc for UI Controller USARTE1 @ 57600bps
+	USARTE1.BAUDCTRLA = 0x22; // BSEL = 34
 	USARTE1.BAUDCTRLB = 0x00; // BSCALE = 0
 	USARTE1.CTRLA = 0x00; // Interrupts off
 	USARTE1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
@@ -392,7 +395,7 @@ void initLCD(void)
 	_delay_ms(50);
 }
 
-void sendChar(char cToSend, int chanNum)
+void sendChar(unsigned char cToSend, int chanNum)
 {
 	switch(chanNum)
 	{
