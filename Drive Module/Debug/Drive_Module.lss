@@ -3,31 +3,31 @@ Drive_Module.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000384  00000000  00000000  00000074  2**1
+  0 .text         000003fc  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00802000  00802000  000003f8  2**0
+  1 .data         00000000  00802000  00802000  00000470  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000000e  00802000  00802000  000003f8  2**0
+  2 .bss          0000000e  00802000  00802000  00000470  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003f8  2**0
+  3 .comment      00000030  00000000  00000000  00000470  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000428  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004a0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000078  00000000  00000000  00000468  2**0
+  5 .debug_aranges 00000078  00000000  00000000  000004e0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000126f  00000000  00000000  000004e0  2**0
+  6 .debug_info   00001242  00000000  00000000  00000558  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000031b  00000000  00000000  0000174f  2**0
+  7 .debug_abbrev 0000032a  00000000  00000000  0000179a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002bf  00000000  00000000  00001a6a  2**0
+  8 .debug_line   000002c1  00000000  00000000  00001ac4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000100  00000000  00000000  00001d2c  2**2
+  9 .debug_frame  00000100  00000000  00000000  00001d88  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000839  00000000  00000000  00001e2c  2**0
+ 10 .debug_str    00000832  00000000  00000000  00001e88  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000277  00000000  00000000  00002665  2**0
+ 11 .debug_loc    000002bd  00000000  00000000  000026ba  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000080  00000000  00000000  000028dc  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  00002977  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -78,7 +78,7 @@ Disassembly of section .text:
   a8:	0c 94 74 00 	jmp	0xe8	; 0xe8 <__bad_interrupt>
 
 000000ac <__ctors_start>:
-  ac:	a3 01       	movw	r20, r6
+  ac:	e2 01       	movw	r28, r4
 
 000000ae <__ctors_end>:
   ae:	11 24       	eor	r1, r1
@@ -109,18 +109,18 @@ Disassembly of section .text:
   d0:	04 c0       	rjmp	.+8      	; 0xda <__do_global_ctors+0x10>
   d2:	21 97       	sbiw	r28, 0x01	; 1
   d4:	fe 01       	movw	r30, r28
-  d6:	0e 94 ba 01 	call	0x374	; 0x374 <__tablejump2__>
+  d6:	0e 94 f6 01 	call	0x3ec	; 0x3ec <__tablejump2__>
   da:	c6 35       	cpi	r28, 0x56	; 86
   dc:	d1 07       	cpc	r29, r17
   de:	c9 f7       	brne	.-14     	; 0xd2 <__do_global_ctors+0x8>
-  e0:	0e 94 84 01 	call	0x308	; 0x308 <main>
-  e4:	0c 94 c0 01 	jmp	0x380	; 0x380 <_exit>
+  e0:	0e 94 ca 01 	call	0x394	; 0x394 <main>
+  e4:	0c 94 fc 01 	jmp	0x3f8	; 0x3f8 <_exit>
 
 000000e8 <__bad_interrupt>:
   e8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000ec <_Z4initv>:
-		_delay_ms(50);
+		//_delay_ms(5);
 	}
 }
 
@@ -176,427 +176,519 @@ void init(void) {
  12a:	83 e0       	ldi	r24, 0x03	; 3
  12c:	80 83       	st	Z, r24
 
-	PORTC.PIN0CTRL = 0b00101000; // Wired AND configuration with internal pull-up
+	PORTC.PIN0CTRL = 0b00101000; // Wired AND configuration with no internal pull-up
  12e:	88 e2       	ldi	r24, 0x28	; 40
  130:	80 8b       	std	Z+16, r24	; 0x10
-	PORTC.PIN1CTRL = 0b00101000; // Wired AND configuration with internal pull-up
+	PORTC.PIN1CTRL = 0b00101000; // Wired AND configuration with no internal pull-up
  132:	81 8b       	std	Z+17, r24	; 0x11
 	
 	PORTD.DIR = 0b00001000; // All inputs except PD3 (SPI TX)
- 134:	88 e0       	ldi	r24, 0x08	; 8
- 136:	80 93 60 06 	sts	0x0660, r24
+ 134:	e0 e6       	ldi	r30, 0x60	; 96
+ 136:	f6 e0       	ldi	r31, 0x06	; 6
+ 138:	88 e0       	ldi	r24, 0x08	; 8
+ 13a:	80 83       	st	Z, r24
+	PORTD.PIN3CTRL = 0b00000000; // Totem pole configuration
+ 13c:	13 8a       	std	Z+19, r1	; 0x13
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 13a:	2f ef       	ldi	r18, 0xFF	; 255
- 13c:	87 ea       	ldi	r24, 0xA7	; 167
- 13e:	91 e6       	ldi	r25, 0x61	; 97
- 140:	21 50       	subi	r18, 0x01	; 1
- 142:	80 40       	sbci	r24, 0x00	; 0
- 144:	90 40       	sbci	r25, 0x00	; 0
- 146:	e1 f7       	brne	.-8      	; 0x140 <_Z4initv+0x54>
- 148:	00 c0       	rjmp	.+0      	; 0x14a <_Z4initv+0x5e>
- 14a:	00 00       	nop
- 14c:	08 95       	ret
+ 13e:	2f ef       	ldi	r18, 0xFF	; 255
+ 140:	87 ea       	ldi	r24, 0xA7	; 167
+ 142:	91 e6       	ldi	r25, 0x61	; 97
+ 144:	21 50       	subi	r18, 0x01	; 1
+ 146:	80 40       	sbci	r24, 0x00	; 0
+ 148:	90 40       	sbci	r25, 0x00	; 0
+ 14a:	e1 f7       	brne	.-8      	; 0x144 <_Z4initv+0x58>
+ 14c:	00 c0       	rjmp	.+0      	; 0x14e <_Z4initv+0x62>
+ 14e:	00 00       	nop
+ 150:	08 95       	ret
 
-0000014e <_Z9initUSARTv>:
+00000152 <_Z9initUSARTv>:
 	_delay_ms(1000); // Wait for stuff to power up etc
 }
 
 void initUSART(void) {
 	// Configure SPI interface and speeds etc for USARTD0 @ 57600bps
-	USARTD0.BAUDCTRLA = 0x22; // BSEL = 34
- 14e:	e0 ec       	ldi	r30, 0xC0	; 192
- 150:	f9 e0       	ldi	r31, 0x09	; 9
- 152:	82 e2       	ldi	r24, 0x22	; 34
- 154:	86 83       	std	Z+6, r24	; 0x06
-	USARTD0.BAUDCTRLB = 0x00; // BSCALE = 0
- 156:	17 82       	std	Z+7, r1	; 0x07
+	USARTD0.BAUDCTRLA = 0x22; // BSEL = 12
+ 152:	e0 ec       	ldi	r30, 0xC0	; 192
+ 154:	f9 e0       	ldi	r31, 0x09	; 9
+ 156:	82 e2       	ldi	r24, 0x22	; 34
+ 158:	86 83       	std	Z+6, r24	; 0x06
+	USARTD0.BAUDCTRLB = 0x00; // BSCALE = 4	
+ 15a:	17 82       	std	Z+7, r1	; 0x07
 	USARTD0.CTRLA = 0x00; // Interrupts off
- 158:	12 82       	std	Z+2, r1	; 0x02
+ 15c:	12 82       	std	Z+2, r1	; 0x02
 	USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
- 15a:	88 e1       	ldi	r24, 0x18	; 24
- 15c:	83 83       	std	Z+3, r24	; 0x03
+ 15e:	88 e1       	ldi	r24, 0x18	; 24
+ 160:	83 83       	std	Z+3, r24	; 0x03
 	USARTD0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
- 15e:	83 e0       	ldi	r24, 0x03	; 3
- 160:	84 83       	std	Z+4, r24	; 0x04
-	USARTD0.CTRLD = 0b00000000; // Asynchronous, No parity, 1 stop bit, 8 data bits
- 162:	15 82       	std	Z+5, r1	; 0x05
- 164:	08 95       	ret
+ 162:	83 e0       	ldi	r24, 0x03	; 3
+ 164:	84 83       	std	Z+4, r24	; 0x04
+	USARTD0.CTRLD = 0b00000000; // Standard configuration
+ 166:	15 82       	std	Z+5, r1	; 0x05
+ 168:	08 95       	ret
 
-00000166 <_Z7initI2Cv>:
+0000016a <_Z7initI2Cv>:
 }
 
 void initI2C(void) {
 	TWIC.CTRL = 0x00; // Normal setup, no driver, no timeout
- 166:	e0 e8       	ldi	r30, 0x80	; 128
- 168:	f4 e0       	ldi	r31, 0x04	; 4
- 16a:	10 82       	st	Z, r1
+ 16a:	e0 e8       	ldi	r30, 0x80	; 128
+ 16c:	f4 e0       	ldi	r31, 0x04	; 4
+ 16e:	10 82       	st	Z, r1
 	TWIC.MASTER.BAUD = 0x96; // Gives fi2c = 100kHz
- 16c:	86 e9       	ldi	r24, 0x96	; 150
- 16e:	85 83       	std	Z+5, r24	; 0x05
+ 170:	86 e9       	ldi	r24, 0x96	; 150
+ 172:	85 83       	std	Z+5, r24	; 0x05
 	TWIC.MASTER.CTRLA = 0x08; // Int off, WIEN off, enable TWI master
- 170:	88 e0       	ldi	r24, 0x08	; 8
- 172:	81 83       	std	Z+1, r24	; 0x01
+ 174:	88 e0       	ldi	r24, 0x08	; 8
+ 176:	81 83       	std	Z+1, r24	; 0x01
 	TWIC.MASTER.CTRLB = 0x00; // No timeouts or interrupts
- 174:	12 82       	std	Z+2, r1	; 0x02
+ 178:	12 82       	std	Z+2, r1	; 0x02
 	TWIC.MASTER.CTRLC = 0x00; // Only write...
- 176:	13 82       	std	Z+3, r1	; 0x03
+ 17a:	13 82       	std	Z+3, r1	; 0x03
 	TWIC.MASTER.STATUS |= 0x01; // Idle....
- 178:	84 81       	ldd	r24, Z+4	; 0x04
- 17a:	81 60       	ori	r24, 0x01	; 1
- 17c:	84 83       	std	Z+4, r24	; 0x04
- 17e:	08 95       	ret
+ 17c:	84 81       	ldd	r24, Z+4	; 0x04
+ 17e:	81 60       	ori	r24, 0x01	; 1
+ 180:	84 83       	std	Z+4, r24	; 0x04
+ 182:	08 95       	ret
 
-00000180 <_Z7sendI2Chhh>:
+00000184 <_Z7sendI2Chhh>:
 	}
 }
 
 void sendI2C(unsigned char addr, unsigned char data1, unsigned char data2) {
 	int loopCnt = 0;
 	TWIC.MASTER.ADDR = addr; // Start bit + address
- 180:	80 93 86 04 	sts	0x0486, r24
+ 184:	80 93 86 04 	sts	0x0486, r24
 	while(!(TWIC.MASTER.STATUS & 32));	// Wait for CLKHOLD to go high
- 184:	e0 e8       	ldi	r30, 0x80	; 128
- 186:	f4 e0       	ldi	r31, 0x04	; 4
- 188:	94 81       	ldd	r25, Z+4	; 0x04
- 18a:	95 ff       	sbrs	r25, 5
- 18c:	fd cf       	rjmp	.-6      	; 0x188 <_Z7sendI2Chhh+0x8>
- 18e:	23 e3       	ldi	r18, 0x33	; 51
- 190:	30 e0       	ldi	r19, 0x00	; 0
+ 188:	e0 e8       	ldi	r30, 0x80	; 128
+ 18a:	f4 e0       	ldi	r31, 0x04	; 4
+ 18c:	94 81       	ldd	r25, Z+4	; 0x04
+ 18e:	95 ff       	sbrs	r25, 5
+ 190:	fd cf       	rjmp	.-6      	; 0x18c <_Z7sendI2Chhh+0x8>
+ 192:	23 e3       	ldi	r18, 0x33	; 51
+ 194:	30 e0       	ldi	r19, 0x00	; 0
 	while(TWIC.MASTER.STATUS & 16) { // Resend if no NACK received
- 192:	e0 e8       	ldi	r30, 0x80	; 128
- 194:	f4 e0       	ldi	r31, 0x04	; 4
- 196:	07 c0       	rjmp	.+14     	; 0x1a6 <_Z7sendI2Chhh+0x26>
+ 196:	e0 e8       	ldi	r30, 0x80	; 128
+ 198:	f4 e0       	ldi	r31, 0x04	; 4
+ 19a:	07 c0       	rjmp	.+14     	; 0x1aa <_Z7sendI2Chhh+0x26>
 		TWIC.MASTER.ADDR = addr;
- 198:	86 83       	std	Z+6, r24	; 0x06
+ 19c:	86 83       	std	Z+6, r24	; 0x06
 		while(!(TWIC.MASTER.STATUS & 32));
- 19a:	94 81       	ldd	r25, Z+4	; 0x04
- 19c:	95 ff       	sbrs	r25, 5
- 19e:	fd cf       	rjmp	.-6      	; 0x19a <_Z7sendI2Chhh+0x1a>
- 1a0:	21 50       	subi	r18, 0x01	; 1
- 1a2:	31 09       	sbc	r19, r1
+ 19e:	94 81       	ldd	r25, Z+4	; 0x04
+ 1a0:	95 ff       	sbrs	r25, 5
+ 1a2:	fd cf       	rjmp	.-6      	; 0x19e <_Z7sendI2Chhh+0x1a>
+ 1a4:	21 50       	subi	r18, 0x01	; 1
+ 1a6:	31 09       	sbc	r19, r1
 		loopCnt++;
 		if(loopCnt > 50)
- 1a4:	d1 f0       	breq	.+52     	; 0x1da <_Z7sendI2Chhh+0x5a>
+ 1a8:	d1 f0       	breq	.+52     	; 0x1de <_Z7sendI2Chhh+0x5a>
 
 void sendI2C(unsigned char addr, unsigned char data1, unsigned char data2) {
 	int loopCnt = 0;
 	TWIC.MASTER.ADDR = addr; // Start bit + address
 	while(!(TWIC.MASTER.STATUS & 32));	// Wait for CLKHOLD to go high
 	while(TWIC.MASTER.STATUS & 16) { // Resend if no NACK received
- 1a6:	94 81       	ldd	r25, Z+4	; 0x04
- 1a8:	94 fd       	sbrc	r25, 4
- 1aa:	f6 cf       	rjmp	.-20     	; 0x198 <_Z7sendI2Chhh+0x18>
+ 1aa:	94 81       	ldd	r25, Z+4	; 0x04
+ 1ac:	94 fd       	sbrc	r25, 4
+ 1ae:	f6 cf       	rjmp	.-20     	; 0x19c <_Z7sendI2Chhh+0x18>
 		while(!(TWIC.MASTER.STATUS & 32));
 		loopCnt++;
 		if(loopCnt > 50)
 			return;
 	}
 	TWIC.MASTER.DATA = data1; // Send data1
- 1ac:	60 93 87 04 	sts	0x0487, r22
+ 1b0:	60 93 87 04 	sts	0x0487, r22
 	while(!(TWIC.MASTER.STATUS & 32));
- 1b0:	e0 e8       	ldi	r30, 0x80	; 128
- 1b2:	f4 e0       	ldi	r31, 0x04	; 4
- 1b4:	84 81       	ldd	r24, Z+4	; 0x04
- 1b6:	85 ff       	sbrs	r24, 5
- 1b8:	fd cf       	rjmp	.-6      	; 0x1b4 <_Z7sendI2Chhh+0x34>
+ 1b4:	e0 e8       	ldi	r30, 0x80	; 128
+ 1b6:	f4 e0       	ldi	r31, 0x04	; 4
+ 1b8:	84 81       	ldd	r24, Z+4	; 0x04
+ 1ba:	85 ff       	sbrs	r24, 5
+ 1bc:	fd cf       	rjmp	.-6      	; 0x1b8 <_Z7sendI2Chhh+0x34>
 	TWIC.MASTER.DATA = data2; // Send data2
- 1ba:	40 93 87 04 	sts	0x0487, r20
+ 1be:	40 93 87 04 	sts	0x0487, r20
 	while(!(TWIC.MASTER.STATUS & 32));
- 1be:	e0 e8       	ldi	r30, 0x80	; 128
- 1c0:	f4 e0       	ldi	r31, 0x04	; 4
- 1c2:	84 81       	ldd	r24, Z+4	; 0x04
- 1c4:	85 ff       	sbrs	r24, 5
- 1c6:	fd cf       	rjmp	.-6      	; 0x1c2 <_Z7sendI2Chhh+0x42>
+ 1c2:	e0 e8       	ldi	r30, 0x80	; 128
+ 1c4:	f4 e0       	ldi	r31, 0x04	; 4
+ 1c6:	84 81       	ldd	r24, Z+4	; 0x04
+ 1c8:	85 ff       	sbrs	r24, 5
+ 1ca:	fd cf       	rjmp	.-6      	; 0x1c6 <_Z7sendI2Chhh+0x42>
 	TWIC.MASTER.CTRLC = 0X03; // Send STOP	
- 1c8:	83 e0       	ldi	r24, 0x03	; 3
- 1ca:	80 93 83 04 	sts	0x0483, r24
- 1ce:	8f e3       	ldi	r24, 0x3F	; 63
- 1d0:	9f e1       	ldi	r25, 0x1F	; 31
- 1d2:	01 97       	sbiw	r24, 0x01	; 1
- 1d4:	f1 f7       	brne	.-4      	; 0x1d2 <_Z7sendI2Chhh+0x52>
- 1d6:	00 c0       	rjmp	.+0      	; 0x1d8 <_Z7sendI2Chhh+0x58>
- 1d8:	00 00       	nop
- 1da:	08 95       	ret
+ 1cc:	83 e0       	ldi	r24, 0x03	; 3
+ 1ce:	80 93 83 04 	sts	0x0483, r24
+ 1d2:	8f e3       	ldi	r24, 0x3F	; 63
+ 1d4:	9f e1       	ldi	r25, 0x1F	; 31
+ 1d6:	01 97       	sbiw	r24, 0x01	; 1
+ 1d8:	f1 f7       	brne	.-4      	; 0x1d6 <_Z7sendI2Chhh+0x52>
+ 1da:	00 c0       	rjmp	.+0      	; 0x1dc <_Z7sendI2Chhh+0x58>
+ 1dc:	00 00       	nop
+ 1de:	08 95       	ret
 
-000001dc <_Z10updatePotsv>:
+000001e0 <_Z10updatePotsv>:
 	TWIC.MASTER.CTRLB = 0x00; // No timeouts or interrupts
 	TWIC.MASTER.CTRLC = 0x00; // Only write...
 	TWIC.MASTER.STATUS |= 0x01; // Idle....
 }
 
 void updatePots(void) {
- 1dc:	cf 93       	push	r28
- 1de:	df 93       	push	r29
+ 1e0:	cf 93       	push	r28
+ 1e2:	df 93       	push	r29
 	sendI2C(0b01011000, 0x00, ChanA.instVol); // Set IC1 Pot 1 to instrument pre-gain	
- 1e0:	c7 e0       	ldi	r28, 0x07	; 7
- 1e2:	d0 e2       	ldi	r29, 0x20	; 32
- 1e4:	48 81       	ld	r20, Y
- 1e6:	60 e0       	ldi	r22, 0x00	; 0
- 1e8:	88 e5       	ldi	r24, 0x58	; 88
- 1ea:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 1e4:	c7 e0       	ldi	r28, 0x07	; 7
+ 1e6:	d0 e2       	ldi	r29, 0x20	; 32
+ 1e8:	48 81       	ld	r20, Y
+ 1ea:	60 e0       	ldi	r22, 0x00	; 0
+ 1ec:	88 e5       	ldi	r24, 0x58	; 88
+ 1ee:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	sendI2C(0b01011000, 0x20, ChanA.treble); // Set IC1 Pot 2 to current treble	
- 1ee:	4c 81       	ldd	r20, Y+4	; 0x04
- 1f0:	60 e2       	ldi	r22, 0x20	; 32
- 1f2:	88 e5       	ldi	r24, 0x58	; 88
- 1f4:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 1f2:	4c 81       	ldd	r20, Y+4	; 0x04
+ 1f4:	60 e2       	ldi	r22, 0x20	; 32
+ 1f6:	88 e5       	ldi	r24, 0x58	; 88
+ 1f8:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	sendI2C(0b01011000, 0x40, ChanA.mids); // Set IC1 Pot 3 to current mids	
- 1f8:	4b 81       	ldd	r20, Y+3	; 0x03
- 1fa:	60 e4       	ldi	r22, 0x40	; 64
- 1fc:	88 e5       	ldi	r24, 0x58	; 88
- 1fe:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 1fc:	4b 81       	ldd	r20, Y+3	; 0x03
+ 1fe:	60 e4       	ldi	r22, 0x40	; 64
+ 200:	88 e5       	ldi	r24, 0x58	; 88
+ 202:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	sendI2C(0b01011000, 0x60, ChanA.bass); // Set IC1 Pot 4 to current bass	
- 202:	4a 81       	ldd	r20, Y+2	; 0x02
- 204:	60 e6       	ldi	r22, 0x60	; 96
- 206:	88 e5       	ldi	r24, 0x58	; 88
- 208:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 206:	4a 81       	ldd	r20, Y+2	; 0x02
+ 208:	60 e6       	ldi	r22, 0x60	; 96
+ 20a:	88 e5       	ldi	r24, 0x58	; 88
+ 20c:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	if(ChanA.cleanOn) {
- 20c:	8d 81       	ldd	r24, Y+5	; 0x05
- 20e:	88 23       	and	r24, r24
- 210:	a9 f0       	breq	.+42     	; 0x23c <_Z10updatePotsv+0x60>
+ 210:	8d 81       	ldd	r24, Y+5	; 0x05
+ 212:	88 23       	and	r24, r24
+ 214:	a9 f0       	breq	.+42     	; 0x240 <_Z10updatePotsv+0x60>
 		sendI2C(0b01011010, 0x00, 0x00); // Set IC2 Pot 1 to distortion gain
- 212:	40 e0       	ldi	r20, 0x00	; 0
- 214:	60 e0       	ldi	r22, 0x00	; 0
- 216:	8a e5       	ldi	r24, 0x5A	; 90
- 218:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 216:	40 e0       	ldi	r20, 0x00	; 0
+ 218:	60 e0       	ldi	r22, 0x00	; 0
+ 21a:	8a e5       	ldi	r24, 0x5A	; 90
+ 21c:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011010, 0x20, ChanA.gain); // Set IC2 Pot 2 to overdrive gain
- 21c:	49 81       	ldd	r20, Y+1	; 0x01
- 21e:	60 e2       	ldi	r22, 0x20	; 32
- 220:	8a e5       	ldi	r24, 0x5A	; 90
- 222:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 220:	49 81       	ldd	r20, Y+1	; 0x01
+ 222:	60 e2       	ldi	r22, 0x20	; 32
+ 224:	8a e5       	ldi	r24, 0x5A	; 90
+ 226:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011010, 0x40, 0x00); // Set IC2 Pot 3 to distortion volume
- 226:	40 e0       	ldi	r20, 0x00	; 0
- 228:	60 e4       	ldi	r22, 0x40	; 64
- 22a:	8a e5       	ldi	r24, 0x5A	; 90
- 22c:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 22a:	40 e0       	ldi	r20, 0x00	; 0
+ 22c:	60 e4       	ldi	r22, 0x40	; 64
+ 22e:	8a e5       	ldi	r24, 0x5A	; 90
+ 230:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011010, 0x60, ChanA.volume); // Set IC2 Pot 4 to overdrive volume
- 230:	4e 81       	ldd	r20, Y+6	; 0x06
- 232:	60 e6       	ldi	r22, 0x60	; 96
- 234:	8a e5       	ldi	r24, 0x5A	; 90
- 236:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
- 23a:	16 c0       	rjmp	.+44     	; 0x268 <_Z10updatePotsv+0x8c>
+ 234:	4e 81       	ldd	r20, Y+6	; 0x06
+ 236:	60 e6       	ldi	r22, 0x60	; 96
+ 238:	8a e5       	ldi	r24, 0x5A	; 90
+ 23a:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
+ 23e:	16 c0       	rjmp	.+44     	; 0x26c <_Z10updatePotsv+0x8c>
 	}
 	else {
 		sendI2C(0b01011010, 0x00, ChanA.gain); // Set IC2 Pot 1 to distortion gain
- 23c:	c7 e0       	ldi	r28, 0x07	; 7
- 23e:	d0 e2       	ldi	r29, 0x20	; 32
- 240:	49 81       	ldd	r20, Y+1	; 0x01
- 242:	60 e0       	ldi	r22, 0x00	; 0
- 244:	8a e5       	ldi	r24, 0x5A	; 90
- 246:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 240:	c7 e0       	ldi	r28, 0x07	; 7
+ 242:	d0 e2       	ldi	r29, 0x20	; 32
+ 244:	49 81       	ldd	r20, Y+1	; 0x01
+ 246:	60 e0       	ldi	r22, 0x00	; 0
+ 248:	8a e5       	ldi	r24, 0x5A	; 90
+ 24a:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011010, 0x20, 0x00); // Set IC2 Pot 2 to overdrive gain
- 24a:	40 e0       	ldi	r20, 0x00	; 0
- 24c:	60 e2       	ldi	r22, 0x20	; 32
- 24e:	8a e5       	ldi	r24, 0x5A	; 90
- 250:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 24e:	40 e0       	ldi	r20, 0x00	; 0
+ 250:	60 e2       	ldi	r22, 0x20	; 32
+ 252:	8a e5       	ldi	r24, 0x5A	; 90
+ 254:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011010, 0x40, ChanA.volume); // Set IC2 Pot 3 to distortion volume
- 254:	4e 81       	ldd	r20, Y+6	; 0x06
- 256:	60 e4       	ldi	r22, 0x40	; 64
- 258:	8a e5       	ldi	r24, 0x5A	; 90
- 25a:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 258:	4e 81       	ldd	r20, Y+6	; 0x06
+ 25a:	60 e4       	ldi	r22, 0x40	; 64
+ 25c:	8a e5       	ldi	r24, 0x5A	; 90
+ 25e:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011010, 0x60, 0x00); // Set IC2 Pot 4 to overdrive volume	
- 25e:	40 e0       	ldi	r20, 0x00	; 0
- 260:	60 e6       	ldi	r22, 0x60	; 96
- 262:	8a e5       	ldi	r24, 0x5A	; 90
- 264:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 262:	40 e0       	ldi	r20, 0x00	; 0
+ 264:	60 e6       	ldi	r22, 0x60	; 96
+ 266:	8a e5       	ldi	r24, 0x5A	; 90
+ 268:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	}
 	sendI2C(0b01011100, 0x00, ChanB.instVol); // Set IC3 Pot 1 to instrument pre-gain
- 268:	c0 e0       	ldi	r28, 0x00	; 0
- 26a:	d0 e2       	ldi	r29, 0x20	; 32
- 26c:	48 81       	ld	r20, Y
- 26e:	60 e0       	ldi	r22, 0x00	; 0
- 270:	8c e5       	ldi	r24, 0x5C	; 92
- 272:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 26c:	c0 e0       	ldi	r28, 0x00	; 0
+ 26e:	d0 e2       	ldi	r29, 0x20	; 32
+ 270:	48 81       	ld	r20, Y
+ 272:	60 e0       	ldi	r22, 0x00	; 0
+ 274:	8c e5       	ldi	r24, 0x5C	; 92
+ 276:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	sendI2C(0b01011100, 0x20, ChanB.treble); // Set IC3 Pot 2 to current treble
- 276:	4c 81       	ldd	r20, Y+4	; 0x04
- 278:	60 e2       	ldi	r22, 0x20	; 32
- 27a:	8c e5       	ldi	r24, 0x5C	; 92
- 27c:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 27a:	4c 81       	ldd	r20, Y+4	; 0x04
+ 27c:	60 e2       	ldi	r22, 0x20	; 32
+ 27e:	8c e5       	ldi	r24, 0x5C	; 92
+ 280:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	sendI2C(0b01011100, 0x40, ChanB.mids); // Set IC3 Pot 3 to current mids
- 280:	4b 81       	ldd	r20, Y+3	; 0x03
- 282:	60 e4       	ldi	r22, 0x40	; 64
- 284:	8c e5       	ldi	r24, 0x5C	; 92
- 286:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 284:	4b 81       	ldd	r20, Y+3	; 0x03
+ 286:	60 e4       	ldi	r22, 0x40	; 64
+ 288:	8c e5       	ldi	r24, 0x5C	; 92
+ 28a:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	sendI2C(0b01011100, 0x60, ChanB.bass); // Set IC3 Pot 4 to current bass
- 28a:	4a 81       	ldd	r20, Y+2	; 0x02
- 28c:	60 e6       	ldi	r22, 0x60	; 96
- 28e:	8c e5       	ldi	r24, 0x5C	; 92
- 290:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 28e:	4a 81       	ldd	r20, Y+2	; 0x02
+ 290:	60 e6       	ldi	r22, 0x60	; 96
+ 292:	8c e5       	ldi	r24, 0x5C	; 92
+ 294:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	if(ChanA.cleanOn) {
- 294:	80 91 0c 20 	lds	r24, 0x200C
- 298:	88 23       	and	r24, r24
- 29a:	a9 f0       	breq	.+42     	; 0x2c6 <_Z10updatePotsv+0xea>
+ 298:	80 91 0c 20 	lds	r24, 0x200C
+ 29c:	88 23       	and	r24, r24
+ 29e:	a9 f0       	breq	.+42     	; 0x2ca <_Z10updatePotsv+0xea>
 		sendI2C(0b01011110, 0x00, 0x00); // Set IC4 Pot 1 to distortion gain
- 29c:	40 e0       	ldi	r20, 0x00	; 0
- 29e:	60 e0       	ldi	r22, 0x00	; 0
- 2a0:	8e e5       	ldi	r24, 0x5E	; 94
- 2a2:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2a0:	40 e0       	ldi	r20, 0x00	; 0
+ 2a2:	60 e0       	ldi	r22, 0x00	; 0
+ 2a4:	8e e5       	ldi	r24, 0x5E	; 94
+ 2a6:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011110, 0x20, ChanB.gain); // Set IC4 Pot 2 to overdrive gain
- 2a6:	49 81       	ldd	r20, Y+1	; 0x01
- 2a8:	60 e2       	ldi	r22, 0x20	; 32
- 2aa:	8e e5       	ldi	r24, 0x5E	; 94
- 2ac:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2aa:	49 81       	ldd	r20, Y+1	; 0x01
+ 2ac:	60 e2       	ldi	r22, 0x20	; 32
+ 2ae:	8e e5       	ldi	r24, 0x5E	; 94
+ 2b0:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011110, 0x40, 0x00); // Set IC4 Pot 3 to distortion volume
- 2b0:	40 e0       	ldi	r20, 0x00	; 0
- 2b2:	60 e4       	ldi	r22, 0x40	; 64
- 2b4:	8e e5       	ldi	r24, 0x5E	; 94
- 2b6:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2b4:	40 e0       	ldi	r20, 0x00	; 0
+ 2b6:	60 e4       	ldi	r22, 0x40	; 64
+ 2b8:	8e e5       	ldi	r24, 0x5E	; 94
+ 2ba:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011110, 0x60, ChanB.volume); // Set IC4 Pot 4 to overdrive volume
- 2ba:	4e 81       	ldd	r20, Y+6	; 0x06
- 2bc:	60 e6       	ldi	r22, 0x60	; 96
- 2be:	8e e5       	ldi	r24, 0x5E	; 94
- 2c0:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
- 2c4:	16 c0       	rjmp	.+44     	; 0x2f2 <_Z10updatePotsv+0x116>
+ 2be:	4e 81       	ldd	r20, Y+6	; 0x06
+ 2c0:	60 e6       	ldi	r22, 0x60	; 96
+ 2c2:	8e e5       	ldi	r24, 0x5E	; 94
+ 2c4:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
+ 2c8:	16 c0       	rjmp	.+44     	; 0x2f6 <_Z10updatePotsv+0x116>
 		
 	}
 	else {
 		sendI2C(0b01011110, 0x00, ChanB.gain); // Set IC4 Pot 1 to distortion gain
- 2c6:	c0 e0       	ldi	r28, 0x00	; 0
- 2c8:	d0 e2       	ldi	r29, 0x20	; 32
- 2ca:	49 81       	ldd	r20, Y+1	; 0x01
- 2cc:	60 e0       	ldi	r22, 0x00	; 0
- 2ce:	8e e5       	ldi	r24, 0x5E	; 94
- 2d0:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2ca:	c0 e0       	ldi	r28, 0x00	; 0
+ 2cc:	d0 e2       	ldi	r29, 0x20	; 32
+ 2ce:	49 81       	ldd	r20, Y+1	; 0x01
+ 2d0:	60 e0       	ldi	r22, 0x00	; 0
+ 2d2:	8e e5       	ldi	r24, 0x5E	; 94
+ 2d4:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011110, 0x20, 0x00); // Set IC4 Pot 2 to overdrive gain
- 2d4:	40 e0       	ldi	r20, 0x00	; 0
- 2d6:	60 e2       	ldi	r22, 0x20	; 32
- 2d8:	8e e5       	ldi	r24, 0x5E	; 94
- 2da:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2d8:	40 e0       	ldi	r20, 0x00	; 0
+ 2da:	60 e2       	ldi	r22, 0x20	; 32
+ 2dc:	8e e5       	ldi	r24, 0x5E	; 94
+ 2de:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011110, 0x40, ChanB.volume); // Set IC4 Pot 3 to distortion volume
- 2de:	4e 81       	ldd	r20, Y+6	; 0x06
- 2e0:	60 e4       	ldi	r22, 0x40	; 64
- 2e2:	8e e5       	ldi	r24, 0x5E	; 94
- 2e4:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2e2:	4e 81       	ldd	r20, Y+6	; 0x06
+ 2e4:	60 e4       	ldi	r22, 0x40	; 64
+ 2e6:	8e e5       	ldi	r24, 0x5E	; 94
+ 2e8:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 		sendI2C(0b01011110, 0x60, 0x00); // Set IC4 Pot 4 to overdrive volume
- 2e8:	40 e0       	ldi	r20, 0x00	; 0
- 2ea:	60 e6       	ldi	r22, 0x60	; 96
- 2ec:	8e e5       	ldi	r24, 0x5E	; 94
- 2ee:	0e 94 c0 00 	call	0x180	; 0x180 <_Z7sendI2Chhh>
+ 2ec:	40 e0       	ldi	r20, 0x00	; 0
+ 2ee:	60 e6       	ldi	r22, 0x60	; 96
+ 2f0:	8e e5       	ldi	r24, 0x5E	; 94
+ 2f2:	0e 94 c2 00 	call	0x184	; 0x184 <_Z7sendI2Chhh>
 	}
 }
- 2f2:	df 91       	pop	r29
- 2f4:	cf 91       	pop	r28
- 2f6:	08 95       	ret
+ 2f6:	df 91       	pop	r29
+ 2f8:	cf 91       	pop	r28
+ 2fa:	08 95       	ret
 
-000002f8 <_Z7getBytev>:
+000002fc <_Z7getBytev>:
 	while(*sToSend)
 	sendChar(*sToSend++);
 }
 
-unsigned char getByte(void) {
+char getByte(void) {
 	while(!(USARTD0_STATUS & USART_RXCIF_bm));
- 2f8:	e1 ec       	ldi	r30, 0xC1	; 193
- 2fa:	f9 e0       	ldi	r31, 0x09	; 9
- 2fc:	80 81       	ld	r24, Z
- 2fe:	88 23       	and	r24, r24
- 300:	ec f7       	brge	.-6      	; 0x2fc <_Z7getBytev+0x4>
+ 2fc:	e1 ec       	ldi	r30, 0xC1	; 193
+ 2fe:	f9 e0       	ldi	r31, 0x09	; 9
+ 300:	80 81       	ld	r24, Z
+ 302:	88 23       	and	r24, r24
+ 304:	ec f7       	brge	.-6      	; 0x300 <_Z7getBytev+0x4>
 	return USARTD0_DATA;
- 302:	80 91 c0 09 	lds	r24, 0x09C0
+ 306:	80 91 c0 09 	lds	r24, 0x09C0
 }
- 306:	08 95       	ret
+ 30a:	08 95       	ret
 
-00000308 <main>:
+0000030c <_Z9getStringPc>:
+
+void getString(char *strToGet) {
+ 30c:	0f 93       	push	r16
+ 30e:	1f 93       	push	r17
+ 310:	cf 93       	push	r28
+ 312:	df 93       	push	r29
+ 314:	ec 01       	movw	r28, r24
+ 316:	8c 01       	movw	r16, r24
+ 318:	0c 5e       	subi	r16, 0xEC	; 236
+ 31a:	1f 4f       	sbci	r17, 0xFF	; 255
+	int len = 0;
+	bool done = false;
+	while(!done) {
+		*strToGet = getByte();
+ 31c:	0e 94 7e 01 	call	0x2fc	; 0x2fc <_Z7getBytev>
+ 320:	89 93       	st	Y+, r24
+		if(*strToGet == 'C')
+ 322:	83 34       	cpi	r24, 0x43	; 67
+ 324:	19 f0       	breq	.+6      	; 0x32c <_Z9getStringPc+0x20>
+			done = true;
+		else {
+			len++;
+			strToGet++;
+		}
+		if(len == 20) {
+ 326:	c0 17       	cp	r28, r16
+ 328:	d1 07       	cpc	r29, r17
+ 32a:	c1 f7       	brne	.-16     	; 0x31c <_Z9getStringPc+0x10>
+			done = true;
+		}
+	}
+}
+ 32c:	df 91       	pop	r29
+ 32e:	cf 91       	pop	r28
+ 330:	1f 91       	pop	r17
+ 332:	0f 91       	pop	r16
+ 334:	08 95       	ret
+
+00000336 <_Z12decodeStringPc>:
+
+
+void decodeString(char *sToDecode) {
+ 336:	fc 01       	movw	r30, r24
+	if(*sToDecode++ == 'A') {
+ 338:	80 81       	ld	r24, Z
+ 33a:	81 34       	cpi	r24, 0x41	; 65
+ 33c:	29 f5       	brne	.+74     	; 0x388 <_Z12decodeStringPc+0x52>
+		ChanA.treble = *sToDecode++;
+ 33e:	81 81       	ldd	r24, Z+1	; 0x01
+ 340:	a7 e0       	ldi	r26, 0x07	; 7
+ 342:	b0 e2       	ldi	r27, 0x20	; 32
+ 344:	14 96       	adiw	r26, 0x04	; 4
+ 346:	8c 93       	st	X, r24
+ 348:	14 97       	sbiw	r26, 0x04	; 4
+		ChanA.mids = *sToDecode++;
+ 34a:	82 81       	ldd	r24, Z+2	; 0x02
+ 34c:	13 96       	adiw	r26, 0x03	; 3
+ 34e:	8c 93       	st	X, r24
+ 350:	13 97       	sbiw	r26, 0x03	; 3
+		ChanA.bass = *sToDecode++;
+ 352:	83 81       	ldd	r24, Z+3	; 0x03
+ 354:	12 96       	adiw	r26, 0x02	; 2
+ 356:	8c 93       	st	X, r24
+ 358:	12 97       	sbiw	r26, 0x02	; 2
+		ChanA.gain = *sToDecode++;
+ 35a:	84 81       	ldd	r24, Z+4	; 0x04
+ 35c:	11 96       	adiw	r26, 0x01	; 1
+ 35e:	8c 93       	st	X, r24
+		ChanA.instVol = *sToDecode++;
+		sToDecode++;
+		ChanB.treble = *sToDecode++;
+ 360:	a0 e0       	ldi	r26, 0x00	; 0
+ 362:	b0 e2       	ldi	r27, 0x20	; 32
+ 364:	87 81       	ldd	r24, Z+7	; 0x07
+ 366:	14 96       	adiw	r26, 0x04	; 4
+ 368:	8c 93       	st	X, r24
+ 36a:	14 97       	sbiw	r26, 0x04	; 4
+		ChanB.mids = *sToDecode++;
+ 36c:	80 85       	ldd	r24, Z+8	; 0x08
+ 36e:	13 96       	adiw	r26, 0x03	; 3
+ 370:	8c 93       	st	X, r24
+ 372:	13 97       	sbiw	r26, 0x03	; 3
+		ChanB.bass = *sToDecode++;
+ 374:	81 85       	ldd	r24, Z+9	; 0x09
+ 376:	12 96       	adiw	r26, 0x02	; 2
+ 378:	8c 93       	st	X, r24
+ 37a:	12 97       	sbiw	r26, 0x02	; 2
+		ChanB.gain = *sToDecode++;
+ 37c:	82 85       	ldd	r24, Z+10	; 0x0a
+ 37e:	11 96       	adiw	r26, 0x01	; 1
+ 380:	8c 93       	st	X, r24
+ 382:	11 97       	sbiw	r26, 0x01	; 1
+		ChanB.instVol = *sToDecode++;	
+ 384:	83 85       	ldd	r24, Z+11	; 0x0b
+ 386:	8c 93       	st	X, r24
+	}
+	ChanA.mids = 0xff;
+ 388:	e7 e0       	ldi	r30, 0x07	; 7
+ 38a:	f0 e2       	ldi	r31, 0x20	; 32
+ 38c:	8f ef       	ldi	r24, 0xFF	; 255
+ 38e:	83 83       	std	Z+3, r24	; 0x03
+	ChanA.instVol = 0xff;
+ 390:	80 83       	st	Z, r24
+ 392:	08 95       	ret
+
+00000394 <main>:
 };
 
 driveConfig ChanA, ChanB;
 
 int main(void) {
 	init();
- 308:	0e 94 76 00 	call	0xec	; 0xec <_Z4initv>
+ 394:	0e 94 76 00 	call	0xec	; 0xec <_Z4initv>
 	initUSART();
- 30c:	0e 94 a7 00 	call	0x14e	; 0x14e <_Z9initUSARTv>
+ 398:	0e 94 a9 00 	call	0x152	; 0x152 <_Z9initUSARTv>
 	initI2C();
- 310:	0e 94 b3 00 	call	0x166	; 0x166 <_Z7initI2Cv>
+ 39c:	0e 94 b5 00 	call	0x16a	; 0x16a <_Z7initI2Cv>
 	updatePots();
- 314:	0e 94 ee 00 	call	0x1dc	; 0x1dc <_Z10updatePotsv>
+ 3a0:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <_Z10updatePotsv>
 	
 	while (1) {
 		
 		//updatePots();
 		if(USARTD0_STATUS & USART_RXCIF_bm) { // If there is unread data from Main CPU...
- 318:	c1 ec       	ldi	r28, 0xC1	; 193
- 31a:	d9 e0       	ldi	r29, 0x09	; 9
-		//	getString(x);
-			unsigned char a = getByte();
+ 3a4:	c1 ec       	ldi	r28, 0xC1	; 193
+ 3a6:	d9 e0       	ldi	r29, 0x09	; 9
+ 3a8:	88 81       	ld	r24, Y
+ 3aa:	88 23       	and	r24, r24
+ 3ac:	ec f7       	brge	.-6      	; 0x3a8 <main+0x14>
+			char *x;
+			getString(x);
+ 3ae:	00 e0       	ldi	r16, 0x00	; 0
+ 3b0:	10 e0       	ldi	r17, 0x00	; 0
+ 3b2:	c8 01       	movw	r24, r16
+ 3b4:	0e 94 86 01 	call	0x30c	; 0x30c <_Z9getStringPc>
+			decodeString(x);
+ 3b8:	c8 01       	movw	r24, r16
+ 3ba:	0e 94 9b 01 	call	0x336	; 0x336 <_Z12decodeStringPc>
 			//if(a != 0x10)
-			ChanA.instVol=a;
- 31c:	07 e0       	ldi	r16, 0x07	; 7
- 31e:	10 e2       	ldi	r17, 0x20	; 32
-	updatePots();
-	
-	while (1) {
-		
-		//updatePots();
-		if(USARTD0_STATUS & USART_RXCIF_bm) { // If there is unread data from Main CPU...
- 320:	88 81       	ld	r24, Y
- 322:	88 23       	and	r24, r24
- 324:	34 f4       	brge	.+12     	; 0x332 <main+0x2a>
-		//	getString(x);
-			unsigned char a = getByte();
- 326:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <_Z7getBytev>
-			//if(a != 0x10)
-			ChanA.instVol=a;
- 32a:	f8 01       	movw	r30, r16
- 32c:	80 83       	st	Z, r24
+			//ChanA.instVol=(4*a);
+			//ChanA.instVol=0x00;
+		//	ChanA.treble+=20;
 			//decodeString(x);
 			updatePots();
- 32e:	0e 94 ee 00 	call	0x1dc	; 0x1dc <_Z10updatePotsv>
- 332:	ff ef       	ldi	r31, 0xFF	; 255
- 334:	21 ee       	ldi	r18, 0xE1	; 225
- 336:	84 e0       	ldi	r24, 0x04	; 4
- 338:	f1 50       	subi	r31, 0x01	; 1
- 33a:	20 40       	sbci	r18, 0x00	; 0
- 33c:	80 40       	sbci	r24, 0x00	; 0
- 33e:	e1 f7       	brne	.-8      	; 0x338 <main+0x30>
- 340:	00 c0       	rjmp	.+0      	; 0x342 <main+0x3a>
- 342:	00 00       	nop
- 344:	ed cf       	rjmp	.-38     	; 0x320 <main+0x18>
+ 3be:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <_Z10updatePotsv>
+ 3c2:	f2 cf       	rjmp	.-28     	; 0x3a8 <main+0x14>
 
-00000346 <_GLOBAL__sub_I_x>:
+000003c4 <_GLOBAL__sub_I_ChanA>:
+
+void init(void);
 void initUSART(void);
 void initI2C(void);
 
-char *x;
-
 struct driveConfig {
- 346:	e7 e0       	ldi	r30, 0x07	; 7
- 348:	f0 e2       	ldi	r31, 0x20	; 32
- 34a:	82 e3       	ldi	r24, 0x32	; 50
- 34c:	80 83       	st	Z, r24
- 34e:	11 82       	std	Z+1, r1	; 0x01
- 350:	3b e4       	ldi	r19, 0x4B	; 75
- 352:	32 83       	std	Z+2, r19	; 0x02
- 354:	94 e6       	ldi	r25, 0x64	; 100
- 356:	93 83       	std	Z+3, r25	; 0x03
- 358:	94 83       	std	Z+4, r25	; 0x04
- 35a:	21 e0       	ldi	r18, 0x01	; 1
- 35c:	25 83       	std	Z+5, r18	; 0x05
- 35e:	86 83       	std	Z+6, r24	; 0x06
- 360:	e0 e0       	ldi	r30, 0x00	; 0
- 362:	f0 e2       	ldi	r31, 0x20	; 32
- 364:	80 83       	st	Z, r24
- 366:	11 82       	std	Z+1, r1	; 0x01
- 368:	32 83       	std	Z+2, r19	; 0x02
- 36a:	93 83       	std	Z+3, r25	; 0x03
- 36c:	94 83       	std	Z+4, r25	; 0x04
- 36e:	25 83       	std	Z+5, r18	; 0x05
- 370:	86 83       	std	Z+6, r24	; 0x06
- 372:	08 95       	ret
+ 3c4:	e7 e0       	ldi	r30, 0x07	; 7
+ 3c6:	f0 e2       	ldi	r31, 0x20	; 32
+ 3c8:	10 82       	st	Z, r1
+ 3ca:	11 82       	std	Z+1, r1	; 0x01
+ 3cc:	12 82       	std	Z+2, r1	; 0x02
+ 3ce:	13 82       	std	Z+3, r1	; 0x03
+ 3d0:	14 82       	std	Z+4, r1	; 0x04
+ 3d2:	81 e0       	ldi	r24, 0x01	; 1
+ 3d4:	85 83       	std	Z+5, r24	; 0x05
+ 3d6:	16 82       	std	Z+6, r1	; 0x06
+ 3d8:	e0 e0       	ldi	r30, 0x00	; 0
+ 3da:	f0 e2       	ldi	r31, 0x20	; 32
+ 3dc:	10 82       	st	Z, r1
+ 3de:	11 82       	std	Z+1, r1	; 0x01
+ 3e0:	12 82       	std	Z+2, r1	; 0x02
+ 3e2:	13 82       	std	Z+3, r1	; 0x03
+ 3e4:	14 82       	std	Z+4, r1	; 0x04
+ 3e6:	85 83       	std	Z+5, r24	; 0x05
+ 3e8:	16 82       	std	Z+6, r1	; 0x06
+ 3ea:	08 95       	ret
 
-00000374 <__tablejump2__>:
- 374:	ee 0f       	add	r30, r30
- 376:	ff 1f       	adc	r31, r31
- 378:	05 90       	lpm	r0, Z+
- 37a:	f4 91       	lpm	r31, Z
- 37c:	e0 2d       	mov	r30, r0
- 37e:	09 94       	ijmp
+000003ec <__tablejump2__>:
+ 3ec:	ee 0f       	add	r30, r30
+ 3ee:	ff 1f       	adc	r31, r31
+ 3f0:	05 90       	lpm	r0, Z+
+ 3f2:	f4 91       	lpm	r31, Z
+ 3f4:	e0 2d       	mov	r30, r0
+ 3f6:	09 94       	ijmp
 
-00000380 <_exit>:
- 380:	f8 94       	cli
+000003f8 <_exit>:
+ 3f8:	f8 94       	cli
 
-00000382 <__stop_program>:
- 382:	ff cf       	rjmp	.-2      	; 0x382 <__stop_program>
+000003fa <__stop_program>:
+ 3fa:	ff cf       	rjmp	.-2      	; 0x3fa <__stop_program>

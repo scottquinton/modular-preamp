@@ -18,7 +18,7 @@
 // USART Functions
 void sendChar(char cToSend);
 void sendStr(char *sToSend);
-unsigned char getByte(void);
+char getByte(void);
 void getString(char *sToGet);
 void decodeString(char *sToDecode);
 
@@ -29,16 +29,14 @@ void init(void);
 void initUSART(void);
 void initI2C(void);
 
-char *x;
-
 struct driveConfig {
-	unsigned char instVol = 50; // Input instrument pre-gain
+	unsigned char instVol = 0; // Input instrument pre-gain
 	unsigned char gain = 0; // LED distortion amount (0 - 100)
-	unsigned char bass = 75; // Bandaxall filter LPF setting (0 - 100)
-	unsigned char mids = 100; // Bandaxall filter Middle BPF setting (0 - 100)
-	unsigned char treble = 100; // Bandaxall filter HPF setting (0 - 100)
+	unsigned char bass = 0; // Bandaxall filter LPF setting (0 - 100)
+	unsigned char mids = 0; // Bandaxall filter Middle BPF setting (0 - 100)
+	unsigned char treble = 0; // Bandaxall filter HPF setting (0 - 100)
 	bool cleanOn = true; // Clean or distortion channel
-	unsigned char volume = 50; // Master output volume (0 - 100)
+	unsigned char volume = 0; // Master output volume (0 - 100)
 };
 
 driveConfig ChanA, ChanB;
@@ -53,14 +51,18 @@ int main(void) {
 		
 		//updatePots();
 		if(USARTD0_STATUS & USART_RXCIF_bm) { // If there is unread data from Main CPU...
-		//	getString(x);
-			unsigned char a = getByte();
+			char *x;
+			getString(x);
+			decodeString(x);
+			//unsigned char a = getByte();
 			//if(a != 0x10)
-			ChanA.instVol=a;
+			//ChanA.instVol=(4*a);
+			//ChanA.instVol=0x00;
+		//	ChanA.treble+=20;
 			//decodeString(x);
 			updatePots();
 		}
-		_delay_ms(50);
+		//_delay_ms(5);
 	}
 }
 
@@ -85,22 +87,23 @@ void init(void) {
 	
 	PORTC.DIR = 0b00000011; // i2C lines SCL and SDA (PC1 and PC0)
 
-	PORTC.PIN0CTRL = 0b00101000; // Wired AND configuration with internal pull-up
-	PORTC.PIN1CTRL = 0b00101000; // Wired AND configuration with internal pull-up
+	PORTC.PIN0CTRL = 0b00101000; // Wired AND configuration with no internal pull-up
+	PORTC.PIN1CTRL = 0b00101000; // Wired AND configuration with no internal pull-up
 	
 	PORTD.DIR = 0b00001000; // All inputs except PD3 (SPI TX)
+	PORTD.PIN3CTRL = 0b00000000; // Totem pole configuration
 	
 	_delay_ms(1000); // Wait for stuff to power up etc
 }
 
 void initUSART(void) {
 	// Configure SPI interface and speeds etc for USARTD0 @ 57600bps
-	USARTD0.BAUDCTRLA = 0x22; // BSEL = 34
-	USARTD0.BAUDCTRLB = 0x00; // BSCALE = 0
+	USARTD0.BAUDCTRLA = 0x22; // BSEL = 12
+	USARTD0.BAUDCTRLB = 0x00; // BSCALE = 4	
 	USARTD0.CTRLA = 0x00; // Interrupts off
 	USARTD0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
 	USARTD0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
-	USARTD0.CTRLD = 0b00000000; // Asynchronous, No parity, 1 stop bit, 8 data bits
+	USARTD0.CTRLD = 0b00000000; // Standard configuration
 }
 
 void initI2C(void) {
@@ -177,29 +180,23 @@ void sendStr(char *sToSend) {
 	sendChar(*sToSend++);
 }
 
-unsigned char getByte(void) {
+char getByte(void) {
 	while(!(USARTD0_STATUS & USART_RXCIF_bm));
 	return USARTD0_DATA;
 }
 
-
-// "Axxxxxx(Y/N)xxxxxx(Y/N)"
-// eg. "A000000Y000000Y"
 void getString(char *strToGet) {
-	char temp;
 	int len = 0;
 	bool done = false;
 	while(!done) {
-		temp = getByte();
-		*strToGet = temp;
-		if(temp == 'A')
+		*strToGet = getByte();
+		if(*strToGet == 'C')
 			done = true;
 		else {
 			len++;
 			strToGet++;
 		}
 		if(len == 20) {
-			ChanA.instVol+=25;
 			done = true;
 		}
 	}
@@ -207,30 +204,19 @@ void getString(char *strToGet) {
 
 
 void decodeString(char *sToDecode) {
-
 	if(*sToDecode++ == 'A') {
-		
-		
-		//(unsigned char)*sToDecode++;
-		//ChanA.treble = (unsigned char)*sToDecode++;
-	/*	ChanA.mids = (unsigned char)*sToDecode++;
-		ChanA.bass = (unsigned char)*sToDecode++;
-		ChanA.gain = (unsigned char)*sToDecode++;
-		ChanA.volume = (unsigned char)*sToDecode++;
-		if(*sToDecode++ == 'Y')
-			ChanA.cleanOn = true;
-		else
-			ChanA.cleanOn = false;
-		ChanB.instVol = (unsigned char)*sToDecode++;
-		ChanB.treble = (unsigned char)*sToDecode++;
-		ChanB.mids = (unsigned char)*sToDecode++;
-		ChanB.bass = (unsigned char)*sToDecode++;
-		ChanB.gain = (unsigned char)*sToDecode++;
-		ChanB.volume = (unsigned char)*sToDecode++;
-		if(*sToDecode++ == 'Y')
-			ChanB.cleanOn = true;
-		else
-			ChanB.cleanOn = false;				
-	}*/
+		ChanA.treble = *sToDecode++;
+		ChanA.mids = *sToDecode++;
+		ChanA.bass = *sToDecode++;
+		ChanA.gain = *sToDecode++;
+		ChanA.instVol = *sToDecode++;
+		sToDecode++;
+		ChanB.treble = *sToDecode++;
+		ChanB.mids = *sToDecode++;
+		ChanB.bass = *sToDecode++;
+		ChanB.gain = *sToDecode++;
+		ChanB.instVol = *sToDecode++;	
 	}
+	ChanA.mids = 0xff;
+	ChanA.instVol = 0xff;
 }

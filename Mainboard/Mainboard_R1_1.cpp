@@ -33,7 +33,6 @@ void lcdDelay(unsigned char lcdDel);
 void xmitHLine(short int xPos, short int yPos, short int length, short int color);
 void xmitVLine(short int xPos, short int yPos, short int length, short int color);
 void xmitText(short int xStart, short int yStart, short int textChar, short int color);
-void fillLCD(short int color);
 void drawString(const char* str, short int xStart, short int yStart, short int text_color, short int bg_color);
 void drawChar(unsigned char c, short int xStart, short int yStart, short int text_color, short int bg_color);
 void drawBox(short int topleft_x, short int topleft_y, short int botright_x, short int botright_y, short int color);
@@ -44,7 +43,7 @@ int min(short int a, short int b);
 int max(short int a, short int b);
 
 // USART Functions
-void sendChar(unsigned char cToSend, int chanNum);
+void sendChar(char cToSend, int chanNum);
 void sendStr(char *sToSend, int chanNum);
 char getByte(int chanNum);
 void getString(char *sToGet, int chanNum);
@@ -79,10 +78,6 @@ static int v_max = 200; // Maximum tube plate voltage supply
 
 int main(void) 
 {
-	char msg_AUX;
-	char msg_MA;
-	char msg_MB;
-	char msg_UI;
 	bool MA_ON = false;
 	bool MB_ON = false;
 
@@ -123,26 +118,24 @@ int main(void)
 	PORTB.OUTSET = 0b00010000; // Turn on Both Relays
 	PORTB.OUTSET = 0b00000010; // Turn on Both Relays
 	
-	//xmitCMD(0x2C); // Start writing pixels
-	
 	short int qPos[11] = {0,0,0,0,0,0,0,0,0,0,0};
 	short int pos = 0;
 	short int enc = 0;
+
 	
-	short int BKCOL = BLUE;
-	short int char_color = BLACK;
-	short int bg_color = WHITE;
-	fillLCD(char_color);
+	short int BKCOL = BLACK;
+	fillBox(0, 0, 320, 240, BKCOL);
 	drawDisplay('1');
 	
 	while (1)
 	{
-		//sendStr("ABC", 2);
-		sendChar(0x00, 2);
-		_delay_ms(100);
+		//sendStr("A      B000000C", 2);
+		//sendChar(0xff, 2);
+		//_delay_ms(250);
 		if(USARTE1_STATUS & USART_RXCIF_bm) // If there is unread data from UI controller
 		{
 			char c = getByte(3);
+			char s[15];
 			if (c >= '0' && c<='9'){
 				enc = (int)(c-'0');
 			}
@@ -152,6 +145,16 @@ int main(void)
 			else if(c == '-'){
 				qPos[enc] = max(qPos[enc]-1, 0);
 			}
+			s[0] = 'A';
+			for(int i=0; i<5; i++)
+				s[i+1] = qPos[i];
+			s[6] = 'B';
+			for(int i=5; i<10; i++)
+				s[i+2] = qPos[i];
+			s[12] = 'C';
+			for(int i=0; i<13; i++)
+				sendChar(s[i], 2);
+			//sendChar((unsigned char)qPos[4], 2);
 			//short int val = qPos[0];
 			//if (val > 255) encoder_val = 255;
 			//else if (val < 0) encoder_val = 0;
@@ -226,17 +229,11 @@ int main(void)
 void init(void) 
 {
 	OSC.CTRL = 0b00000010; // Enable internal 32MHz oscillator
-	//OSC.CTRL = 0b00001000; // Enable external 32MHz oscillator
-	//OSC.XOSCCTRL = 0b11000000; // Configure XOSC for High speed operation, high power XTAL1 and XTAL2
-	
-	while((OSC.STATUS & 0b00000010) == 0); // Wait for the internal oscillator to stabilize
-    //while((OSC.STATUS & 0b00001000) == 0); // Wait for the external oscillator to stabilize
-	
+	while((OSC.STATUS & 0b00000010) == 0); // Wait for the internal oscillator to stabilize	
 	CCP = 0xD8; // Remove code write lock
 	CLK.PSCTRL = 0b00000000; // No external clock prescaler
 	CCP = 0xD8; // Remove code write lock
 	CLK.CTRL = 0b00000001; // Internal 32MHz Oscillator
-	//CLK.CTRL = 0b00000011; // External Oscillator (32MHz)
 	
 	PORTA.DIR = 0b11111000; // A0, A1, and A2 are ADC inputs, rest outputs
 	ADCA.CTRLA = 0x00; // Enable the ADC on PORT A
@@ -289,30 +286,25 @@ void initUSART(void)
 	USARTE0.BAUDCTRLB = 0x00; // BSCALE = 0
 	USARTE0.CTRLA = 0x00; // Interrupts off
 	USARTE0.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
-	USARTE0.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
+	USARTE0.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
 	
 	// Configure SPI interface and speeds etc for UI Controller USARTE1 @ 57600bps
 	USARTE1.BAUDCTRLA = 0x22; // BSEL = 34
 	USARTE1.BAUDCTRLB = 0x00; // BSCALE = 0
 	USARTE1.CTRLA = 0x00; // Interrupts off
 	USARTE1.CTRLB = 0b00011000; // CLK2X = 0, Enable transmitter and receiver
-	USARTE1.CTRLC = 0b00000010; // Asynchronous, No parity, 1 stop bit, 7 data bits
+	USARTE1.CTRLC = 0b00000011; // Asynchronous, No parity, 1 stop bit, 8 data bits
 }
 
 void initLCD(void)
 {
 	xmitCMD(0x28); // Turn display off
-	
 	xmitCMD(0x11); // Exit sleep mode	
 	
 	xmitCMD(0x36); // Memory access control
-	//xmitDATA(0x00, 0x80); // Bottom to top, left to right, rest default
 	xmitDATA(0x80); // Bottom to top, left to right, rest default
-	
 	xmitCMD(0x3A); // Interface Pixel Format
 	xmitDATA(0x55); // 65K RGB color format, 16 bits per pixel
-	//xmitDATA(0x00, 0x55); // 65K RGB color format, 16 bits per pixel
-	//xmitDATA(0x00, 0x66); // 256K RGB color format, 18 bits per pixel
 	
 	xmitCMD(0xB2); // Porch control
 	xmitDATA(0x0C); //
@@ -395,7 +387,7 @@ void initLCD(void)
 	_delay_ms(50);
 }
 
-void sendChar(unsigned char cToSend, int chanNum)
+void sendChar(char cToSend, int chanNum)
 {
 	switch(chanNum)
 	{
@@ -455,10 +447,23 @@ char getByte(int chanNum)
 	return temp;
 }
 
-/*
+
 void getString(char *sToGet, int chanNum)
 {
-	
+	int len;
+	bool done = false;
+	while(!done) {
+		*sToGet = getByte(chanNum);
+		if(*sToGet == '\0')
+			done = true;
+		else {
+			sToGet++;
+			len++;
+		}
+		if(len > 20) {
+			done = true;
+		}
+	}
 }
 
 void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned char green, unsigned char blue)
@@ -467,7 +472,7 @@ void xmitPIXEL(unsigned int xCor, unsigned int yCor, unsigned char red, unsigned
 	//xmitDATA(0x00); //
 	//xmitDATA(0x1F); // Blue
 }
-*/
+
 
 void xmitDATA(unsigned char dataByte)
 {
@@ -524,38 +529,6 @@ void xmitHLine(short int xPos, short int yPos, short int length, short int color
 		xmitDATA(colorL);
 			
 	}
-}
-
-void fillLCD(short int color)
-{
-	fillBox(0, 0, 320, 240, color);
-	/*
-	unsigned char colorH = (unsigned char)(color >> 8);
-	unsigned char colorL = (unsigned char)(color & 0x00FF);
-	
-	xmitCMD(0x36); // Memory access control
-	xmitDATA(0x80); // Bottom to top, left to right, row/column exhange rest default
-
-	xmitCMD(0x2A); // X Address Set
-	xmitDATA(0x00); //
-	xmitDATA(0x00); // Start 0
-	xmitDATA(0x00); //
-	xmitDATA(0xEF); // Finish 239
-		
-	xmitCMD(0x2B); // Y Address Set
-	xmitDATA(0x00); //
-	xmitDATA(0x00); // Start 0
-	xmitDATA(0x01); //
-	xmitDATA(0x3F); // Finish 319
-		
-	xmitCMD(0x2C); // Start writing pixels	
-	for(int i=0; i<320; i++)
-	for(int j=0; j<240; j++) {
-		xmitDATA(colorH);
-		xmitDATA(colorL);
-	}
-	*/
-	
 }
 
 // 60, 160, 120, RED
